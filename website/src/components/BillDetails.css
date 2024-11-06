@@ -1,0 +1,102 @@
+/* BillDetails.css */
+:root {
+    --deep-orange: #E43D12;
+    --warm-pink: #dd4b68;
+    --light-pink: #ffb6c6;
+    --golden-yellow1: #ffd982;
+    --golden-yellow2: #e8b642;
+    --soft-tan: #f3e7de;
+    --white: #ffffff;
+    --text-dark: #453636;
+}
+
+.bill-details {
+    padding: 30px;
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: Arial, sans-serif;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+}
+
+.bill-title {
+    font-size: 25px;
+    margin-bottom: 22px;
+    color: var(--text-dark);
+    /* color: var(--deep-orange); */
+}
+
+.congress {
+    font-size: 17px;
+    color: var(--text-dark);
+}
+
+.sponsor {
+    margin: 22px 0;
+    font-size: 17px;
+}
+
+.tracker {
+    display: flex;
+    align-items: center;
+    margin: 30px auto auto auto;
+}
+
+.tracker button {
+    background-color: var(--golden-yellow1);
+    border: none;
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 8px;
+    margin: auto;
+}
+
+/* .tracker button.active { */
+    /* color: white; */
+    /* background-color: var(--golden-yellow2); */
+/* } */
+
+.keywords{
+    margin: 45px auto 50px auto;
+    font-size: 17px;
+    padding: 15px;
+    background-color: var(--light-pink);
+    border-radius: 5px;
+}
+
+.summary {
+    font-size: 17px;
+}
+
+/* .timeline {
+    margin: 20px 0;
+}
+
+.timeline table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.timeline th, .timeline td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+} */
+
+.more-info-button {
+    display: block;
+    margin: 70px auto 20px auto;
+    padding: 13px 20px;
+    background-color: #0071e3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.more-info-button:hover {
+    background-color: #005bb5;
+}

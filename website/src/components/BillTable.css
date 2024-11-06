@@ -1,0 +1,41 @@
+/* Container to center the table */
+:root {
+    --deep-orange: #E43D12;
+    --warm-pink: #dd4b68;
+    --light-pink: #ffb6c6;
+    --golden-yellow: #f3c456;
+    --soft-tan: #f3e7de;
+    --white: #ffffff;
+    --text-dark: #453636;
+}
+
+.table-container {
+    margin: 20px auto;
+    width: 80%;
+}
+
+/* Styling for the table */
+.bill-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    background-color: var(--white);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: var(--text-dark);
+}
+
+/* Table header styling */
+.bill-table th {
+    color: white;
+    padding: 12px;
+    font-size: 17px;
+    white-space: nowrap;
+    background-color: var(--warm-pink);
+}
+
+.bill-table a:hover {
+    text-decoration: underline !important;
+    color: var(--warm-pink) !important;
+}

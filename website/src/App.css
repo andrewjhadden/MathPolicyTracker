@@ -1,0 +1,75 @@
+/* App.css */
+
+/* Define colors for easy reference */
+:root {
+    --deep-orange: #E43D12;
+    --warm-pink: #dd4b68;
+    --light-pink: #ffb6c6;
+    --golden-yellow: #f3c456;
+    --soft-tan: #f3e7de;
+    --white: #ffffff;
+    --text-dark: #453636;
+}
+
+/* General Body Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--soft-tan);
+    color: var(--text-dark);
+}
+
+/* Bill Alert Section */
+.alert-header {
+    font-size: 1.8rem;
+    color: var(--deep-orange);
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.bill-alerts {
+    display: flex;
+    justify-content: space-around;
+    padding: 30px;
+    background-color: var(--light-pink);
+    color: var(--text-dark);
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.alert-card {
+    /* border: 1px solid var(--warm-pink); */
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    width: 25%;
+}
+
+/* Bill Actions Table and Search Bar */
+.table-header {
+    font-size: 1.8rem;
+    color: var(--deep-orange);
+    text-align: center;
+    margin-top: 60px;
+    /* margin-bottom: 20px; */
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: var(--golden-yellow);
+    color: var(--text-dark);
+    border-radius: 8px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: var(--soft-tan);
+    color: var(--text-dark);
+}

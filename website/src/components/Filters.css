@@ -1,0 +1,39 @@
+.filter {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    position: relative;
+}
+
+.filter-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.filter-dropdown {
+    position: absolute; /* Position relative to the .filter container */
+    top: 100%; /* Place directly below the search bar */
+    left: 0;
+    width: 100%; /* Match the width of the search bar */
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-top: none; /* Remove the top border to blend with search bar */
+    max-height: 200px; /* Adjust max-height as desired */
+    overflow-y: auto;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.filter-dropdown-item {
+    padding: 8px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+}
+
+.filter-dropdown-item:hover {
+    background-color: #f0f0f0;
+}

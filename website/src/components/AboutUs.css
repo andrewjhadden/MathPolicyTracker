@@ -1,0 +1,90 @@
+/* AboutUs.css */
+
+:root {
+    --deep-orange: #E43D12;
+    --warm-pink: #dd4b68;
+    --light-pink: #ffb6c6;
+    --golden-yellow: #f3c456;
+    --soft-tan: #f3e7de;
+    --white: #ffffff;
+    --text-dark: #453636;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--soft-tan);
+    font-family: Arial, sans-serif;
+}
+
+.about-us {
+    padding: 40px;
+    margin: 0 auto;
+    max-width: 90%;
+    background-color: var(--soft-tan);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 30px;
+    color: var(--deep-orange);
+}
+
+.about-header h1 {
+    font-size: 2.5em;
+    color: var(--deep-orange);
+    margin-bottom: 10px;
+}
+
+.about-header p {
+    font-size: 1.2em;
+    color: var(--text-dark);
+}
+
+.about-mission {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: var(--warm-pink);
+    color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.about-mission h2 {
+    font-size: 1.8em;
+    color: var(--golden-yellow);
+    margin-bottom: 10px;
+}
+
+.about-mission p {
+    font-size: 1em;
+    color: var(--white);
+    line-height: 1.6;
+}
+
+.about-team {
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 8px;
+}
+
+.about-team h2 {
+    font-size: 1.8em;
+    color: var(--deep-orange);
+    margin-bottom: 15px;
+}
+
+.team-member h3 {
+    font-size: 1.3em;
+    color: var(--warm-pink);
+    margin-bottom: 5px;
+}
+
+.team-member p {
+    font-size: 1em;
+    color: var(--text-dark);
+    line-height: 1.4;
+    margin: 0;
+}
