@@ -1,3 +1,5 @@
 {
-  "builds": [{ "src": "website/package.json", "use": "@vercel/static-build" }]
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/" }
+  ]
 }

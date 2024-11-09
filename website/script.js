@@ -6,7 +6,8 @@
 // How to run: MongoDB_Thesis/node server.js
 //  + need to run website/npm start
 
-fetch('http://localhost:3002/data')  // Call the Express server (which is the API) to fetch data
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3002";
+fetch(`${API_URL}/data`) // Call the Express server (which is the API) to fetch data
 .then(response => { // Checks if response from server is okay 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
