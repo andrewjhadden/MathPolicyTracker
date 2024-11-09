@@ -19,4 +19,4 @@ Code folders, in 2 parts:
 2. Website:
   * App.js: shows the data from the database
   * script.js: connects with the database using Express
-  * [email API to be added]
+  * [email API to be added] 
