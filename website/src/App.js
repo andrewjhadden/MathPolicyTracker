@@ -18,7 +18,8 @@ function App() {
 
     // Data fetching logic:
     useEffect(() => {
-        fetch('http://localhost:3002/data')
+        const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3002";
+        fetch(`${API_URL}/data`)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
