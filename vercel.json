@@ -1,6 +1,8 @@
 {
-    "routes": [
-      { "src": "/", "dest": "/Users/andrewhadden/Desktop/deployedthesis/website/script.js" }
-    ]
-  }
-  
+  "builds": [
+    { "src": "website/package.json", "use": "@vercel/static-build" }
+  ],
+  "routes": [
+    { "src": "/(.*)", "dest": "/website/$1" }
+  ]
+}
