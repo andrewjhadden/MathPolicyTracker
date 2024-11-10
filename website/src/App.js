@@ -12,7 +12,6 @@ import './App.css';
 
 function App() {
     const path = window.location.pathname;
-    const isBillDetailsPage = path.startsWith('/bill/');
 
     const [data, setData] = useState([]); // State to store fetched data
 
