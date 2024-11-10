@@ -13,7 +13,7 @@ import './App.css';
 function App() {
 
     const [data, setData] = useState([]); // State to store fetched data
-    const API_URL = process.env.REACT_APP_DATABASE_API_URL/data.js;
+    const API_URL = process.env.REACT_APP_DATABASE_API_URL/data;
     // Data fetching logic:
     useEffect(() => {
         fetch(API_URL)

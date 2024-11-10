@@ -1,4 +1,4 @@
-fetch(`${process.env.REACT_APP_DATABASE_API_URL}/data.js`)  // Call the API server to fetch data
+fetch(`${process.env.REACT_APP_DATABASE_API_URL}/data`)  // Call the API server to fetch data
   .then(response => { // Checks if response from server is okay 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
