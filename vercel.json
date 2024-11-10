@@ -1,8 +1,9 @@
 {
   "builds": [
-    { "src": "website/package.json", "use": "@vercel/static-build" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "website/$1" }
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "build" }
+    }
   ]
 }
