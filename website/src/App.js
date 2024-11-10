@@ -13,10 +13,11 @@ import './App.css';
 function App() {
 
     const [data, setData] = useState([]); // State to store fetched data
-
+    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3002/data';
     // Data fetching logic:
     useEffect(() => {
-        fetch('http://localhost:3002/data')
+        
+        fetch(API_URL)
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
