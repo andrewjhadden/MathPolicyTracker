@@ -16,7 +16,6 @@ function App() {
     const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:3002/data';
     // Data fetching logic:
     useEffect(() => {
-        
         fetch(API_URL)
             .then((response) => {
                 if (!response.ok) {
@@ -24,11 +23,10 @@ function App() {
                 }
                 return response.json();
             })
-            .then((data) => {
-                setData(data); // Store fetched data
-            })
+            .then((data) => setData(data))
             .catch((error) => console.error('Error fetching data:', error));
-    }, []);
+    }, [API_URL]);
+    
 
     return (
         <Router>
