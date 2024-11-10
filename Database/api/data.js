@@ -3,63 +3,34 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// MongoDB connection URL from environment variables
 const mongoUri = process.env.MONGODB_URI;
 
 // Connect to MongoDB
 async function connectToDB() {
     if (mongoose.connection.readyState === 0) {
-        try {
-            await mongoose.connect(mongoUri, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-            });
-            console.log('Connected to MongoDB');
-        } catch (error) {
-            console.error('Database connection error:', error);
-            throw new Error('Failed to connect to database');
-        }
+        await mongoose.connect(mongoUri, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+        });
     }
 }
-export default async function handler(req, res) {
-    res.setHeader('Access-Control-Allow-Origin', '*'); // Replace * with specific origin if needed
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-  
-    // Your existing MongoDB connection and data fetching logic here
-  }
-  
 
 // Define Mongoose schema and model
 const dataSchema = new mongoose.Schema({
-    bill: {
-        actionDate: String,
-        actionDesc: String,
-        bill: Object,
-        currentChamber: String,
-        currentChamberCode: String,
-        lastSummaryUpdateDate: String,
-        text: String,
-        updateDate: String,
-        versionCode: String
-    },
+    bill: Object,
     keywordsMatched: [String]
 });
 
-const DataModel = mongoose.models.thesisdbcollections || mongoose.model('thesisdbcollections', dataSchema);
+const DataModel = mongoose.models.DataModel || mongoose.model('DataModel', dataSchema);
 
-// Serverless function to handle data requests
+// Handler function for the serverless function
 export default async function handler(req, res) {
-    await connectToDB();
-
     try {
-        const data = await DataModel.find();
-        if (!data || data.length === 0) {
-            return res.status(404).json({ message: 'No data found' });
-        }
+        await connectToDB();
+        const data = await DataModel.find();  // Fetch data from MongoDB
         res.status(200).json(data);
     } catch (error) {
-        console.error('Error fetching data:', error);
-        res.status(500).json({ error: 'Failed to fetch data' });
+        console.error('Error in handler:', error);
+        res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
 }
