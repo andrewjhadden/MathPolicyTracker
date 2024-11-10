@@ -1,13 +1,5 @@
-// October 24, 2024
-// Thesis Fall 2024
-// Ally Berkowitz and Andrew Hadden
-// Description: Client-side functionality of Express to connect to database.
-
-// How to run: MongoDB_Thesis/node server.js
-//  + need to run website/npm start
-
-fetch('http://localhost:3002/data')  // Call the Express server (which is the API) to fetch data
-.then(response => { // Checks if response from server is okay 
+fetch(`${process.env.REACT_APP_DATABASE_API_URL}/data`)  // Call the API server to fetch data
+  .then(response => { // Checks if response from server is okay 
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
