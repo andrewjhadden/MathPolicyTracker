@@ -1,9 +1,4 @@
 {
-  "builds": [
-    {
-      "src": "website/package.json",
-      "use": "@vercel/static-build",
-      "config": { "distDir": "build" }
-    }
-  ]
+  "outputDirectory": "build"
 }
+
