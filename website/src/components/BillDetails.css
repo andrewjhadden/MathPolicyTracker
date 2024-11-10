@@ -1,0 +1,75 @@
+/* BillDetails.css */
+.bill-details {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.bill-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.congress {
+    font-size: 16px;
+    color: #535353;
+}
+
+.sponsor {
+    margin: 15px 0;
+}
+
+.tracker {
+    display: flex;
+    gap: 5px;
+    margin: 20px 0;
+}
+
+.tracker button {
+    background-color: #ddd;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tracker button.active {
+    background-color: #0071e3;
+    color: white;
+}
+
+.summary {
+    margin: 20px 0;
+}
+
+.timeline {
+    margin: 20px 0;
+}
+
+.timeline table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.timeline th, .timeline td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: left;
+}
+
+.more-info-button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #0071e3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.more-info-button:hover {
+    background-color: #005bb5;
+}
