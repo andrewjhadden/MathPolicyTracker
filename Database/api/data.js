@@ -19,9 +19,9 @@ async function connectToDB() {
 const dataSchema = new mongoose.Schema({
     bill: Object,
     keywordsMatched: [String]
-});
+}, { collection: 'thesisdbcollections' }); // Specify the correct collection name
 
-const DataModel = mongoose.models.DataModel || mongoose.model('DataModel', dataSchema);
+const ThesisDBCollection = mongoose.models.ThesisDBCollection || mongoose.model('ThesisDBCollection', dataSchema);
 
 // Handler function for the serverless function
 export default async function handler(req, res) {
@@ -29,12 +29,6 @@ export default async function handler(req, res) {
     res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins temporarily for testing
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-
-    // Disable caching for the response
-    res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
-    res.setHeader('Pragma', 'no-cache');
-    res.setHeader('Expires', '0');
-    res.setHeader('Surrogate-Control', 'no-store');
 
     // Handle preflight OPTIONS request
     if (req.method === 'OPTIONS') {
@@ -44,9 +38,7 @@ export default async function handler(req, res) {
 
     try {
         await connectToDB();
-        console.log('Connected to MongoDB');  // Step 1: Confirm connection
-        const data = await DataModel.findOne();  // Fetch only one document
-        console.log('Fetched Data:', data); // Step 1: Log the fetched data
+        const data = await ThesisDBCollection.find();  // Fetch all documents
         res.status(200).json(data);
     } catch (error) {
         console.error('Error in handler:', error);
