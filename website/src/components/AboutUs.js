@@ -14,9 +14,10 @@ const AboutUs = () => (
             <p>
                 We created this website as seniors at Hamilton College for our Computer Science thesis project 
                 in the fall of 2024. We choose this project with the guidance of Courtney Gibbons, Professor
-                of Mathematics at Hamilton College, after finding the public does not have easy access to
-                updated infromation on legislative actions related to mathematics. We aim to create easy access
-                to legislative changes related to mathematics for congressional staff and to empower citizens 
+                of Mathematics at Hamilton College, and Darren Strash, Professor of Computer Science at 
+                Hamilton College, after finding the public does not have easy access to updated information on 
+                legislative actions specifically about mathematics. We aim to create easy access to 
+                legislative changes related to mathematics for congressional staff and to empower citizens 
                 to stay informed and engaged in the legislative process.
             </p>
         </section>

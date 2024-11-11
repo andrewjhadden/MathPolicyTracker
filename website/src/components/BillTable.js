@@ -41,25 +41,3 @@ const BillTable = ({ data }) => {
 };
 
 export default BillTable;
-
-// <h2>Bill Details</h2>
-// <p>Action Date: {item.bill?.actionDate || 'N/A'}</p>
-// <p>Action Description: {item.bill?.actionDesc || 'N/A'}</p>
-// <p>Bill Congress: {item.bill?.bill?.congress || 'N/A'}</p>
-// <p>Bill Number: {item.bill?.bill?.number || 'N/A'}</p>
-// <p>Origin Chamber: {item.bill?.bill?.originChamber || 'N/A'}</p>
-// <p>Origin Chamber Code: {item.bill?.bill?.originChamberCode || 'N/A'}</p>
-// <p>Bill Title: {item.bill?.bill?.title || 'N/A'}</p>
-// <p>Bill Type: {item.bill?.bill?.type || 'N/A'}</p>
-// <p>Bill Update Date Including Text: {item.bill?.bill?.updateDateIncludingText || 'N/A'}</p>
-// <p>Bill URL: {item.bill?.bill?.url || 'N/A'}</p>
-// <p>Current Chamber: {item.bill?.currentChamber || 'N/A'}</p>
-// <p>Current Chamber Code: {item.bill?.currentChamberCode || 'N/A'}</p>
-// <p>Last Summary Update Date: {item.bill?.lastSummaryUpdateDate || 'N/A'}</p>
-// <p>Text: {item.bill?.text || 'N/A'}</p>
-// <p>Update Date: {item.bill?.updateDate || 'N/A'}</p>
-// <p>Version Code: {item.bill?.versionCode || 'N/A'}</p>
-// <p>Keywords: {
-//     Array.isArray(item.keywordsMatched) && item.keywordsMatched.length > 0 
-//     ? item.keywordsMatched.join(', ') 
-//     : 'N/A'
