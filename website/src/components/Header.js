@@ -5,9 +5,10 @@ import './Header.css'; // Make sure to include the CSS file for styling
 
 const Header = () => (
     <header className="header">
-        <a href="/" className="logo">
+        <Link to="/">Congressional Bill Tracker</Link>
+        {/* <a href="/" className="logo">
             Congressional Bill Tracker
-        </a>
+        </a> */}
         <nav>
             <ul className="nav-menu">
                 <button className="menu-button">

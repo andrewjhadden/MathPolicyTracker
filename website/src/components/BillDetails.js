@@ -1,7 +1,7 @@
 // website/src/components/BillDetails.js
 import React from 'react';
 import './BillDetails.css'; 
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 const cleanText = (text) => {
     const htmlRemoved = text.replace(/<[^>]*>/g, '');
