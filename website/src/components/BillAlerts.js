@@ -3,7 +3,7 @@ import './BillAlerts.css';
 
 const BillAlerts = () => {
     const [alerts, setAlerts] = useState([]);
-    const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}/api/data`;
+    const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}/data`;
 
     useEffect(() => {
         const fetchBills = async () => {
