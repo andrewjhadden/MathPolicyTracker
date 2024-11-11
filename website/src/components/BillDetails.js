@@ -68,16 +68,15 @@ const BillDetails = ({ data }) => {
             </div>
             <div className="keywords">
                 <strong>Keywords: </strong>
+                
                 {bill.keywordsMatched ? (
-                    typeof bill.keywordsMatched === 'string' ? (
-                        // Split the string by commas and clean up the extra spaces or unwanted characters
-                        bill.keywordsMatched.split(',').map((keyword, index) => (
-                            <span key={index}>
-                                {cleanText(keyword.trim())}
-                                {index < bill.keywordsMatched.split(',').length - 1 && ', '}
-                            </span>
-                        ))
-                    ) : null
+                    // Split the string by commas and clean up the extra spaces or unwanted characters
+                    bill.keywordsMatched.split(',').map((keyword, index) => (
+                        <span key={index}>
+                            {cleanText(keyword.trim())}
+                            {index < bill.keywordsMatched.split(',').length - 1 && ', '}
+                        </span>
+                    ))
                 ) : null}
             </div>
             <div className="summary">

@@ -94,7 +94,7 @@ const dataSchema = new mongoose.Schema({
         type: String,
         url: String}],
     keywordsMatched: [String]
-}, { collection: 'thesisdbcollections' }); // Specify the correct collection name
+}); // Specify the correct collection name
 
 const dataModel = mongoose.model('thesisdbcollections', dataSchema);
 
