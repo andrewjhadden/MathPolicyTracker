@@ -31,9 +31,9 @@ const BillAlerts = () => {
         <div className="bill-alerts">
             {alerts.map((alert, index) => (
                 <div key={index} className="alert-card">
-                    <h3>{`${alert.bill.bill.type} ${alert.bill.bill.number}`}</h3> {/* Label + Bill number */}
-                    <p>{new Date(alert.bill.actionDate).toLocaleDateString()}</p> {/* Date under */}
-                    <a href={alert.bill.url || `/bill/${alert._id}`}>Learn More</a> {/* Learn more link below */}
+                    <h3>{`${alert.bill?.type || 'N/A'} ${alert.bill?.number || ''}`}</h3> {/* Label + Bill number */}
+                    <p>{alert.bill?.actionDate ? new Date(alert.bill.actionDate).toLocaleDateString() : 'No Date Available'}</p> {/* Date under */}
+                    <a href={alert.bill?.url || `/bill/${alert._id}`}>Learn More</a> {/* Learn more link */}
                 </div>
             ))}
         </div>
