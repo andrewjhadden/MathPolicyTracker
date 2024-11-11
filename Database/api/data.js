@@ -26,7 +26,7 @@ const DataModel = mongoose.models.DataModel || mongoose.model('DataModel', dataS
 // Handler function for the serverless function
 export default async function handler(req, res) {
     // Set CORS headers
-    res.setHeader('Access-Control-Allow-Origin', 'https://deployedthesiswebsite.vercel.app'); 
+    res.setHeader('Access-Control-Allow-Origin', 'https://deployedthesiswebsite.vercel.app'); // Replace with your actual website URL
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
