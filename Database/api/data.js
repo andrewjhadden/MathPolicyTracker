@@ -44,7 +44,9 @@ export default async function handler(req, res) {
 
     try {
         await connectToDB();
+        console.log('Connected to MongoDB');  // Step 1: Confirm connection
         const data = await DataModel.findOne();  // Fetch only one document
+        console.log('Fetched Data:', data); // Step 1: Log the fetched data
         res.status(200).json(data);
     } catch (error) {
         console.error('Error in handler:', error);
