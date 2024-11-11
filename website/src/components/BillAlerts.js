@@ -34,7 +34,7 @@ const BillAlerts = () => {
                 <div key={index} className="alert-card">
                     <h3>{`${alert.bill.bill.type} ${alert.bill.bill.number}`}</h3> {/* Label + Bill number */}
                     <p>{new Date(alert.bill.actionDate).toLocaleDateString()}</p> {/* Date under */}
-                    <Link reloadDocument to={`/bill/${item._id}`}>Learn More</Link>
+                    <Link reloadDocument to={`/bill/${alert._id}`}>Learn More</Link>
                 </div>
             ))}
         </div>
