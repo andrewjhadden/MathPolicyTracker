@@ -67,18 +67,17 @@ const BillDetails = ({ data }) => {
                 )}
             </div>
             <div className="keywords">
-                <strong>Keywords: </strong>
-                {bill.keywordsMatched ? (
-                    typeof bill.keywordsMatched === 'string' ? (
-                        // Split the string by commas and clean up the extra spaces or unwanted characters
-                        bill.keywordsMatched.split(',').map((keyword, index) => (
-                            <span key={index}>
-                                {cleanText(keyword.trim())}
-                                {index < bill.keywordsMatched.split(',').length - 1 && ', '}
-                            </span>
-                        ))
-                    ) : null
-                ) : null}
+            <strong>Keywords: </strong>
+            {bill.keywordsMatched ? (
+                typeof bill.keywordsMatched === 'string' ? (
+                    bill.keywordsMatched.split(',').map((keyword, index) => (
+                        <span key={index}>
+                            {cleanText(keyword.trim())}
+                            {index < bill.keywordsMatched.split(',').length - 1 && ', '}
+                        </span>
+                    ))
+                ) : <span>No keywords available</span> // If it's not a string, display a message
+            ) : <span>No keywords available</span>} {/* If the field is missing, display this */}
             </div>
             <div className="summary">
                 <h3>Summary:</h3>
