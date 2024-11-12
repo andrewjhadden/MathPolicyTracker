@@ -1,4 +1,8 @@
-// AboutUs.js
+// Component: AboutUs.js
+// Hamilton College Fall '24 Thesis
+// Ally Berkowitz and Andrew Hadden
+// Description: Displays a description of our project's purpose including who we work with and who we are.
+
 import React from 'react';
 import './AboutUs.css'; // Import the CSS file for styling
 

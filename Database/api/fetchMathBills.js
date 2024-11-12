@@ -1,3 +1,8 @@
+// Component: AboutUs.js
+// Hamilton College Fall '24 Thesis
+// Ally Berkowitz and Andrew Hadden
+// Description: Collecting all the math bills. Need to update to work with Vercel and need to update for the 
+//      continuous pull. 
 // Fix!!
 
 import { MongoClient, ServerApiVersion } from "mongodb";
@@ -9,7 +14,6 @@ dotenv.config();
 const mongoUri = process.env.MONGODB_URI;
 const apiKey = process.env.API_KEY;
 
-// MongoDB Client configuration
 const client = new MongoClient(mongoUri, {
     serverApi: {
       version: ServerApiVersion.v1,
@@ -33,7 +37,6 @@ const keywords = [
     /\bmathematicians\b/i,
 ];
 
-// Connect to MongoDB
 async function connectToMongoDB() {
     if (!client.isConnected()) {
         await client.connect();
@@ -79,14 +82,14 @@ async function fetchMathBills(db) {
 }
 
 // Serverless function handler
-export default async function handler(req, res) {
+export default async function handler(request, response) {
     try {
         const db = await connectToMongoDB();
         await fetchMathBills(db);
-        res.status(200).json({ message: 'Bills fetched and stored successfully.' });
+        response.status(200).json({ message: 'Bills fetched and stored successfully.' });
     } catch (error) {
         console.error('Error during operation:', error);
-        res.status(500).json({ error: 'Failed to fetch and store bills', details: error.message });
+        response.status(500).json({ error: 'Failed to fetch and store bills', details: error.message });
     } finally {
         await client.close();
     }

@@ -1,3 +1,9 @@
+// Component: Footer.js
+// Hamilton College Fall '24 Thesis
+// Ally Berkowitz and Andrew Hadden
+// Description: Displays the sign up button at the bottom of every page, attached to mailchimp and our database
+//      to keep track of them.
+
 import React, { useState } from 'react';
 import './Footer.css';
 

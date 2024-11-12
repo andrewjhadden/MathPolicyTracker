@@ -1,13 +1,16 @@
-// Connecting the math bills data in the mongoDB database to the website/how we want to show our data.
+// Component: AboutUs.js
+// Hamilton College Fall '24 Thesis
+// Ally Berkowitz and Andrew Hadden
+// Description: Connecting the math bills data in the mongoDB database to the website/how we want to show our 
+//      data.
 
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config();
 
-const mongoUri = process.env.MONGODB_URI;
+const mongoUri = process.env.MONGODB_URI; // get from Vercel
 
-// Connect to MongoDB
 async function connectToDB() {
     if (mongoose.connection.readyState === 0) {
         await mongoose.connect(mongoUri, {
@@ -94,14 +97,14 @@ const dataSchema = new mongoose.Schema({
         type: String,
         url: String}],
     keywordsMatched: [String]
-}); // Specify the correct collection name
+});
 
 const dataModel = mongoose.model('thesisdbcollections', dataSchema);
 
-// Handler function for the serverless function
+// Handler function edited for the serverless function
 export default async function handler(request, response) {
     // Set CORS headers
-    response.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins temporarily for testing
+    response.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins -- fix later?
     response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
 
@@ -113,7 +116,7 @@ export default async function handler(request, response) {
 
     try {
         await connectToDB();
-        const data = await dataModel.find();  // Fetch all documents
+        const data = await dataModel.find();
         response.status(200).json(data);
     } catch (error) {
         console.error('Error in handler:', error);

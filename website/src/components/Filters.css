@@ -1,3 +1,5 @@
+/* Component: Filters.css */
+
 .filter {
     width: 100%;
     max-width: 600px;
@@ -16,13 +18,13 @@
 
 .filter-dropdown {
     position: absolute; /* Position relative to the .filter container */
-    top: 100%; /* Place directly below the search bar */
+    top: 100%;
     left: 0;
-    width: 100%; /* Match the width of the search bar */
+    width: 100%;
     background-color: #ffffff;
     border: 1px solid #ddd;
-    border-top: none; /* Remove the top border to blend with search bar */
-    max-height: 200px; /* Adjust max-height as desired */
+    border-top: none;
+    max-height: 200px;
     overflow-y: auto;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;

@@ -1,4 +1,5 @@
-/* Footer CSS */
+/* Component: Footer.css */
+
 .signup-button {
     padding: 12px 25px;
     background-color: #0071e3;
@@ -15,7 +16,6 @@
     background-color: #005bb5;
 }
 
-/* Modal Overlay */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -29,7 +29,6 @@
     z-index: 1000;
 }
 
-/* Modal Content */
 .modal-content {
     background-color: white;
     padding: 20px;
@@ -41,7 +40,6 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Close Button */
 .close-button {
     background: none;
     border: none;

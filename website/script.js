@@ -1,4 +1,7 @@
-// Description: Client-side functionality of Express to connect to database.
+// website: script.js
+// Hamilton College Fall '24 Thesis
+// Ally Berkowitz and Andrew Hadden
+// Description: Client-side functionality connecting database in Vercel from MongoDB to the website.
 
 import React, { useState, useEffect } from 'react';
 
@@ -25,7 +28,7 @@ const BillData = () => {
         setError(error.message);
         setLoading(false);
       });
-  }, []); // Empty dependency array means it runs once when the component mounts
+  }, []); // Empty dependency array means it runs once when the component mounts ___
 
   // Return JSX to render data (error handling!)
   if (loading) return <div>Loading...</div>;

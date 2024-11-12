@@ -1,15 +1,15 @@
-// Header.js
+// Component: Header.js
+// Hamilton College Fall '24 Thesis
+// Ally Berkowitz and Andrew Hadden
+// Description: Displays the title and 3 pages we have attached (all bills, about us, and sign up).
+
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './Header.css'; // Make sure to include the CSS file for styling
+import './Header.css';
 
 const Header = () => (
     <header className="header">
         <Link className="logo" to="/">Congressional Bill Tracker</Link>
-        {/* <Link to="/">Congressional Bill Tracker</Link> */}
-        {/* <a href="/" className="logo">
-            Congressional Bill Tracker
-        </a> */}
         <nav>
             <ul className="nav-menu">
                 <button className="menu-button">

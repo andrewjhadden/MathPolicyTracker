@@ -1,3 +1,8 @@
+// src: index.js
+// Hamilton College Fall '24 Thesis
+// Ally Berkowitz and Andrew Hadden
+// Description: puts together the app with React
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
@@ -11,7 +16,6 @@ root.render(
   </React.StrictMode>
 );
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+// We can measure performance in the app with something like reportWebVitals(console.log) or use some 
+//    analytics things

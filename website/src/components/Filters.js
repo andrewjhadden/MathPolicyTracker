@@ -1,3 +1,10 @@
+// Component: BillTable.js
+// Hamilton College Fall '24 Thesis
+// Ally Berkowitz and Andrew Hadden
+// Description: Displays the top 10 most recently updated bills for the main page in a table.
+// Properties passed:
+// - data: Array of bill objects used for displaying all the bill data.
+
 import React, { useState, useEffect, useRef } from 'react';
 import './Filters.css';
 import { useNavigate } from 'react-router-dom';

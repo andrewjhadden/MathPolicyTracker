@@ -1,3 +1,11 @@
+// Component: AllBills.js
+// Hamilton College Fall '24 Thesis
+// Ally Berkowitz and Andrew Hadden
+// Description: Displays a searchable list of all congressional bills from our database. We are still working 
+//      on infinite scroll.
+// Properties passed:
+// - data: Array of bill objects used for displaying all the bill data.
+
 import React, { useState, useEffect } from 'react';
 import './AllBills.css';
 import { Link } from 'react-router-dom';
@@ -7,7 +15,7 @@ const AllBills = ({ data }) => {
     const [filteredData, setFilteredData] = useState([]);
 
     useEffect(() => {
-        // Filter data based on search query
+        // Filter data based on query
         const results = data.filter((item) => {
             const title = item.bill.bill.title?.toLowerCase();
             const billNumber = `${item.bill.bill.type}.${item.bill.bill.number}`.toLowerCase();
@@ -16,20 +24,20 @@ const AllBills = ({ data }) => {
         });
 
         setFilteredData(results);
-    }, [query, data]);
+    }, [query, data]); // dependency array: query and data to ___
 
-    // Sort the filtered data by action date (newest to oldest)
+    // Sort the filtered data in descending order, by actionDate
     const sortedData = [...filteredData].sort((a, b) => 
         new Date(b.bill.actionDate) - new Date(a.bill.actionDate)
     );
 
+    // -- Output --
     return (
         <div>
             <h2 className="all-bills-title">All Bill Updates</h2>
             <h3 className="all-bills-subtitle1">List of all updates related to mathematics since congressional year 117, in the senate and house.</h3>
             <h3 className="all-bills-subtitle2">Descending Order by Update</h3>
 
-            {/* Search bar container */}
             <div className="search-bar-container">
                 <input
                     type="text"

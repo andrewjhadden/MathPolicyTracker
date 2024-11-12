@@ -1,7 +1,16 @@
-// website/src/components/BillDetails.js
+// Component: BillDetails.js
+// Hamilton College Fall '24 Thesis
+// Ally Berkowitz and Andrew Hadden
+// Description: Displays the all the information about one bill, including title, keywords, summary and more.
+//      There is also a more info button for the link to the bill in Congress.gov
+// Properties passed:
+// - text: either a keyword or a summary that can be edited to look like normal text from html symbols present
+//      from the data pull
+// - data: Array of bill objects used for displaying all the bill data.
+
 import React from 'react';
 import './BillDetails.css'; 
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom'; // adding Link
 
 const cleanText = (text) => {
     const htmlRemoved = text.replace(/<[^>]*>/g, '');
@@ -68,16 +77,16 @@ const BillDetails = ({ data }) => {
             </div>
             <div className="keywords">
             <strong>Keywords: </strong>
-            {bill.keywordsMatched && bill.keywordsMatched.length > 0 ? (
-                bill.keywordsMatched.map((keyword, index) => (
-                    <span key={index}>
-                        {cleanText(keyword)}
-                        {index < bill.keywordsMatched.length - 1 && ', '}
-                    </span>
-                ))
-            ) : (
-                <span>No keywords available</span>
-            )}
+                {bill.keywordsMatched && bill.keywordsMatched.length > 0 ? (
+                    bill.keywordsMatched.map((keyword, index) => (
+                        <span key={index}>
+                            {cleanText(keyword)}
+                            {index < bill.keywordsMatched.length - 1 && ', '}
+                        </span>
+                    ))
+                ) : (
+                    <span>No keywords available</span>
+                )}
             </div>
             <div className="summary">
                 <h3>Summary:</h3>
