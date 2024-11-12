@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './BillAlerts.css';
 import { Link } from 'react-router-dom';
+import './BillAlerts.css';
 
 const BillAlerts = () => {
     const [alerts, setAlerts] = useState([]);
@@ -16,9 +16,25 @@ const BillAlerts = () => {
                 const data = await response.json();
 
                 // Sort by actionDate in descending order and take the top 3
+                // const topThreeBills = data
+                //     .sort((a, b) => new Date(b.bill.actionDate) - new Date(a.bill.actionDate))
+                //     .slice(0, 3);
+
                 const topThreeBills = data
                     .sort((a, b) => new Date(b.bill.actionDate) - new Date(a.bill.actionDate))
-                    .slice(0, 3);
+                    .slice(0, 3)
+                    .map(bill => ({
+                        ...bill,
+                        bill: {
+                            ...bill.bill,
+                            actionDate: new Intl.DateTimeFormat('en-US', {
+                                timeZone: 'America/New_York',
+                                year: 'numeric',
+                                month: '2-digit',
+                                day: '2-digit'
+                            }).format(new Date(bill.bill.actionDate))
+                        }
+                    }));
 
                 setAlerts(topThreeBills);
             } catch (error) {
@@ -33,7 +49,7 @@ const BillAlerts = () => {
             {alerts.map((alert, index) => (
                 <div key={index} className="alert-card">
                     <h3>{`${alert.bill.bill.type} ${alert.bill.bill.number}`}</h3> {/* Label + Bill number */}
-                    <p>{new Date(alert.bill.actionDate).toLocaleDateString()}</p> {/* Date under */}
+                    <p>(alert.bill.actionDate)</p>
                     <Link reloadDocument to={`/bill/${alert._id}`}>Learn More</Link>
                 </div>
             ))}

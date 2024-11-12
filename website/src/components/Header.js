@@ -5,9 +5,7 @@ import './Header.css'; // Make sure to include the CSS file for styling
 
 const Header = () => (
     <header className="header">
-        <h2 className="logo">
-            <Link to="/">Congressional Bill Tracker</Link>
-        </h2>
+        <Link className="logo" to="/">Congressional Bill Tracker</Link>
         {/* <Link to="/">Congressional Bill Tracker</Link> */}
         {/* <a href="/" className="logo">
             Congressional Bill Tracker
