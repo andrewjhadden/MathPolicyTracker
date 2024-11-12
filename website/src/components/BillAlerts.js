@@ -16,25 +16,25 @@ const BillAlerts = () => {
                 const data = await response.json();
 
                 // Sort by actionDate in descending order and take the top 3
-                // const topThreeBills = data
-                //     .sort((a, b) => new Date(b.bill.actionDate) - new Date(a.bill.actionDate))
-                //     .slice(0, 3);
-
                 const topThreeBills = data
                     .sort((a, b) => new Date(b.bill.actionDate) - new Date(a.bill.actionDate))
-                    .slice(0, 3)
-                    .map(bill => ({
-                        ...bill,
-                        bill: {
-                            ...bill.bill,
-                            actionDate: new Intl.DateTimeFormat('en-US', {
-                                timeZone: 'America/New_York',
-                                year: 'numeric',
-                                month: '2-digit',
-                                day: '2-digit'
-                            }).format(new Date(bill.bill.actionDate))
-                        }
-                    }));
+                    .slice(0, 3);
+
+                // const topThreeBills = data
+                //     .sort((a, b) => new Date(b.bill.actionDate) - new Date(a.bill.actionDate))
+                //     .slice(0, 3)
+                //     .map(bill => ({
+                //         ...bill,
+                //         bill: {
+                //             ...bill.bill,
+                //             actionDate: new Intl.DateTimeFormat('en-US', {
+                //                 timeZone: 'America/New_York',
+                //                 year: 'numeric',
+                //                 month: '2-digit',
+                //                 day: '2-digit'
+                //             }).format(new Date(bill.bill.actionDate))
+                //         }
+                //     }));
 
                 setAlerts(topThreeBills);
             } catch (error) {
