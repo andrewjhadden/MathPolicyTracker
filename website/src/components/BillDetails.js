@@ -8,6 +8,13 @@ const cleanText = (text) => {
     return htmlRemoved.replace(/\\b/g, '').trim(); // trim() removes leading/trailing spaces
 };
 
+const cleanKeywords = (keywords) => {
+    return keywords
+        .split(',')
+        .map(keyword => keyword.trim()) // Remove spaces
+        .filter(keyword => keyword); // Remove any empty keywords
+};
+
 const BillDetails = ({ data }) => {
     const { id } = useParams();
     const bill = data.find(b => b._id === id);
@@ -15,13 +22,6 @@ const BillDetails = ({ data }) => {
     if (!bill) {
         return <div>Bill not found</div>;
     }
-
-    const cleanKeywords = (keywords) => {
-        return keywords
-            .split(',')
-            .map(keyword => keyword.trim()) // Remove spaces
-            .filter(keyword => keyword); // Remove any empty keywords
-    };
 
     return (
         <div className="bill-details">
