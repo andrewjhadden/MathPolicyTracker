@@ -49,7 +49,7 @@ const BillAlerts = () => {
             {alerts.map((alert, index) => (
                 <div key={index} className="alert-card">
                     <h3>{`${alert.bill.bill.type} ${alert.bill.bill.number}`}</h3> {/* Label + Bill number */}
-                    <p>(alert.bill.actionDate)</p>
+                    <p>{alert.bill.actionDate}</p>
                     <Link reloadDocument to={`/bill/${alert._id}`}>Learn More</Link>
                 </div>
             ))}
