@@ -8,13 +8,6 @@ const cleanText = (text) => {
     return htmlRemoved.replace(/\\b/g, '').trim(); // trim() removes leading/trailing spaces
 };
 
-const cleanKeywords = (keywords) => {
-    return keywords
-        .split(',')
-        .map(keyword => keyword.trim()) // Remove spaces
-        .filter(keyword => keyword); // Remove any empty keywords
-};
-
 const BillDetails = ({ data }) => {
     const { id } = useParams();
     const bill = data.find(b => b._id === id);
@@ -75,14 +68,15 @@ const BillDetails = ({ data }) => {
             </div>
             <div className="keywords">
             <strong>Keywords: </strong>
-            {bill.keywordsMatched ? (
-                cleanKeywords(bill.keywordsMatched).map((keyword, index) => (
+            {bill.keywordsMatched && bill.keywordsMatched.length > 0 ? (
+                bill.keywordsMatched.map((keyword, index) => (
                     <span key={index}>
-                        {cleanText(keyword.trim())}
-                        {index < cleanKeywords(bill.keywordsMatched).length - 1 && ', '}
+                        {cleanText(keyword)}
+                        {index < bill.keywordsMatched.length - 1 && ', '}
                     </span>
-                )) // If it's not a string, display a message
-            ) : ( <span>No keywords available</span>
+                ))
+            ) : (
+                <span>No keywords available</span>
             )}
             </div>
             <div className="summary">
