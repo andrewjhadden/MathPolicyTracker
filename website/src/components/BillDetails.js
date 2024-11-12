@@ -68,7 +68,7 @@ const BillDetails = ({ data }) => {
             </div>
             <div className="keywords">
             <strong>Keywords: </strong>
-            {bill.keywordsMatched ? (
+            {/* {bill.keywordsMatched ? (
                 typeof bill.keywordsMatched === 'string' ? (
                     bill.keywordsMatched.split(',').map((keyword, index) => (
                         <span key={index}>
@@ -77,7 +77,13 @@ const BillDetails = ({ data }) => {
                         </span>
                     ))
                 ) : <span>No keywords available</span> // If it's not a string, display a message
-            ) : <span>No keywords available</span>} {/* If the field is missing, display this */}
+            ) : <span>No keywords available</span>} If the field is missing, display this */}
+            {["healthcare", "technology", "policy"].map((keyword, index) => (
+                <span key={index}>
+                    {keyword}
+                    {index < 2 && ', '}
+                </span>
+            ))}
             </div>
             <div className="summary">
                 <h3>Summary:</h3>
