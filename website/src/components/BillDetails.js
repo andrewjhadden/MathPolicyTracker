@@ -16,6 +16,13 @@ const BillDetails = ({ data }) => {
         return <div>Bill not found</div>;
     }
 
+    const cleanKeywords = (keywords) => {
+        return keywords
+            .split(',')
+            .map(keyword => keyword.trim()) // Remove spaces
+            .filter(keyword => keyword); // Remove any empty keywords
+    };
+
     return (
         <div className="bill-details">
             <h2 className="bill-title">
@@ -68,22 +75,15 @@ const BillDetails = ({ data }) => {
             </div>
             <div className="keywords">
             <strong>Keywords: </strong>
-            {/* {bill.keywordsMatched ? (
-                typeof bill.keywordsMatched === 'string' ? (
-                    bill.keywordsMatched.split(',').map((keyword, index) => (
-                        <span key={index}>
-                            {cleanText(keyword.trim())}
-                            {index < bill.keywordsMatched.split(',').length - 1 && ', '}
-                        </span>
-                    ))
-                ) : <span>No keywords available</span> // If it's not a string, display a message
-            ) : <span>No keywords available</span>} If the field is missing, display this */}
-            {["healthcare", "technology", "policy"].map((keyword, index) => (
-                <span key={index}>
-                    {keyword}
-                    {index < 2 && ', '}
-                </span>
-            ))}
+            {bill.keywordsMatched ? (
+                cleanKeywords(bill.keywordsMatched).map((keyword, index) => (
+                    <span key={index}>
+                        {cleanText(keyword.trim())}
+                        {index < cleanKeywords(bill.keywordsMatched).length - 1 && ', '}
+                    </span>
+                )) // If it's not a string, display a message
+            ) : ( <span>No keywords available</span>
+            )}
             </div>
             <div className="summary">
                 <h3>Summary:</h3>
