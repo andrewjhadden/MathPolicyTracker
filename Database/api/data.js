@@ -104,10 +104,11 @@ const dataModel = mongoose.model('thesisdbcollections', dataSchema);
 // Handler function edited for the serverless function
 export default async function handler(request, response) {
     // Set CORS headers
-    res.setHeader('Access-Control-Allow-Credentials', true)
+    // response.setHeader('Access-Control-Allow-Credentials', true)
     response.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins -- fix later?
-    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
-    response.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+    response.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+    // response.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+    response.setHeader('Access-Control-Allow-Headers', 'Content-Length');
 
     if (request.method === 'OPTIONS') {
         response.status(200).end(); // 200 is okay

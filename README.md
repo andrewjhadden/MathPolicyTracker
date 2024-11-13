@@ -1,5 +1,5 @@
-# Thesis
-Computer Science Thesis Fall 2024, Hamilton College
+# Math-related Congressional Bill Tracker
+Computer Science Thesis Project (Fall 2024) Hamilton College
 Ally Berkowitz and Andrew Hadden
 Goal: To build a database and connected website to present and track all bills in congress, since the 117th congress and being continously updated, related to mathematics. This will be useful to Prof. Courtney Gibbons in the Mathematics Department, and congressional staff all over who care to have easy access to the progression of legislation related to mathematics.
 Specifics:
@@ -20,3 +20,5 @@ Code folders, in 2 parts (highlighting main features):
   * src/App.js: shows the data from the database
   * script.js: connects with the database using Vercel database from MongoDb
   * src/components/.. all the parts of the website in .js and .css
+
+  (good title, how to use, what does it do, etc.)

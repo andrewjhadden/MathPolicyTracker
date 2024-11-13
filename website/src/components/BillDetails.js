@@ -17,6 +17,7 @@ const cleanText = (text) => {
     return htmlRemoved.replace(/\\b/g, '').trim(); // trim() removes leading/trailing spaces
 };
 
+// give header- high level (reading bill details and ...) (is it get bill details or display...) (verb)
 const BillDetails = ({ data }) => {
     const { id } = useParams();
     const bill = data.find(b => b._id === id);

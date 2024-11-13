@@ -2,6 +2,7 @@
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
 // Description: Client-side functionality connecting database in Vercel from MongoDB to the website.
+// can put copyright in readme or in license file (open source? mit license?), put at the top for clarity
 
 import React, { useState, useEffect } from 'react';
 

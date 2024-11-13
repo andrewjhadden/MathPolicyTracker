@@ -16,14 +16,18 @@ import AboutUs from './components/AboutUs';
 import './App.css';
 
 function App() {
-    const [data, setData] = useState([]); // State to store fetched data
-    const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}/data`; // get API url from Vercel
+    // State to store fetched data
+    const [data, setData] = useState([]);
+
+    // get API url from Vercel
+    const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}/data`;
 
     // Data fetching logic:
-    useEffect(() => { // useEffect is, by design, used to contain code with side effects (The reason you put 
-                      // this code there is partly because it runs after things are done rendering and the 
-                      // markup is ready to be changed. Another reason is that you can control when it is 
-                      // called.)
+    // useEffect is, by design, used to contain code with side effects (The reason you put this 
+    // code there is partly because it runs after things are done rendering and the 
+    // markup is ready to be changed. Another reason is that you can control when it is 
+    // called.)
+    useEffect(() => {
         fetch(API_URL)
             .then((response) => {
                 if (!response.ok) {
