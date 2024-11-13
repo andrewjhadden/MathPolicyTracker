@@ -31,7 +31,6 @@ const printFullBillTable = ({ data }) => {
         new Date(b.bill.actionDate) - new Date(a.bill.actionDate)
     );
 
-    // -- Output --
     return (
         <div>
             <h2 className="all-bills-title">All Bill Updates</h2>

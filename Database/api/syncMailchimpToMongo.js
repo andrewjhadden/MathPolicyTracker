@@ -8,7 +8,8 @@ import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const mailchimpApiKey = process.env.MAILCHIMP_API_KEY; // all get from Vercel now
+// All get from Vercel now
+const mailchimpApiKey = process.env.MAILCHIMP_API_KEY; 
 const mailchimpAudienceId = process.env.MAILCHIMP_AUDIENCE_ID;
 const mailchimpDataCenter = 'us17'; 
 const mongoUri = process.env.MONGODB_URI; 

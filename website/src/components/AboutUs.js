@@ -4,7 +4,7 @@
 // Description: Displays a description of our project's purpose including who we work with and who we are.
 
 import React from 'react';
-import './AboutUs.css'; // Import the CSS file for styling
+import './AboutUs.css';
 
 const aboutUs = () => (
     <div className="about-us">

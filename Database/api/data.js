@@ -9,7 +9,8 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const mongoUri = process.env.MONGODB_URI; // get from Vercel
+// Get from Vercel
+const mongoUri = process.env.MONGODB_URI; 
 
 async function connectToDB() {
     if (mongoose.connection.readyState === 0) {
@@ -105,7 +106,8 @@ const dataModel = mongoose.model('thesisdbcollections', dataSchema);
 export default async function handler(request, response) {
     // Set CORS headers
     // response.setHeader('Access-Control-Allow-Credentials', true)
-    response.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins -- fix later?
+    // Need to allow all origins
+    response.setHeader('Access-Control-Allow-Origin', '*');
     response.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
     response.setHeader('Access-Control-Allow-Headers', 'Content-Length');
 

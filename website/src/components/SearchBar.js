@@ -13,9 +13,14 @@ import './SearchBar.css';
 const filterDataUsingSearchBar = ({ data = [] }) => {
     const [query, setQuery] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
-    const [isDropdownVisible, setIsDropdownVisible] = useState(false); // State to manage dropdown visibility
-    const searchRef = useRef(null); // Reference to the search container
-    const inputRef = useRef(null); // Reference to the input element
+
+    // State to manage dropdown visibility:
+    const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+
+    // Reference to the search container:
+    const searchRef = useRef(null);
+
+    const inputRef = useRef(null);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -26,7 +31,8 @@ const filterDataUsingSearchBar = ({ data = [] }) => {
                 const billNumber = `${item.bill.bill.type}.${item.bill.bill.number}`.toLowerCase();
                 return title.includes(query.toLowerCase()) || billNumber.includes(query.toLowerCase());
             });
-            setFilteredResults(results.slice(0, 10)); // Limit results for dropdown
+            // Limit results for dropdown
+            setFilteredResults(results.slice(0, 10));
         } else {
             setFilteredResults([]);
         }
@@ -52,7 +58,8 @@ const filterDataUsingSearchBar = ({ data = [] }) => {
     };
 
     const handleFocus = () => {
-        setIsDropdownVisible(true); // Show dropdown when input is focused
+        // Show dropdown when input is focused
+        setIsDropdownVisible(true);
 
         // Move cursor to the end of the current text
         if (inputRef.current) {
@@ -68,9 +75,14 @@ const filterDataUsingSearchBar = ({ data = [] }) => {
                 placeholder="Search bills by title or number"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                onFocus={handleFocus} // Show dropdown on focus and set cursor position
+
+                // Show dropdown on focus and set cursor position
+                onFocus={handleFocus}
+
                 className="filter-input"
-                ref={inputRef} // Reference to the input element
+
+                // Reference to the input element
+                ref={inputRef}
             />
 
             {isDropdownVisible && filteredResults.length > 0 && (

@@ -9,7 +9,9 @@ import './BillAlerts.css';
 
 const billAlerts = () => {
     const [alerts, setAlerts] = useState([]);
-    const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}/data`; // Call environment variable in Vercel
+    
+    // Call environment variable in Vercel:
+    const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}/data`;
 
     useEffect(() => {
         const fetchBills = async () => {
