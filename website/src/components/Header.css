@@ -1,23 +1,19 @@
 /* Component: Header.css */
 
+* {
+    font-family: 'Baskerville';
+}
+   
 :root {
     --black: #000000;
-    --white: #ffffff;
-    --dark-green: #2F4F4F; /* header and footer */
+    --text-dark: #453636;
+    --dark-green: #28432f; /* header and footer */
+    --hover-and-headers: #006400;
     --medium-green: #228B22; /* buttons */
     --light-green: #94f5a1; /* table rows and hover states */
-    --hover-and-headers: #006400;
-    --border-green: #8FBC8F; /* muted green for table borders */
-    --soft-tan: #f3e7de;
-    --text-dark: #453636;
-    --font-family-serif: 'Baskerville', serif;
-    --deep-orange: #E43D12;
-    --warm-pink: #dd4b68;
-    --light-pink: #ffb6c6;
-    --golden-yellow: #f3c456;
-    --soft-tan: #f3e7de;
+    --border-green: #85dba3; /* muted green for table borders */
+    --soft-tan: #f0dfd1;
     --white: #ffffff;
-    --text-dark: #453636;
 }
 
 .header {
@@ -25,18 +21,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    /* background-color: var(--white); */
-    /* background-color: var(--golden-yellow); */
     background-color: var(--dark-green);
-    /* background-color: var(--soft-tan); */
-    border-bottom: 2px solid #cbbaae;
+    border-bottom: 2px solid var(--soft-tan);
 }
 
 .logo {
     font-size: 20px;
     font-weight: 600;
     text-decoration: none; 
-    /* color: var(--text-dark); */
     color: var(--white);
     margin-left: 20px;
 }
@@ -51,8 +43,6 @@
     background: none;
     border: none;
     font-size: 16px;
-    /* color: rgb(62, 129, 162); */
-    /* color: rgb(15, 117, 169); */
     color: var(--white);
     cursor: pointer;
     padding: 10px;
@@ -63,9 +53,8 @@
 }
 
 .menu-button:hover {
+    /* color: var(--soft-tan); */
     color: #0c447c;
-    /* color: var(--text-dark); */
-    color: #cdbaae;
 }
 
 .menu-button a {
