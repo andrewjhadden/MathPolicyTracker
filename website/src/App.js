@@ -20,7 +20,10 @@ function App() {
     const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}/data`; // get API url from Vercel
 
     // Data fetching logic:
-    useEffect(() => {
+    useEffect(() => { // useEffect is, by design, used to contain code with side effects (The reason you put 
+                      // this code there is partly because it runs after things are done rendering and the 
+                      // markup is ready to be changed. Another reason is that you can control when it is 
+                      // called.)
         fetch(API_URL)
             .then((response) => {
                 if (!response.ok) {
@@ -30,7 +33,12 @@ function App() {
             })
             .then((data) => setData(data))
             .catch((error) => console.error('Error fetching data:', error));
-    }, [API_URL]); // so, if API_URL changes then the function will be triggered again
+    }, [API_URL]);
+    // Reminder about dependency arrays: (you should reference any variables used inside of it)
+    // 1- No dependency array >> code inside runs every time your component re-renders.
+    // 2- Empty dependency array >> code inside only runs once when your component first mounts.
+    // 3- Not-empty dependency array >> code inside runs every time any variables you put inside.
+    //      the dependency array changes.
     
     return (
         <Router>

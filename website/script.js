@@ -11,7 +11,6 @@ const BillData = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch the data when the component mounts
   useEffect(() => {
     fetch(`${process.env.REACT_APP_DATABASE_API_URL}/data`)
       .then((response) => {
@@ -28,7 +27,7 @@ const BillData = () => {
         setError(error.message);
         setLoading(false);
       });
-  }, []); // Empty dependency array means it runs once when the component mounts ___
+  }, []); // Empty ependency array means it'll run automatically, and not re-run
 
   // Return JSX to render data (error handling!)
   if (loading) return <div>Loading...</div>;

@@ -104,20 +104,20 @@ const dataModel = mongoose.model('thesisdbcollections', dataSchema);
 // Handler function edited for the serverless function
 export default async function handler(request, response) {
     // Set CORS headers
-    response.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins -- fix later?
-    response.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
-    response.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Allow-Credentials', true)
+    response.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins -- fix later? https://deployedthesiswebsite.vercel.app/
+    res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
+    response.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
-    // Handle preflight OPTIONS request
     if (request.method === 'OPTIONS') {
-        response.status(200).end();
+        response.status(200).end(); // 200 is okay
         return;
     }
 
     try {
         await connectToDB();
         const data = await dataModel.find();
-        response.status(200).json(data);
+        response.status(200).json(data); // 200 is okay
     } catch (error) {
         console.error('Error in handler:', error);
         response.status(500).json({ error: 'Internal Server Error', details: error.message });

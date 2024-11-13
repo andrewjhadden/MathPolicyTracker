@@ -1,6 +1,5 @@
-/* App.css */
+/* Component: App.css */
 
-/* Define colors for easy reference */
 :root {
     --deep-orange: #E43D12;
     --warm-pink: #dd4b68;
@@ -11,7 +10,6 @@
     --text-dark: #453636;
 }
 
-/* General Body Styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -20,7 +18,6 @@ body {
     color: var(--text-dark);
 }
 
-/* Bill Alert Section */
 .alert-header {
     font-size: 1.8rem;
     color: var(--deep-orange);
@@ -48,7 +45,6 @@ body {
     width: 25%;
 }
 
-/* Bill Actions Table and Search Bar */
 .table-header {
     font-size: 1.8rem;
     color: var(--deep-orange);
@@ -66,7 +62,6 @@ body {
     border-radius: 8px;
 }
 
-/* Footer */
 footer {
     text-align: center;
     padding: 20px;
