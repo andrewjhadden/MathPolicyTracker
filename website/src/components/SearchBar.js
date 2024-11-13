@@ -1,4 +1,4 @@
-// Component: BillTable.js
+// Component: SearchBar.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
 // Description: Creates the search bar on the main page of all bills in our database. Also filters through the 
