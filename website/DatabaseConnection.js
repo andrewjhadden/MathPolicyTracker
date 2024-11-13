@@ -1,4 +1,4 @@
-// website: DatabaseConnecton.js
+// website: DatabaseConnection.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
 // Description: Client-side functionality connecting database in Vercel from MongoDB to the website.

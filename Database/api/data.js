@@ -1,4 +1,4 @@
-// Component: MongoDBConnector.js
+// Component: data.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
 // Description: Connecting the math bills data in the MongoDB database to the website/how we want to 
