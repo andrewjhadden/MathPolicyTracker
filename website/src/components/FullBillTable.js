@@ -1,4 +1,4 @@
-// Component: AllBills.js
+// Component: FullBillTable.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
 // Description: Displays a searchable list of all congressional bills from our database. We are still working 
@@ -7,10 +7,10 @@
 // - data: Array of bill objects used for displaying all the bill data.
 
 import React, { useState, useEffect } from 'react';
-import './AllBills.css';
+import './FullBillTable.css';
 import { Link } from 'react-router-dom';
 
-const AllBills = ({ data }) => {
+const printFullBillTable = ({ data }) => {
     const [query, setQuery] = useState('');
     const [filteredData, setFilteredData] = useState([]);
 
@@ -88,4 +88,4 @@ const AllBills = ({ data }) => {
     );
 };
 
-export default AllBills;
+export default printFullBillTable;

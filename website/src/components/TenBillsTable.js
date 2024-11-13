@@ -1,4 +1,4 @@
-// Component: BillTable.js
+// Component: TenBillsTable.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
 // Description: Displays the top 10 most recently updated bills for the main page in a table.
@@ -6,10 +6,10 @@
 // - data: Array of bill objects used for displaying all the bill data.
 
 import React from 'react';
-import './BillTable.css'; 
 import { Link } from 'react-router-dom';
+import './TenBillsTable.css'; 
 
-const BillTable = ({ data }) => {
+const display10BillsTable = ({ data }) => {
     // Sort function compares actionDate as Date values in js to arrange in newest to oldest order
     const sortedData = [...data].sort((a, b) =>  // ...data creates a shallow copy of the array to avoid editing the original
         new Date(b.bill.actionDate) - new Date(a.bill.actionDate)
@@ -47,4 +47,4 @@ const BillTable = ({ data }) => {
     );
 };
 
-export default BillTable;
+export default display10BillsTable;

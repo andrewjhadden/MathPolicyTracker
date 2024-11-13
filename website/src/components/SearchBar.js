@@ -1,15 +1,16 @@
 // Component: BillTable.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
-// Description: Displays the top 10 most recently updated bills for the main page in a table.
+// Description: Creates the search bar on the main page of all bills in our database. Also filters through the 
+//      data depending on the search in the search bar.
 // Properties passed:
 // - data: Array of bill objects used for displaying all the bill data.
 
 import React, { useState, useEffect, useRef } from 'react';
-import './Filters.css';
 import { useNavigate } from 'react-router-dom';
+import './SearchBar.css';
 
-const Filters = ({ data = [] }) => {
+const filterDataUsingSearchBar = ({ data = [] }) => {
     const [query, setQuery] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
     const [isDropdownVisible, setIsDropdownVisible] = useState(false); // State to manage dropdown visibility
@@ -44,7 +45,7 @@ const Filters = ({ data = [] }) => {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, []);
+    }, []); // Empty ependency array means it'll run automatically, and not re-run
 
     const handleResultClick = (id) => {
         navigate(`/bill/${id}`);
@@ -89,4 +90,4 @@ const Filters = ({ data = [] }) => {
     );
 };
 
-export default Filters;
+export default filterDataUsingSearchBar;

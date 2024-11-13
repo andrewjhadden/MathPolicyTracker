@@ -21,7 +21,8 @@ const BillData = () => {
         return response.json();
       })
       .then((data) => {
-        setData(data); // Store the data in state
+        // Store the data in state:
+        setData(data);
         setLoading(false);
       })
       .catch((error) => {

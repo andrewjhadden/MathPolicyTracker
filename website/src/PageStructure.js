@@ -1,4 +1,4 @@
-// src: App.js
+// src: PageStructure.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
 // Description: Displays the main page, inserting the header, 3 alerts, main table, and footer.
@@ -7,15 +7,15 @@ import React, { useEffect, useState } from 'react';
 import { HashRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import BillAlerts from './components/BillAlerts';
-import Filters from './components/Filters';
-import BillTable from './components/BillTable';
+import SearchBar from './components/SearchBar';
+import TenBillsTable from './components/TenBillsTable';
 import Footer from './components/Footer';
 import BillDetails from './components/BillDetails'; 
-import AllBills from './components/AllBills';
+import FullBillTable from './components/FullBillTable';
 import AboutUs from './components/AboutUs';
-import './App.css';
+import './PageStructure.css';
 
-function App() {
+function structureWebsiteWithData() {
     // State to store fetched data
     const [data, setData] = useState([]);
 
@@ -23,10 +23,9 @@ function App() {
     const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}/data`;
 
     // Data fetching logic:
-    // useEffect is, by design, used to contain code with side effects (The reason you put this 
-    // code there is partly because it runs after things are done rendering and the 
-    // markup is ready to be changed. Another reason is that you can control when it is 
-    // called.)
+    // useEffect is, by design, used to contain code with side effects (The reason you put this code there is 
+    // partly because it runs after things are done rendering and the markup is ready to be changed. Another 
+    // reason is that you can control when it is called.)
     useEffect(() => {
         fetch(API_URL)
             .then((response) => {
@@ -41,8 +40,8 @@ function App() {
     // Reminder about dependency arrays: (you should reference any variables used inside of it)
     // 1- No dependency array >> code inside runs every time your component re-renders.
     // 2- Empty dependency array >> code inside only runs once when your component first mounts.
-    // 3- Not-empty dependency array >> code inside runs every time any variables you put inside.
-    //      the dependency array changes.
+    // 3- Not-empty dependency array >> code inside runs every time any variables you put inside the 
+    //      dependency array changes.
     
     return (
         <Router>
@@ -57,14 +56,14 @@ function App() {
                                 <h1 className="alert-header">See What’s New!</h1>
                                 <BillAlerts data={data} />
                                 <h2 className="table-header">10 Most Recent Bill Actions</h2>
-                                <Filters data={data} />
-                                <BillTable data={data} />
+                                <SearchBar data={data} />
+                                <TenBillsTable data={data} />
                                 </>
                             }
                         />
                         <Route path="/bill/:id" element={<BillDetails data={data} />} />
-                        <Route path="/all-bills" element={<AllBills data={data} />} />
-                        <Route path="/filters" element={<Filters data={data} />} /> 
+                        <Route path="/full-bill-table" element={<FullBillTable data={data} />} />
+                        <Route path="/search-bar" element={<SearchBar data={data} />} /> 
                         <Route path="/about-us" element={<AboutUs />} />
                     </Routes>
                 </main>
@@ -74,4 +73,4 @@ function App() {
     );
 }
 
-export default App;
+export default structureWebsiteWithData;
