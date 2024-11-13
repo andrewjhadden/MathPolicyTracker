@@ -31,7 +31,7 @@ const BillAlerts = () => {
             }
         };
         fetchBills();
-    }, [API_URL]); // dependency array: API url to ___ 
+    }, []); // so, if API_URL changes then the function will be triggered again
 
     return (
         <div className="bill-alerts">

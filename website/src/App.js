@@ -30,7 +30,7 @@ function App() {
             })
             .then((data) => setData(data))
             .catch((error) => console.error('Error fetching data:', error));
-    }, [API_URL]); // depedency array __
+    }, [API_URL]); // so, if API_URL changes then the function will be triggered again
     
     return (
         <Router>

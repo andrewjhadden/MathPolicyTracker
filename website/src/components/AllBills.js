@@ -24,7 +24,7 @@ const AllBills = ({ data }) => {
         });
 
         setFilteredData(results);
-    }, [query, data]); // dependency array: query and data to ___
+    }, [query, data]); // so, if either query or data changes then the function will be triggered again
 
     // Sort the filtered data in descending order, by actionDate
     const sortedData = [...filteredData].sort((a, b) => 

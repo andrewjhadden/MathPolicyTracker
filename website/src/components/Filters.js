@@ -29,7 +29,7 @@ const Filters = ({ data = [] }) => {
         } else {
             setFilteredResults([]);
         }
-    }, [query, data]);
+    }, [query, data]); // so, if either query or data changes then the function will be triggered again
 
     // Event listener to hide dropdown when clicking outside
     useEffect(() => {
