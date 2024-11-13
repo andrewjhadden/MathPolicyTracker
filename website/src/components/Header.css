@@ -1,8 +1,4 @@
 /* Component: Header.css */
-
-* {
-    font-family: 'Georgia';
-}
    
 :root {
     --black: #000000;
@@ -20,7 +16,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    padding: 16px;
     background-color: var(--dark-green);
     border-bottom: 2px solid var(--soft-tan);
 }
@@ -47,14 +43,14 @@
     cursor: pointer;
     padding: 10px;
     text-transform: uppercase;
-    transition: color 0.3s;
+    transition: color 0.2s;
     text-decoration: none;
     margin-right: 20px;
 }
 
 .menu-button:hover {
     /* color: var(--soft-tan); */
-    color: #0c447c;
+    color: #4884c1;
 }
 
 .menu-button a {

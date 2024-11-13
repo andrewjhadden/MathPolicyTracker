@@ -54,10 +54,24 @@ function StructureWebsiteWithData() {
                             path="/"
                             element={
                                 <>
-                                <h1 className="alert-header">See What’s New!</h1>
-                                <BillAlerts data={data} />
+                                <div className="top-section">
+                                    <div className="image-container">
+                                        <img src="congress_image.jpg" alt="Image 1" />
+                                        <div className="overlay"></div>
+                                    </div>
+                                    <div className="image-container">
+                                        <img src="hamilton_image.jpeg" alt="Image 2" />
+                                        <div className="overlay"></div>
+                                    </div>
+                                    {/* <h1 className="alert-header">See What’s New!</h1> */}
+                                    <div className="bill-alerts">
+                                        <BillAlerts data={data} />
+                                    </div>
+                                </div>
                                 <h2 className="table-header">10 Most Recent Bill Actions</h2>
-                                <SearchBar data={data} />
+                                <div className="search-bar">
+                                    <SearchBar data={data} />
+                                </div>
                                 <TenBillsTable data={data} />
                                 </>
                             }
