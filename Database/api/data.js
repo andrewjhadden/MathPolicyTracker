@@ -105,7 +105,7 @@ const dataModel = mongoose.model('thesisdbcollections', dataSchema);
 export default async function handler(request, response) {
     // Set CORS headers
     res.setHeader('Access-Control-Allow-Credentials', true)
-    response.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins -- fix later? https://deployedthesiswebsite.vercel.app/
+    response.setHeader('Access-Control-Allow-Origin', 'https://deployedthesiswebsite.vercel.app'); // Allow all origins -- fix later? https://deployedthesiswebsite.vercel.app/
     res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
     response.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
 
