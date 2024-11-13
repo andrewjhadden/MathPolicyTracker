@@ -15,7 +15,8 @@ import FullBillTable from './components/FullBillTable';
 import AboutUs from './components/AboutUs';
 import './PageStructure.css';
 
-function structureWebsiteWithData() {
+// React component names must start with uppercase -- otherwise using camel case
+function StructureWebsiteWithData() {
     // State to store fetched data
     const [data, setData] = useState([]);
 
@@ -73,4 +74,4 @@ function structureWebsiteWithData() {
     );
 }
 
-export default structureWebsiteWithData;
+export default StructureWebsiteWithData;

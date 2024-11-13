@@ -1,6 +1,16 @@
 /* Component: Header.css */
 
 :root {
+    --black: #000000;
+    --white: #ffffff;
+    --dark-green: #2F4F4F; /* footer */
+    --medium-green: #228B22; /* buttons */
+    --light-green: #94f5a1; /* table rows and hover states */
+    --hover-and-headers: #006400;
+    --border-green: #8FBC8F; /* muted green for table borders */
+    --soft-tan: #f3e7de;
+    --text-dark: #453636;
+    --font-family-serif: 'Baskerville', serif;
     --deep-orange: #E43D12;
     --warm-pink: #dd4b68;
     --light-pink: #ffb6c6;

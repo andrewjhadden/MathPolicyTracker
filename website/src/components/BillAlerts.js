@@ -7,9 +7,9 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './BillAlerts.css';
 
-const billAlerts = () => {
+const BillAlerts = () => {
     const [alerts, setAlerts] = useState([]);
-    
+
     // Call environment variable in Vercel:
     const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}/data`;
 
@@ -48,4 +48,4 @@ const billAlerts = () => {
     );
 }
 
-export default billAlerts;
+export default BillAlerts;

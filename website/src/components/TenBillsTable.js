@@ -9,7 +9,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './TenBillsTable.css'; 
 
-const display10BillsTable = ({ data }) => {
+const Display10BillsTable = ({ data }) => {
     // Sort function compares actionDate as Date values in js to arrange in newest to oldest order
     const sortedData = [...data].sort((a, b) =>  // ...data creates a shallow copy of the array to avoid editing the original
         new Date(b.bill.actionDate) - new Date(a.bill.actionDate)
@@ -47,4 +47,4 @@ const display10BillsTable = ({ data }) => {
     );
 };
 
-export default display10BillsTable;
+export default Display10BillsTable;
