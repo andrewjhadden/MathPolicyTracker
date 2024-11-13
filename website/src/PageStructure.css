@@ -63,6 +63,7 @@ body {
 
 .bill-alerts {
     position: absolute;
+    margin-top: 40px;
     width: 100%;
     display: flex;
     color: var(--text-dark);
