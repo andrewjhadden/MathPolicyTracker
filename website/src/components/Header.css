@@ -3,7 +3,7 @@
 :root {
     --black: #000000;
     --white: #ffffff;
-    --dark-green: #2F4F4F; /* footer */
+    --dark-green: #2F4F4F; /* header and footer */
     --medium-green: #228B22; /* buttons */
     --light-green: #94f5a1; /* table rows and hover states */
     --hover-and-headers: #006400;
@@ -27,7 +27,7 @@
     padding: 15px;
     /* background-color: var(--white); */
     /* background-color: var(--golden-yellow); */
-    background-color: var(--warm-pink);
+    background-color: var(--dark-green);
     /* background-color: var(--soft-tan); */
     border-bottom: 2px solid #cbbaae;
 }
