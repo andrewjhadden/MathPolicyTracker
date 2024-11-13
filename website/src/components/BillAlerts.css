@@ -15,8 +15,8 @@
 .bill-alerts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 10px;
+    gap: 30px;
+    padding: 20px;
     /* background-color: rgba(255, 255, 255, 0.9); */
     /* border-radius: 8px; */
     /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
@@ -24,8 +24,8 @@
 
 .alert-card {
     background-color: var(--soft-tan);
-    padding: 15px;
-    border: 1px solid var(--border-green);
+    padding: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
@@ -40,7 +40,7 @@
 
 .alert-card h3 {
     margin-bottom: 10px;
-    color: var(--hover-and-headers);
+    color: var(--text-dark);
 }
 
 .alert-card p {
@@ -49,13 +49,13 @@
 }
 
 .alert-card a {
-    color: var(--medium-green);
+    color: var(--hover-and-headers);
     text-decoration: none;
     font-weight: bold;
     transition: color 0.2s ease;
 }
 
 .alert-card a:hover {
-    color: var(--hover-and-headers);
+    color: var(--dark-green);
     text-decoration: underline;
 }
