@@ -10,7 +10,7 @@ Technologies, Key Libraries & Platforms Used:
 - Website is built on Vercel, using React and HTML/CSS
 - Email alerts are run with an email API (Mailchimp) that comes with Node.js
 
-How to use...
+How to use... (to do)
 
 Code folders, in 2 parts (highlighting main features):
 1. Database:

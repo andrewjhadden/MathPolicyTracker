@@ -1,4 +1,4 @@
-// Component: AboutUs.js
+// Component: SyncMailchimpToMongoDB.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
 // Description: Adding emails to MongoDB, from Mailchimp
@@ -8,7 +8,7 @@ import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv';
 
 dotenv.config();
-// All get from Vercel now
+// All from Vercel
 const mailchimpApiKey = process.env.MAILCHIMP_API_KEY; 
 const mailchimpAudienceId = process.env.MAILCHIMP_AUDIENCE_ID;
 const mailchimpDataCenter = 'us17'; 
@@ -70,8 +70,6 @@ async function syncSubscribers() {
 
 // Run the sync function
 syncSubscribers().catch(console.error);
-
-
 
 
 // THIS IS TO RUN SCHEDULED
