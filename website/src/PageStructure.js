@@ -14,6 +14,8 @@ import BillDetails from './components/BillDetails';
 import FullBillTable from './components/FullBillTable';
 import AboutUs from './components/AboutUs';
 import './PageStructure.css';
+import congressImage from './congress_image.jpg';
+import hamiltonImage from './hamilton_image.jpeg';
 
 // React component names must start with uppercase -- otherwise using camel case
 function StructureWebsiteWithData() {
@@ -56,11 +58,11 @@ function StructureWebsiteWithData() {
                                 <>
                                 <div className="top-section">
                                     <div className="image-container">
-                                        <img src="congress_image.jpg" alt="Image 1" />
+                                        <img src={congressImage} alt="Capitol Image" />
                                         <div className="overlay"></div>
                                     </div>
                                     <div className="image-container">
-                                        <img src="hamilton_image.jpeg" alt="Image 2" />
+                                        <img src={hamiltonImage} alt="Hamilton Image" />
                                         <div className="overlay"></div>
                                     </div>
                                     {/* <h1 className="alert-header">See What’s New!</h1> */}
