@@ -14,8 +14,8 @@ import BillDetails from './components/BillDetails';
 import FullBillTable from './components/FullBillTable';
 import AboutUs from './components/AboutUs';
 import './PageStructure.css';
-import congressImage from './congress_image.jpg';
-import hamiltonImage from './hamilton_image.jpeg';
+import congressImage from './congress_image.png';
+import hamiltonImage from './hamilton_image.png';
 
 // React component names must start with uppercase -- otherwise using camel case
 function StructureWebsiteWithData() {
