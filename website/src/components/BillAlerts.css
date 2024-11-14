@@ -13,7 +13,7 @@
 }
 
 .bill-alerts {
-    padding: 0 30px;
+    padding: 0 45px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
@@ -27,7 +27,7 @@
 
 .alert-card {
     background-color: var(--soft-tan);
-    padding: 20px;
+    padding: 15px;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     text-align: center;
