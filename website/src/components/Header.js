@@ -9,7 +9,7 @@ import './Header.css';
 
 const Header = () => (
     <header className="header">
-        <Link className="logo" to="/">Congressional Bill Tracker</Link>
+        <Link className="logo" to="/">Home</Link>
         <nav>
             <ul className="nav-menu">
                 <button className="menu-button">
