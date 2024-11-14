@@ -57,19 +57,28 @@ body {
     position: absolute;
     font-size: 1.6rem;
     color: var(--text-dark);
-    text-align: center;
+    text-align: center !important;
     margin-top: 10px auto;
 }
 
 .bill-alerts {
     position: absolute;
-    margin: 20px auto;
-    width: 100%;
-    padding: 0 30px;
+    top: 20px;
+    margin: 0 auto;
+    max-width: calc(100% - 40px);
+    padding: 0 20px;
     display: flex;
     justify-content: space-evenly; /* or space between or center */
-    grid-template-columns: repeat(3, 1fr);
+    /* align-items: center; */
+    /* grid-template-columns: repeat(3, 1fr); */
     /* gap: 10px; */
+}
+
+.table-header {
+    font-size: 1.8rem;
+    color: var(--text-dark);
+    text-align: center;
+    margin-top: 30px;
 }
 
 .search-bar {
