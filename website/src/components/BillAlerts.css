@@ -12,17 +12,6 @@
     --white: #ffffff;
 }
 
-/* .bill-alerts {
-    margin: 30px auto;
-    padding: 0 50px;
-    display: flex;
-    justify-content: space-around;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
-    width: 100%;
-    color: var(--text-dark);
-} */
-
 .alert-card {
     color: var(--text-dark);
     background-color: var(--soft-tan);
