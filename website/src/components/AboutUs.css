@@ -20,7 +20,8 @@
     --border-green: #85dba3; /* muted green for table borders */
     --soft-tan: #f0dfd1;
     --white: #ffffff;
-    --golden-yellow: #f7ea56;
+    --golden-yellow: #f3c456;
+    --blue: #3a8bfc;
 }
 
 body {
@@ -59,7 +60,7 @@ body {
 .about-mission {
     margin-bottom: 30px;
     padding: 20px;
-    background-color: var(--light-green);
+    background-color: var(--blue);
     color: var(--white);
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -91,7 +92,7 @@ body {
 
 .team-member h3 {
     font-size: 1.3em;
-    color: var(--light-green);
+    color: var(--medium-green);
     margin-bottom: 5px;
 }
 
