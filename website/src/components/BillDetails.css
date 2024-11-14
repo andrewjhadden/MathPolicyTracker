@@ -6,11 +6,11 @@
     --dark-green: #28432f; /* header and footer */
     --hover-and-headers: #006400;
     --medium-green: #228B22; /* buttons */
-    --light-green: #52f968; /* table rows and hover states */
+    --light-green: #39f446; /* table rows and hover states */
     --border-green: #85dba3; /* muted green for table borders */
     --soft-tan: #f0dfd1;
     --white: #ffffff;
-    --golden-yellow: #f7ea56;
+    --golden-yellow: #ffff46;
 }
 
 .bill-details {

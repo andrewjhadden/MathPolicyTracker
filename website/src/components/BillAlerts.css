@@ -21,10 +21,10 @@
 
 .alert-card {
     width: 20%;
-    background-color: var(--soft-tan);
+    background-color: var(--white);
     padding: 15px;
     border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 12px;
+    border-radius: 10px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
