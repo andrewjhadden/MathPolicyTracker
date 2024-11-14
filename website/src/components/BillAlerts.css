@@ -14,17 +14,16 @@
 
 .bill-alerts {
     display: flex;
-    justify-content: space-around; /* Distribute items evenly across the screen */
+    flex-direction: column; /* Stacks items vertically */
     gap: 20px;
+    width: 100%; /* Ensures the container takes the full screen width */
     padding: 20px;
-    margin: 0 auto;
-    width: 100%; /* Ensures the container takes the full width of the screen */
 }
 
 
+
 .alert-card {
-    flex: 1 1 30%; /* Each card will take about 30% of the row */
-    max-width: 300px; /* Sets a maximum width to prevent overly wide cards on large screens */
+    width: 100%; /* Fills the full width of the container */
     background-color: var(--white);
     padding: 15px;
     border: 1px solid rgba(0, 0, 0, 0.1);
@@ -33,6 +32,7 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
+
 
 
 .alert-card:hover {
