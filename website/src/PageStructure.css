@@ -16,17 +16,12 @@
     --white: #ffffff;
 }
 
-/* body {
+body {
     margin: 0;
     padding: 0;
     background-color: var(--soft-tan);
     color: var(--text-dark);
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center; 
-    align-items: center;
-} */
+}
 
 .top-section {
     display: flex;
@@ -79,17 +74,25 @@
     font-size: 1.6rem;
     color: var(--text-dark);
     text-align: center;
-    /* align-items: center; */
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .bill-alerts {
-    position: absolute;
-    margin-top: 15px;
-    width: 100%;
     display: flex;
-    color: var(--text-dark);
     justify-content: space-around;
+    padding: 30px;
+    /* margin-top: 15px; */
+    background-color: var(--soft-tan);
+    color: var(--text-dark);
+}
+
+.alert-card {
+    /* border: 1px solid var(--warm-pink); */
+    padding: 20px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    width: 25%;
 }
 
 /* .bill-alerts-wrapper {
