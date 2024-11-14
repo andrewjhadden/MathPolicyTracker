@@ -61,15 +61,6 @@ body {
     margin-bottom: 30px;
 } */
 
-.bill-alerts {
-    /* position: absolute; */
-    margin-top: 30px;
-    width: 100%;
-    display: flex;
-    color: var(--text-dark);
-    justify-content: center;
-}
-
 /* .alert-card {
     background-color: var(--white);
     border-radius: 8px;
