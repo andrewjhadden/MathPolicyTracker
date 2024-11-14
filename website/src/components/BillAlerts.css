@@ -15,7 +15,7 @@
 .bill-alerts {
     margin: 30px auto;
     padding: 0 50px; /* Adjust the side padding as needed */
-    display: flex; /* or grid */
+    display: grid; /* or grid */
     justify-content: space-between;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
