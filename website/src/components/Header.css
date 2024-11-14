@@ -22,7 +22,6 @@
 
 .logo {
     font-size: 22px;
-    text-transform: uppercase;
     font-weight: 600;
     text-decoration: none; 
     color: var(--white);

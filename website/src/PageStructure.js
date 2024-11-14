@@ -68,8 +68,10 @@ function StructureWebsiteWithData() {
                                     <div className="title">Math-Related Congressional Bill Tracker</div>
                                 </div>
                                 <h1 className="alert-header">See What’s New!</h1>
-                                <div className="bill-alerts">
-                                    <BillAlerts data={data} />
+                                <div className="bill-alerts-wrapper">
+                                    <div className="bill-alerts">
+                                        <BillAlerts data={data} />
+                                    </div>
                                 </div>
                                 <h2 className="table-header">10 Most Recent Bill Actions</h2>
                                 <div className="search-bar">

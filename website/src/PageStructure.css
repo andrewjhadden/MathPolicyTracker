@@ -21,6 +21,11 @@ body {
     padding: 0;
     background-color: var(--soft-tan);
     color: var(--text-dark);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
 }
 
 .top-section {
@@ -68,7 +73,7 @@ body {
     font-size: 35px;
     text-align: center;
     max-width: 50%;
-    border-radius: 20%;
+    border-radius: 10%;
 }
 
 .alert-header {
@@ -79,18 +84,24 @@ body {
     margin-top: 20px;
 }
 
+.bill-alerts-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
 .bill-alerts {
     margin-top: 20px;
     width: 100%;
     max-width: 1000px;
     padding: 0 15px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 8px;
+    justify-content: space-evenly;
     margin-left: auto;
     margin-right: auto;
-    /* flex-direction: row; */
+    flex-direction: row;
 }
 
 /* .bill-alerts {
