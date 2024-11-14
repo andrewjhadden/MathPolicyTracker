@@ -63,7 +63,7 @@ body {
 .title {
     position: absolute;
     padding: 10px;
-    background-color: rgba(20, 145, 100, 0.7);
+    background-color: rgba(20, 145, 100, 0.9);
     color: var(--white);
     z-index: 2;
     top: 30%; /* Center vertically */
@@ -94,12 +94,11 @@ body {
 
 .bill-alerts {
     margin-top: 20px;
-    width: 100%;
     max-width: 1000px;
-    padding: 0 15px;
-    display: flex;
+    /* padding: 0 15px; */
     justify-content: space-evenly;
     flex-direction: row;
+    gap: 20px;
 }
 
 /* .bill-alerts {
