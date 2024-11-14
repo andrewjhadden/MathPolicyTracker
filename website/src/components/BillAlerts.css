@@ -35,6 +35,7 @@
 }
 
 .alert-card {
+    width: 25%;
     background-color: var(--soft-tan);
     padding: 15px;
     border: 1px solid #ddd;
