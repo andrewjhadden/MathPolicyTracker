@@ -23,16 +23,15 @@
 
 
 .alert-card {
-    background-color: var(--white); /* Using white for a clean card background */
+    background-color: var(--white);
     padding: 15px;
-    border: 1px solid var(--border-green); /* Matches your muted green */
+    border: 1px solid var(--border-green);
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     color: var(--text-dark);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
 
 
 .alert-card:hover {

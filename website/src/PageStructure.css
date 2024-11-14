@@ -92,15 +92,18 @@ body {
     gap: 20px;
 } */
 
-/* .bill-alerts {
-    margin-top: 20px;
-    margin: 0 auto;
-    max-width: calc(100% - 40px);
-    padding: 0 20px;
+.bill-alerts {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px; */
-/* } */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%; /* Ensure it spans the full width of its container */
+    max-width: 1200px; /* Optional max width */
+    margin: 20px auto;
+    background-color: var(--soft-tan);
+    color: var(--text-dark);
+}
+
 
 .table-header {
     font-size: 1.8rem;
