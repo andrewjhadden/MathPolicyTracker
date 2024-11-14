@@ -16,7 +16,7 @@
     --white: #ffffff;
 }
 
-body {
+/* body {
     margin: 0;
     padding: 0;
     background-color: var(--soft-tan);
@@ -26,7 +26,7 @@ body {
     display: flex;
     justify-content: center; 
     align-items: center;
-}
+} */
 
 .top-section {
     display: flex;
@@ -63,7 +63,7 @@ body {
 .title {
     position: absolute;
     padding: 10px;
-    background-color: rgba(22, 150, 80, 0.9);
+    /* background-color: rgba(22, 150, 80, 0.9); */
     color: var(--white);
     z-index: 2;
     top: 30%; /* Center vertically */
