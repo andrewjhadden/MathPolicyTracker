@@ -10,7 +10,6 @@ import './BillAlerts.css';
 const BillAlerts = () => {
     const [alerts, setAlerts] = useState([]);
 
-    // Call environment variable in Vercel:
     const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}/data`;
 
     useEffect(() => {
@@ -37,15 +36,13 @@ const BillAlerts = () => {
 
     return (
         <div className="bill-alerts">
-            <div>
-                {alerts.map((alert, index) => (
-                    <div key={index} className="alert-card">
-                        <h3>{`${alert.bill.bill.type} ${alert.bill.bill.number}`}</h3>
-                        <p>{alert.bill.actionDate}</p>
-                        <Link reloadDocument to={`/bill/${alert._id}`}>Learn More</Link>
-                    </div>
-                ))}
-            </div>
+            {alerts.map((alert, index) => (
+                <div key={index} className="alert-card">
+                    <h3>{`${alert.bill.bill.type} ${alert.bill.bill.number}`}</h3>
+                    <p>{alert.bill.actionDate}</p>
+                    <Link reloadDocument to={`/bill/${alert._id}`}>Learn More</Link>
+                </div>
+            ))}
         </div>
     );
 }
