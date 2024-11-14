@@ -57,7 +57,8 @@ body {
     position: absolute;
     font-size: 1.6rem;
     color: var(--text-dark);
-    text-align: center !important;
+    /* text-align: center !important; */
+    align-items: center;
     margin-top: 10px auto;
 }
 
@@ -69,7 +70,7 @@ body {
     padding: 0 20px;
     display: flex;
     justify-content: space-evenly; /* or space between or center */
-    /* align-items: center; */
+    align-items: center;
     /* grid-template-columns: repeat(3, 1fr); */
     /* gap: 10px; */
 }
