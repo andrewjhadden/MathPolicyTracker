@@ -1,16 +1,6 @@
 /* Component: AboutUs.css */
 
 :root {
-    --deep-orange: #E43D12;
-    --warm-pink: #dd4b68;
-    --light-pink: #ffb6c6;
-    --golden-yellow: #f3c456;
-    --soft-tan: #f3e7de;
-    --white: #ffffff;
-    --text-dark: #453636;
-}
-
-:root {
     --black: #000000;
     --text-dark: #453636;
     --dark-green: #28432f; /* header and footer */
@@ -21,7 +11,7 @@
     --soft-tan: #f0dfd1;
     --white: #ffffff;
     --golden-yellow: #f3c456;
-    --blue: #3a8bfc;
+    --dark-blue: #10386f;
 }
 
 body {
@@ -60,7 +50,7 @@ body {
 .about-mission {
     margin-bottom: 30px;
     padding: 20px;
-    background-color: var(--blue);
+    background-color: var(--dark-blue);
     color: var(--white);
     border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
