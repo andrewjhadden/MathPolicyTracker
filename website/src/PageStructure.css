@@ -34,6 +34,7 @@ body {
     position: relative;
     width: 50%;
     height: 100%;
+    margin-bottom: 20px;
 }
   
 .image-container img {
@@ -50,23 +51,24 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(20, 145, 100, 0.1);
+    background-color: rgba(20, 145, 100, 0.12);
     z-index: 1;
 }
 
 .title {
     position: absolute;
     padding: 10px;
-    background-color: rgba(255, 255, 255, 0.494);
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--hover-and-headers);
     z-index: 2;
     top: 30%; /* Center vertically */
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%);
     font-weight: 600;
     font-size: 33px;
-    color: var(--white);
     text-align: center;
     max-width: 50%;
+    border-radius: 30%;
     /* text-transform: uppercase; */
 }
 
@@ -86,6 +88,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-radius: 8px;
     /* flex-direction: row; */
 }
 
