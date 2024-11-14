@@ -72,8 +72,7 @@ body {
     font-weight: 600;
     font-size: 35px;
     text-align: center;
-    max-width: 50%;
-    border-radius: 10%;
+    max-width: 75%;
 }
 
 .alert-header {
@@ -99,9 +98,10 @@ body {
     padding: 0 15px;
     display: flex;
     justify-content: space-evenly;
+    flex-direction: row;
+    flex-wrap: nowrap;
     margin-left: auto;
     margin-right: auto;
-    flex-direction: row;
 }
 
 /* .bill-alerts {
