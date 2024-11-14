@@ -43,7 +43,7 @@ body {
     object-fit: cover;
 }
   
-  /* Green overlay for each image */
+/* Green overlay for each image */
 .overlay {
     position: absolute;
     top: 0;
@@ -53,39 +53,23 @@ body {
     background-color: var(--light-green-overlay);
 }
 
-/* .alert-header {
-    font-size: 1.8rem;
-    color: var(--deep-orange);
+.alert-header {
+    position: absolute;
+    font-size: 1.6rem;
+    color: var(--text-dark);
     text-align: center;
-    margin-top: 40px;
-    margin-bottom: 30px;
-} */
-
-/* .alert-card {
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
-    padding: 10px 15px;
-    width: 200px;
-    text-align: center;
-    border: 1px solid var(--deep-green);
-} */
+    margin-top: 10px auto;
+}
 
 .bill-alerts {
     position: absolute;
-    margin: 30px auto;
+    margin: 20px auto;
     width: 100%;
-    padding: 0 50px;
+    padding: 0 30px;
     display: flex;
-    justify-content: space-around; /* or space between or center */
+    justify-content: space-evenly; /* or space between or center */
     grid-template-columns: repeat(3, 1fr);
     /* gap: 10px; */
-}
-
-.table-header {
-    font-size: 1.8rem;
-    color: var(--deep-green);
-    text-align: center;
-    margin-top: 30px;
 }
 
 .search-bar {
