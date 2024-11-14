@@ -56,6 +56,9 @@ body {
 
 .title {
     position: absolute;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.494);
+    z-index: 2;
     top: 30%; /* Center vertically */
     left: 50%; /* Center horizontally */
     transform: translate(-50%, -50%);
@@ -77,13 +80,13 @@ body {
 
 .bill-alerts {
     margin-top: 20px;
-    margin: 0 auto;
-    max-width: calc(100% - 30px);
+    width: 100%;
+    /* max-width: calc(100% - 30px); */
     padding: 0 15px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-direction: row;
+    /* flex-direction: row; */
 }
 
 /* .bill-alerts {
