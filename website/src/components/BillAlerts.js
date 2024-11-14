@@ -36,17 +36,17 @@ const BillAlerts = () => {
     }, [API_URL]);
 
     return (
-        // <div className="bill-alerts">
-        <div>
-            {alerts.map((alert, index) => (
-                <div key={index} className="alert-card">
-                    <h3>{`${alert.bill.bill.type} ${alert.bill.bill.number}`}</h3>
-                    <p>{alert.bill.actionDate}</p>
-                    <Link reloadDocument to={`/bill/${alert._id}`}>Learn More</Link>
-                </div>
-            ))}
+        <div className="bill-alerts">
+            <div>
+                {alerts.map((alert, index) => (
+                    <div key={index} className="alert-card">
+                        <h3>{`${alert.bill.bill.type} ${alert.bill.bill.number}`}</h3>
+                        <p>{alert.bill.actionDate}</p>
+                        <Link reloadDocument to={`/bill/${alert._id}`}>Learn More</Link>
+                    </div>
+                ))}
+            </div>
         </div>
-        // </div>
     );
 }
 
