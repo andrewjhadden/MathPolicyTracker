@@ -70,9 +70,9 @@ const FilterDataUsingSearchBar = ({ data = [] }) => {
 
     return (
         <div className="filter" ref={searchRef}>
-            <input
-                type="text"
-                placeholder="Search bills by title or number"
+            <input 
+                type="text" 
+                placeholder="Search bills by title or number" 
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
 
@@ -83,6 +83,10 @@ const FilterDataUsingSearchBar = ({ data = [] }) => {
 
                 // Reference to the input element
                 ref={inputRef}
+
+                // New bc inspect was giving an error
+                name="bill-search" 
+                id="bill-search"
             />
 
             {isDropdownVisible && filteredResults.length > 0 && (
