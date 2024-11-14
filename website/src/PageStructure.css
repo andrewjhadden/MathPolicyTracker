@@ -28,7 +28,6 @@ body {
     position: relative;
     height: 50vh;
     overflow: hidden;
-    margin-bottom: 20px;
 }
 
 .image-container {
@@ -107,13 +106,13 @@ body {
     font-size: 1.8rem;
     color: var(--text-dark);
     text-align: center;
-    margin-top: 35px auto 0px auto;
+    margin-top: 35px;
 }
 
 .search-bar {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    /* padding: 10px; */
     color: var(--text-dark);
     border-radius: 8px;
 }

@@ -13,17 +13,14 @@
 }
 
 .bill-alerts {
-    margin: 20px auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    /* grid-template-columns: repeat(3, 1fr); */
-    gap: 20px;
-    padding: 20px;
-    /* padding: 0 45px; */
+    margin: 20px 20px;
+    display: flex;
+    gap: 30px;
+    padding: 20px 20px;
 }
 
 .alert-card {
-    width: 25%;
+    width: 20%;
     background-color: var(--soft-tan);
     padding: 15px;
     border: 1px solid rgba(0, 0, 0, 0.1);
