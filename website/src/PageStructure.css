@@ -84,17 +84,12 @@
 }
 
 .bill-alerts {
-    padding: 0 45px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    /* gap: auto; */
-    margin: 20px auto;
-    /* margin: 40px; */
-    /* padding: 20px; */
-    /* background-color: rgba(255, 255, 255, 0.9); */
-    /* border-radius: 8px; */
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); */
+    position: absolute;
+    margin-top: 15px;
+    width: 100%;
+    display: flex;
+    color: var(--text-dark);
+    justify-content: space-around;
 }
 
 /* .bill-alerts-wrapper {
