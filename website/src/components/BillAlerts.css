@@ -13,23 +13,24 @@
 }
 
 .bill-alerts {
-    display: flex;
-    flex-direction: column; /* Stacks items vertically */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    width: 100%; /* Ensures the container takes the full screen width */
     padding: 20px;
+    color: var(--text-dark);
+    background-color: var(--soft-tan);
 }
 
 
 
 .alert-card {
-    width: 100%; /* Fills the full width of the container */
-    background-color: var(--white);
+    background-color: var(--white); /* Using white for a clean card background */
     padding: 15px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 10px;
+    border: 1px solid var(--border-green); /* Matches your muted green */
+    border-radius: 8px;
     text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    color: var(--text-dark);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
