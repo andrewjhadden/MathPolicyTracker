@@ -66,7 +66,9 @@ function StructureWebsiteWithData() {
                                         <div className="overlay"></div>
                                     </div>
                                     {/* <h1 className="alert-header">See What’s New!</h1> */}
-                                    <BillAlerts data={data} />
+                                    <div className="bill-alerts">
+                                        <BillAlerts data={data} />
+                                    </div>
                                 </div>
                                 <h2 className="table-header">10 Most Recent Bill Actions</h2>
                                 <div className="search-bar">

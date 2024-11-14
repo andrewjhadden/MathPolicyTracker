@@ -36,7 +36,8 @@ const BillAlerts = () => {
     }, [API_URL]);
 
     return (
-        <div className="bill-alerts">
+        // <div className="bill-alerts">
+        <div>
             {alerts.map((alert, index) => (
                 <div key={index} className="alert-card">
                     <h3>{`${alert.bill.bill.type} ${alert.bill.bill.number}`}</h3>
@@ -45,6 +46,7 @@ const BillAlerts = () => {
                 </div>
             ))}
         </div>
+        // </div>
     );
 }
 

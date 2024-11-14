@@ -12,19 +12,19 @@
     --white: #ffffff;
 }
 
-.bill-alerts {
+/* .bill-alerts {
     margin: 30px auto;
-    padding: 0 50px; /* Adjust the side padding as needed */
-    display: flex; /* or grid */
+    padding: 0 50px;
+    display: flex;
     justify-content: space-around;
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
-    /* max-width: 1200px; */
     width: 100%;
     color: var(--text-dark);
-}
+} */
 
 .alert-card {
+    color: var(--text-dark);
     background-color: var(--soft-tan);
     padding: 15px;
     border: 1px solid rgba(0, 0, 0, 0.1);

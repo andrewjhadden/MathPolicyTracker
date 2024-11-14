@@ -62,7 +62,6 @@ body {
 } */
 
 /* .alert-card {
-    background-color: var(--white);
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
     padding: 10px 15px;
@@ -70,6 +69,17 @@ body {
     text-align: center;
     border: 1px solid var(--deep-green);
 } */
+
+.bill-alerts {
+    position: absolute;
+    margin: 30px auto;
+    width: 100%;
+    padding: 0 50px;
+    display: flex;
+    justify-content: space-around; /* or space between or center */
+    grid-template-columns: repeat(3, 1fr);
+    /* gap: 10px; */
+}
 
 .table-header {
     font-size: 1.8rem;
