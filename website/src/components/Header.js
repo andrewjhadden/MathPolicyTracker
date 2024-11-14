@@ -13,7 +13,7 @@ const Header = () => (
         <nav>
             <ul className="nav-menu">
                 <button className="menu-button">
-                    <Link to="/all-bills">All Bills</Link>
+                    <Link to="/full-bill-table">All Bills</Link>
                 </button>
                 <button className="menu-button">
                     <Link to="/about-us">About Us</Link>

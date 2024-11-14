@@ -1,13 +1,15 @@
 /* Component: FullBillTable.css */
 
 :root {
-    --deep-orange: #E43D12;
-    --warm-pink: #dd4b68;
-    --light-pink: #ffb6c6;
-    --golden-yellow: #f3c456;
-    --soft-tan: #f3e7de;
-    --white: #ffffff;
+    --black: #000000;
     --text-dark: #453636;
+    --dark-green: #28432f; /* header and footer */
+    --hover-and-headers: #006400;
+    --medium-green: #228B22; /* buttons */
+    --light-green: #94f5a1; /* table rows and hover states */
+    --border-green: #85dba3; /* muted green for table borders */
+    --soft-tan: #f0dfd1;
+    --white: #ffffff;
 }
 
 .all-bills-title {
@@ -18,7 +20,7 @@
     font-size: 1.8rem;
     /* padding: 20px; */
     /* background-color: var(--white); */
-    color: var(--deep-orange);
+    color: var(--hover-and-headers);
     /* border-radius: 8px; */
 }
 

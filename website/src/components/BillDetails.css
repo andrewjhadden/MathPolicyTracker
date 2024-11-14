@@ -1,14 +1,16 @@
 /* Component: BillDetails.css */
 
 :root {
-    --deep-orange: #E43D12;
-    --warm-pink: #dd4b68;
-    --light-pink: #ffb6c6;
-    --golden-yellow1: #ffd982;
-    --golden-yellow2: #e8b642;
-    --soft-tan: #f3e7de;
-    --white: #ffffff;
+    --black: #000000;
     --text-dark: #453636;
+    --dark-green: #28432f; /* header and footer */
+    --hover-and-headers: #006400;
+    --medium-green: #228B22; /* buttons */
+    --light-green: #52f968; /* table rows and hover states */
+    --border-green: #85dba3; /* muted green for table borders */
+    --soft-tan: #f0dfd1;
+    --white: #ffffff;
+    --golden-yellow: #f7ea56;
 }
 
 .bill-details {
@@ -50,7 +52,7 @@
 }
 
 .tracker button {
-    background-color: var(--golden-yellow1);
+    background-color: var(--golden-yellow);
     border: none;
     padding: 12px;
     font-size: 16px;
@@ -62,7 +64,7 @@
     margin: 30px auto 30px auto;
     font-size: 16px;
     padding: 15px;
-    background-color: var(--light-pink);
+    background-color: var(--light-green);
     border-radius: 5px;
 }
 
