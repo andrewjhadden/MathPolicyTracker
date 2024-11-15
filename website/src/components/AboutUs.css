@@ -50,6 +50,7 @@ body {
 .about-header p {
     font-size: 1.2em;
     color: var(--text-dark);
+    font-weight: 500;
 }
 
 .about-mission {
@@ -77,6 +78,7 @@ body {
     padding: 20px;
     background-color: var(--white);
     border-radius: 8px;
+    margin-bottom: 30px;
 }
 
 .about-team h2 {

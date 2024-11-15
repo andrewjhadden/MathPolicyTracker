@@ -44,9 +44,12 @@ const AboutUs = () => (
         </section>
 
         <section className="about-mission">
+            <h2>Code and Copyright</h2>
             <p>
                 The Math Policy Tracker and all related content are © Copyright 2024 Allison Berkowitz and Andrew Hadden. 
                 The project is licensed under the MIT License. See the LICENSE.txt file in the project root for full details.
+                The GitHub repo publically available: 
+                <a href='https://github.com/andrewjhadden/deployedthesis' target='_blank' rel='noreferrer'>GitHub Repo</a>
             </p>
         </section>
     </div>
