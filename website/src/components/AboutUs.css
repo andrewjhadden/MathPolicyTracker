@@ -68,7 +68,7 @@ body {
 }
 
 .about-mission p {
-    font-size: 1em;
+    font-size: 1.1em;
     color: var(--white);
     line-height: 1.6;
 }
@@ -92,7 +92,7 @@ body {
 }
 
 .team-member p {
-    font-size: 1em;
+    font-size: 1.1em;
     color: var(--text-dark);
     line-height: 1.4;
     margin: 0;
