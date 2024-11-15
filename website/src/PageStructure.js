@@ -70,7 +70,7 @@ function StructureWebsiteWithData() {
                                         <img src={hamiltonImage} alt="Hamilton Image" />
                                         <div className="overlay"></div>
                                     </div>
-                                    <div className="title">Math-Related Congressional Bill Tracker</div>
+                                    <div className="title">Math Policy Tracker</div>
                                 </div>
                                 <h1 className="alert-header">See What’s New!</h1>
                                 <BillAlerts data={data} />
