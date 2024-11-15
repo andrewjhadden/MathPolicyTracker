@@ -55,3 +55,8 @@
     right: 10px;
     cursor: pointer;
 }
+
+.copyright {
+    margin-top: 15px;
+    font-size: 14px;
+}

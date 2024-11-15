@@ -55,7 +55,8 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(20, 145, 62, 0.12);
+    background-color: rgba(20, 145, 62, 0.01);
+    /* background-color: rgba(20, 145, 62, 0.12); */
     z-index: 1;
 }
 

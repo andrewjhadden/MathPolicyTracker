@@ -91,6 +91,10 @@ const Footer = () => {
                     </div>
                 </div>
             )}
+
+            <div className="copyright">
+                © Copyright 2024 Allison Berkowitz and Andrew Hadden. All rights reserved.
+            </div>
         </footer>
     );
 };

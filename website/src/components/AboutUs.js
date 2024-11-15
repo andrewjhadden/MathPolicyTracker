@@ -29,6 +29,10 @@ const AboutUs = () => (
                 legislative changes related to mathematics for congressional staff and to empower citizens 
                 to stay informed and engaged in the legislative process.
             </p>
+            <p>
+                The Math Policy Tracker and all related content are © Copyright 2024 Allison Berkowitz and Andrew Hadden. 
+                The project is licensed under the MIT License. See the LICENSE.txt file in the project root for full details.
+            </p>
         </section>
         
         <section className="about-team">

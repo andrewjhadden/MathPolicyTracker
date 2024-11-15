@@ -38,6 +38,7 @@
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     color: var(--text-dark);
+    transform: scale(1.1);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
