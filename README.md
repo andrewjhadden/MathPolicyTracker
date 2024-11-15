@@ -22,3 +22,7 @@ Code folders, in 2 parts (highlighting main features):
   * src/App.js: shows the data from the database
   * script.js: connects with the database using Vercel database from MongoDb
   * src/components/.. all the parts of the website in .js and .css
+
+# License
+This software is available under the MIT license.
+* See the LICENSE.txt file in the project root for full license information.

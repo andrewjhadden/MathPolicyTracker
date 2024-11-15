@@ -1,3 +1,8 @@
+/**
+* Copyright 2024 Allison Berkowitz and Andrew Hadden
+* Licensed under the MIT License. See the LICENSE.txt file in the project root for full license information.
+*/
+
 // Component: Header.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
