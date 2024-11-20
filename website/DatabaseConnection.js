@@ -20,7 +20,7 @@ const FetchAndDisplayData = () => {
 
 	useEffect(() => {
 		// Fetch data from Vercel (originally from MongoDB database)
-		fetch(`${process.env.REACT_APP_DATABASE_API_URL}/data`)
+		fetch(`${process.env.REACT_APP_DATABASE_API_URL}`)
 		.then((response) => {
 			if (!response.ok) {
 				throw new Error(`HTTP error! Status: ${response.status}`);

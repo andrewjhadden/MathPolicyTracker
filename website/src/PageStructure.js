@@ -28,7 +28,7 @@ function StructureWebsiteWithData() {
     const [data, setData] = useState([]);
 
     // get API url from Vercel
-    const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}/data`;
+    const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}`;
 
     // Data fetching logic:
     // useEffect is, by design, used to contain code with side effects (The reason you put this code there is 
