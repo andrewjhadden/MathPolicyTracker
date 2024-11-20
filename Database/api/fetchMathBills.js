@@ -12,24 +12,29 @@
 import { MongoClient, ServerApiVersion } from "mongodb";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
-// import cron from "node-cron"; // For scheduling the job
 
 // Load environment variables from .env file from Vercel
 dotenv.config();
 const mongoUri = process.env.MONGODB_URI;
 const apiKey = process.env.API_KEY;
 
-const client = new MongoClient(mongoUri, {
-    serverApi: {
-        version: ServerApiVersion.v1,
-        strict: true,
-        deprecationErrors: true,
-    }
-});
+// const client = new MongoClient(mongoUri, {
+//     serverApi: {
+//         version: ServerApiVersion.v1,
+//         strict: true,
+//         deprecationErrors: true,
+//     }
+// });
 
-const fromDate = "2021-01-01T00:00:00Z";
-const toDate = "2024-09-22T00:00:00Z";
-const sortOrder = "updateDate+asc";
+// We'll change the dates to be the latest saved updateDate until now
+// const fromDate = "2021-01-01T00:00:00Z";
+// const toDate = "2024-09-22T00:00:00Z";
+
+// We could use actionDate to accurately get the new bills uploaded into the db,
+// but it seems that there could be some bills missing if their actionDate is beforehand and we miss it
+const sortOrder = "updateDate+asc"; 
+
+// Max limit API allows at a time is 250
 const limit = 250;
 let offset = 0;
 
@@ -42,12 +47,32 @@ const keywords = [
     /\bmathematicians\b/i,
 ];
 
-// Removed console.log try and error catches since we don't use console much with Vercel now
+// Created isConnected with the serverless function to be able to check if connected
+// everwhere
+// let isConnected = false;
+
+// Removed the isConnect() function because that isn't a function in MongoClient (don't know which of us did that)
+// But, also we are making sure there aren't extra connects
+// Switching isConnect with the actual client becuase it seems to be safer
 async function connectToMongoDB() {
-    if (!client.isConnected()) {
+    // if (isConnected) {
+    //     return client.db('ThesisDB');
+    // }
+    try {
+        const client = new MongoClient(mongoUri, {
+            serverApi: {
+                version: ServerApiVersion.v1,
+                strict: true,
+                deprecationErrors: true,
+            }
+        });
         await client.connect();
+        // isConnected = true;  // Mark as connected
+        return client.db('ThesisDB');
+    } catch (error) {
+        console.error('Error connecting to MongoDB:', error);
+        throw error; // Ensure the error is thrown
     }
-    return client.db('ThesisDB');
 }
 
 // Helper function to fetch sponsor bill data -- not an endpoint, only in /bill
@@ -94,8 +119,27 @@ async function fetchBillDetails(endpoint, bill) {
     }
 }
 
+// I need this because it won't remember the last updateDate in the code, I have to get from DB
+// Function to get the update date for each new run
+async function getLastUpdateDate(db) {
+    const lastBill = await db.collection('thesisdbcollections')
+        .find({})
+        .sort({ 'bill.bill.updateDate': -1 }) // Sort by newest updateDate
+        .limit(1)
+        .toArray();
+    console.log(`Getting latest update date from bill in database: ${lastBill[0]}: ${lastBill[0].bill.bill.updateDate}`)
+    return lastBill[0].bill.bill.updateDate;
+}
+
 // Fetch and store Congress bills
+// Changes.. 
+// 1- made it async taking the db, so the db is directly from the db connection
+// 2 - Start with the fromDateTime parameter set to the last stored updateDate.
+// Continue fetching until: No new bills are returned or all bills in the current page have an updateDate earlier than the stored updateDate.
 async function fetchMathBills(db) {
+    // Use the helper function to get the updateDate at which to start api data pull
+    const lastUpdateDate = await getLastUpdateDate(db);
+
     // Maximum number of retries for failed requests
     const maxRetries = 5; 
 
@@ -104,7 +148,7 @@ async function fetchMathBills(db) {
 
     while (true) {
         // Get the summaries endpoint data to search through the text to find keywords, to decide if bill should be collected
-        const APIurl = `https://api.congress.gov/v3/summaries?fromDateTime=${fromDate}&toDateTime=${toDate}&sort=${sortOrder}&api_key=${apiKey}&limit=${limit}&offset=${offset}`;
+        const APIurl = `https://api.congress.gov/v3/summaries?fromDateTime=${lastUpdateDate}&sort=${sortOrder}&api_key=${apiKey}&limit=${limit}&offset=${offset}`;
         let retries = 0;
 
         // Make sure it tries again even with small netword issues
@@ -154,7 +198,7 @@ async function fetchMathBills(db) {
                             keywordsMatched: editedKeywords
                         };
 
-                        // Insert into MongoDB
+                        // Insert one bill with all the extra info into MongoDB
                         await db.collection('thesisdbcollections').insertOne(fullBillData);
                     }
                 }
@@ -175,17 +219,11 @@ async function fetchMathBills(db) {
                 }
 
                 // Give some time before retrying
-                await new Promise(res => setTimeout(res, delayBetweenRetries * retries));
+                await new Promise(response => setTimeout(response, delayBetweenRetries * retries));
             }
         }
     }
 }
-
-// Function to start the process every 24 hours (can be adjusted)
-// cron.schedule('0 0 * * *', async () => {
-//     console.log('Fetching Congress data...');
-//     await fetchMathBills();
-// });
 
 // Serverless function handler
 export default async function handler(request, response) {
@@ -203,7 +241,7 @@ export default async function handler(request, response) {
     }
 }
 
-// How to make it run with the serverless function?! here is original:
+// Pre-serverlesss function...
 // Main process to connect to MongoDB and fetch data
 // async function mainProcess() {
 //     try {

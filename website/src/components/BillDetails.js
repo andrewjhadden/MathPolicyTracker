@@ -97,11 +97,15 @@ const DisplayBillDetails = ({ data }) => {
                 <h3>Summary:</h3>
                 <p>{cleanText(bill.bill?.text) || "Summary Not Available"}</p>
             </div>
-            <a 
+            <a  // Before I had forgot to include all the types of bills and resolutions
                 href={`https://www.congress.gov/bill/${bill.bill?.bill?.congress}/${
                     bill.bill?.bill?.type === "HR" ? "house-bill" :
                     bill.bill?.bill?.type === "HRES" ? "house-resolution" : 
-                    bill.bill?.bill?.type === "SRES" ? "senate-resolution" : "senate-bill" 
+                    bill.bill?.bill?.type === "SRES" ? "senate-resolution" :
+                    bill.bill?.bill?.type === "HJRES" ? "house-joint-resolution" :
+                    bill.bill?.bill?.type === "SJRES" ? "senate-joint-resolution" :
+                    bill.bill?.bill?.type === "HCONRES" ? "house-concurrent-resolution" :
+                    bill.bill?.bill?.type === "SCONRES" ? "senate-concurrent-resolution" : "senate-bill" 
                 }/${bill.bill?.bill?.number}`}
                 target="_blank"
                 rel="noopener noreferrer" 
