@@ -61,6 +61,10 @@
     color: #4884c1;
 }
 
+.menu-button:hover a {
+    color: inherit; /* Ensure it matches the container */
+}
+
 .menu-button a {
     color: inherit;
     text-decoration: none;

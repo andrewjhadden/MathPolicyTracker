@@ -11,6 +11,9 @@ Technologies, Key Libraries & Platforms Used:
 - Email alerts are run with an email API (Mailchimp) that comes with Node.js
 
 How to use... (to do)
+(something about how vercel just pushes this code straight to the website)
+(anything that could be helpful to courtney ever wanting to make changes
+or someone wanting to copy this over and make it their own)
 
 Code folders, in 2 parts (highlighting main features):
 1. Database:

@@ -24,8 +24,8 @@
     padding: 20px;
     color: var(--text-dark);
     background-color: var(--soft-tan);
-    width: 100%; /* Ensures full-width layout */
-    max-width: 1200px; /* Optional max width */
+    width: 100%; 
+    max-width: calc(100% - 80px);
     margin: 0 auto; /* Centers the alerts container */
 }
 
