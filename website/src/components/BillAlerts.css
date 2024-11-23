@@ -32,17 +32,18 @@
 .alert-card {
     background-color: var(--white);
     padding: 15px;
-    border: 1px solid var(--border-green);
     border-radius: 8px;
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     color: var(--text-dark);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+
 }
 
 .alert-card:hover {
-    /* transform: translateY(-5px); */
+    background-color: var(--soft-tan);
     transform: scale(1.1);
+    /* transform: translateY(-5px); */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -57,14 +58,11 @@
     color: var(--text-dark);
 }
 
-.alert-card a {
-    color: var(--hover-and-headers);
-    text-decoration: none;
-    font-weight: bold;
+/* .alert-card a {
     transition: color 0.2s ease;
-}
+} */
 
+/* 
 .alert-card a:hover {
     color: var(--dark-green);
-    text-decoration: underline;
-}
+} */
