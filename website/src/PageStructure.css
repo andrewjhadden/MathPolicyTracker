@@ -28,7 +28,7 @@ body {
     color: var(--text-dark);
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
-    height: 100vh;
+    height: auto;
 }
 
 .top-section {
@@ -89,13 +89,13 @@ body {
 .bill-alerts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 70px;
+    gap: 70px; /* edited */
     padding: 20px;
-    width: 100%;
-    max-width: 1200px;
-    margin: 20px auto;
-    background-color: var(--soft-tan);
     color: var(--text-dark);
+    background-color: var(--soft-tan);
+    width: 100%; 
+    max-width: calc(100% - 80px); /* edited */
+    margin: 20px auto; /* Centers the alerts container, edited */
 }
 
 .table-header {
