@@ -57,30 +57,28 @@ const DisplayBillDetails = ({ data }) => {
                 )}
             </div>
             <div className="committees">
-            <strong>Committees (outer) </strong>
-                {bill.committees && bill.committees.length > 0 && (
-                    <>
-                        <strong>Committee(s):</strong>
-                        {bill.committees.map((committee, index) => (
-                            <div key={index}>
-                                &nbsp; {committee.chamber}: {committee.name} ({committee.type}) <br/> 
-                            </div>
-                        ))}
-                    </>
-                )}
+            {bill.committees && bill.committees.length > 0 && (
+                <>
+                    <strong>Committee(s):</strong>
+                    {bill.committees.map((committee, index) => (
+                        <div key={index}>
+                            &nbsp; {committee.chamber}: {committee.name} ({committee.type}) <br/> 
+                        </div>
+                    ))}
+                </>
+            )}
             </div>
             <div className="relatedbills">
-            <strong>Related Bill (outer) </strong>
-                {bill.relatedBills && bill.relatedBills.length > 0 && (
-                    <>
-                        <strong>Related Bill(s):</strong>
-                        {bill.relatedBills.map((relatedBill, index) => (
-                            <div key={index}>
-                                &nbsp; {relatedBill.congress}th year: {relatedBill.type}.{relatedBill.number} "{relatedBill.title}" <br/> 
-                            </div>
-                        ))}
-                    </>
-                )}
+            {bill.relatedBills && bill.relatedBills.length > 0 && (
+                <>
+                    <strong>Related Bill(s):</strong>
+                    {bill.relatedBills.map((relatedBill, index) => (
+                        <div key={index}>
+                            &nbsp; {relatedBill.congress}th year: {relatedBill.type}.{relatedBill.number} "{relatedBill.title}" <br/> 
+                        </div>
+                    ))}
+                </>
+            )}
             </div>
             <div className="keywords">
             <strong>Keywords: </strong>

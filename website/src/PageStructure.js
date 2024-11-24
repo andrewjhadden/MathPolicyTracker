@@ -42,7 +42,10 @@ function StructureWebsiteWithData() {
                 }
                 return response.json();
             })
-            .then((data) => setData(data))
+            .then((data) => {
+                setData(data)
+                console.log("Data to use (PageStructure.js):", data);
+            })
             .catch((error) => console.error('Error fetching data:', error));
     }, [API_URL]);
     // Reminder about dependency arrays: (you should reference any variables used inside of it)
