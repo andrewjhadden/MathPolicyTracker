@@ -125,6 +125,7 @@ export default async function handler(request, response) {
         await connectToDB();
         const data = await dataModel.find();
         response.status(200).json(data); // 200 is okay
+        console.log("Data output (data.js):", JSON.stringify(data, null, 2));
     } catch (error) {
         console.error('Error in handler:', error);
         response.status(500).json({ error: 'Internal Server Error', details: error.message });

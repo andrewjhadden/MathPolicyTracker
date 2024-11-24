@@ -28,6 +28,7 @@ const FetchAndDisplayData = () => {
 			return response.json();
 		})
 		.then((data) => {
+			console.log("Fetched data (DatabaseConnection.js):", data);
 			// Store the data in state
 			setData(data);
 

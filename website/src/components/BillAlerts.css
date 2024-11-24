@@ -25,7 +25,7 @@
     color: var(--text-dark);
     background-color: var(--soft-tan);
     width: 100%; 
-    max-width: calc(100% - 80px);
+    max-width: calc(100% - 120px);
     margin: 0 auto; /* Centers the alerts container */
 }
 
@@ -42,7 +42,7 @@
 }
 
 .alert-card:hover {
-    background-color: rgba(14, 72, 25, 0.43);
+    background-color: rgba(37, 165, 61, 0.4);
     transform: scale(1.1);
     /* transform: translateY(-5px); */
     text-decoration: none;
