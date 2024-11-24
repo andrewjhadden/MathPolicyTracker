@@ -31,7 +31,12 @@ body {
 .scroll-container {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
-    height: auto;
+    height: 100vh;
+    scroll-behavior: smooth;
+}
+
+.alert-header, .table-header, .top-section {
+    scroll-snap-align: start; /* Align at the start of the scroll container */
 }
 
 .top-section {
@@ -39,7 +44,6 @@ body {
     position: relative;
     height: 50vh;
     overflow: hidden;
-    scroll-snap-align: start;
 }
 
 .image-container {
@@ -62,8 +66,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(20, 145, 62, 0.01);
-    /* background-color: rgba(20, 145, 62, 0.12); */
+    background-color: rgba(20, 145, 62, 0.1);
     z-index: 1;
 }
 
@@ -86,7 +89,6 @@ body {
     color: var(--text-dark);
     text-align: center;
     margin-top: 40px;
-    scroll-snap-align: start;
 }
 
 .bill-alerts {
@@ -106,7 +108,6 @@ body {
     color: var(--text-dark);
     text-align: center;
     margin-top: 35px;
-    scroll-snap-align: start;
 }
 
 .search-bar {
