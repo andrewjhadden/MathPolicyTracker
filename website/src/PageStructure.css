@@ -26,6 +26,9 @@ body {
     padding: 0;
     background-color: var(--soft-tan);
     color: var(--text-dark);
+}
+
+.scroll-container {
     scroll-snap-type: y mandatory;
     overflow-y: scroll;
     height: auto;

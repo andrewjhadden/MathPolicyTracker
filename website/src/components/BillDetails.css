@@ -50,6 +50,18 @@
     line-height: 140%;
 }
 
+.committees {
+    margin: 20px 0;
+    font-size: 16px;
+    line-height: 140%;
+}
+
+.relatedbills {
+    margin: 20px 0;
+    font-size: 16px;
+    line-height: 140%;
+}
+
 .tracker {
     display: flex;
     align-items: center;

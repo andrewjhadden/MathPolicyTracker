@@ -56,7 +56,8 @@ const DisplayBillDetails = ({ data }) => {
                     </>
                 )}
             </div>
-            <div className="sponsors">
+            <div className="committees">
+            <strong>Committees (outer) </strong>
                 {bill.committees && bill.committees.length > 0 && (
                     <>
                         <strong>Committee(s):</strong>
@@ -68,7 +69,8 @@ const DisplayBillDetails = ({ data }) => {
                     </>
                 )}
             </div>
-            <div className="sponsors">
+            <div className="relatedbills">
+            <strong>Related Bill (outer) </strong>
                 {bill.relatedBills && bill.relatedBills.length > 0 && (
                     <>
                         <strong>Related Bill(s):</strong>

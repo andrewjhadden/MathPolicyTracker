@@ -60,26 +60,30 @@ function StructureWebsiteWithData() {
                         <Route
                             path="/"
                             element={
-                                <>
-                                <div className="top-section">
-                                    <div className="image-container">
-                                        <img src={congressImage} alt="Capitol Image" />
-                                        <div className="overlay"></div>
+                                // <>
+                                <div className="scroll-container"> 
+                                    <div className="top-section">
+                                        <div className="image-container">
+                                            <img src={congressImage} alt="Capitol Image" />
+                                            <div className="overlay"></div>
+                                        </div>
+                                        <div className="image-container">
+                                            <img src={hamiltonImage} alt="Hamilton Image" />
+                                            <div className="overlay"></div>
+                                        </div>
+                                        <div className="title">Math Policy Tracker</div>
                                     </div>
-                                    <div className="image-container">
-                                        <img src={hamiltonImage} alt="Hamilton Image" />
-                                        <div className="overlay"></div>
+                                    <h1 className="alert-header">See What’s New!</h1>
+                                    <div className="bill-alerts">
+                                        <BillAlerts data={data} />
                                     </div>
-                                    <div className="title">Math Policy Tracker</div>
+                                    <h2 className="table-header">10 Most Recent Bill Actions</h2>
+                                    <div className="search-bar">
+                                        <SearchBar data={data} />
+                                    </div>
+                                    <TenBillsTable data={data} />
                                 </div>
-                                <h1 className="alert-header">See What’s New!</h1>
-                                <BillAlerts data={data} />
-                                <h2 className="table-header">10 Most Recent Bill Actions</h2>
-                                <div className="search-bar">
-                                    <SearchBar data={data} />
-                                </div>
-                                <TenBillsTable data={data} />
-                                </>
+                                // </>
                             }
                         />
                         <Route path="/bill/:id" element={<BillDetails data={data} />} />
