@@ -10,6 +10,8 @@
 //    (i.e. connects to a MongoDB database (hosted on Vercel) and displays the data on our webpage)
 // can put copyright in readme or in license file (open source? mit license?), put at the top for clarity
 
+//it could be fetching the data wrong but this probab;y isn't the issue
+
 import React, { useState, useEffect } from 'react';
 
 const FetchAndDisplayData = () => {
@@ -18,6 +20,7 @@ const FetchAndDisplayData = () => {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState(null);
 
+    console.log("React Database API URL (DatabaseConnection.js):", process.env.REACT_APP_DATABASE_API_URL); //new
 	useEffect(() => {
 		// Fetch data from Vercel (originally from MongoDB database)
 		fetch(`${process.env.REACT_APP_DATABASE_API_URL}`)

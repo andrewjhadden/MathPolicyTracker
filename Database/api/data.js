@@ -9,6 +9,9 @@
 // Description: Connecting the math bills data in the MongoDB database to the website/how we want to 
 //      show our data.
 
+//this is the part that determines database/api/data
+//make sure that the latest version of data.js is getting deployed via vercel
+
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
@@ -115,6 +118,7 @@ export default async function handler(request, response) {
     response.setHeader('Access-Control-Allow-Origin', '*');
     response.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
     response.setHeader('Access-Control-Allow-Headers', 'Content-Length');
+    response.setHeader('Cache-Control', 'no-store'); //new
 
     if (request.method === 'OPTIONS') {
         response.status(200).end(); // 200 is okay
@@ -122,9 +126,13 @@ export default async function handler(request, response) {
     }
 
     try {
+        console.log("Server MongoDB URI (data.js):", mongoUri); //new
         await connectToDB();
         const data = await dataModel.find();
+        console.log("Raw data from MongoDB:", JSON.stringify(data, null, 2)); //new
         response.status(200).json(data); // 200 is okay
+        console.log("Related Bills (data.js):", data.map(item => item.relatedBills)); //new
+        console.log("Committees (data.js):", data.map(item => item.committees)); //new
         console.log("Data output (data.js):", JSON.stringify(data, null, 2));
     } catch (error) {
         console.error('Error in handler:', error);
