@@ -60,8 +60,8 @@ function StructureWebsiteWithData() {
                         <Route
                             path="/"
                             element={
-                                // <>
-                                <div className="scroll-container"> 
+                                <>
+                                {/* <div className="scroll-container">  */}
                                     <div className="top-section">
                                         <div className="image-container">
                                             <img src={congressImage} alt="Capitol Image" />
@@ -82,8 +82,8 @@ function StructureWebsiteWithData() {
                                         <SearchBar data={data} />
                                     </div>
                                     <TenBillsTable data={data} />
-                                </div>
-                                // </>
+                                {/* </div> */}
+                                </>
                             }
                         />
                         <Route path="/bill/:id" element={<BillDetails data={data} />} />
