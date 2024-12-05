@@ -22,12 +22,18 @@ const mongoUri = process.env.MONGODB_URI;
 
 async function connectToDB() {
     if (mongoose.connection.readyState === 0) {
-        await mongoose.connect(mongoUri, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
-        });
+        await mongoose.connect(mongoUri);
     }
 }
+
+// async function connectToDB() {
+//     if (mongoose.connection.readyState === 0) {
+//         await mongoose.connect(mongoUri, {
+//             useNewUrlParser: true,
+//             useUnifiedTopology: true,
+//         });
+//     }
+// }
 
 const billSchema = new mongoose.Schema({
     congress: Number,

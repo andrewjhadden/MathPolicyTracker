@@ -28,22 +28,22 @@ body {
     color: var(--text-dark);
 }
 
-/* .scroll-container { */
-    /* scroll-snap-type: y mandatory; */
-    /* overflow-y: auto;
-    height: 100vh; */
-    /* scroll-behavior: smooth; */
-/* } */
+/* .scroll-container {
+    scroll-snap-type: y mandatory;
+    overflow-y: auto;
+    height: 100vh;
+    scroll-behavior: smooth;
+} */
 
 /* .alert-header, .table-header, .top-section {
-    scroll-snap-align: start; Align at the start of the scroll container
-} */
+    /* scroll-snap-align: start; Align at the start of the scroll container */
+/* } */
 
 .top-section {
     display: flex;
     position: relative;
-    /* height: 50vh; */
-    /* overflow: hidden; */
+    height: 50vh;
+    overflow: hidden;
 }
 
 .image-container {
