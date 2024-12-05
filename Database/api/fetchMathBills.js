@@ -17,7 +17,15 @@ dotenv.config();
 const mongoUri = process.env.MONGODB_URI;
 const apiKey = process.env.API_KEY;
 
+// We'll change the dates to be the latest saved updateDate until now
+// const fromDate = "2021-01-01T00:00:00Z";
+// const toDate = "2024-09-22T00:00:00Z";
+
+// We could use actionDate to accurately get the new bills uploaded into the db,
+// but it seems that there could be some bills missing if their actionDate is beforehand and we miss it
 const sortOrder = "updateDate+asc";
+
+// Compile regex patterns for each keyword to ensure whole-word matching
 const keywords = [
     /\bmath\b/i,
     /\bmathematics\b/i,
@@ -26,7 +34,17 @@ const keywords = [
     /\bmathematicians\b/i,
 ];
 
+// Created isConnected with the serverless function to be able to check if connected
+// everwhere
+// let isConnected = false;
+
+// Removed the isConnect() function because that isn't a function in MongoClient (don't know which of us did that)
+// But, also we are making sure there aren't extra connects
+// Switching isConnect with the actual client becuase it seems to be safer
 async function connectToMongoDB() {
+    // if (isConnected) {
+    //     return client.db('ThesisDB');
+    // }
     try {
         const client = new MongoClient(mongoUri, {
             serverApi: {
@@ -36,6 +54,7 @@ async function connectToMongoDB() {
             },
         });
         await client.connect();
+        // isConnected = true;  // Mark as connected
         return client.db("ThesisDB");
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);
@@ -61,59 +80,104 @@ async function saveProgress(db, lastUpdateDate, lastOffset) {
     );
 }
 
-// Helper to fetch additional bill data
+// Helper function to fetch sponsor bill data -- not an endpoint, only in /bill
+async function fetchBillSponsor(bill) {
+    const billType = bill.type.toLowerCase();
+    const { congress, number } = bill;
+    const APIurlSponsor = `https://api.congress.gov/v3/bill/${congress}/${billType}/${number}?api_key=${hidden_key}`;
+    try {
+        const response = await fetch(APIurlSponsor);
+        if (!response.ok) {
+            console.warn(`Failed to fetch ${response.status}`);
+            return [];
+        }
+        const billDetailsData = await response.json();
+
+        // Only send sponsors not other bill endpoint data
+        return billDetailsData.bill.sponsors;
+    } catch (error) {
+        console.error(`Error fetching ${error.message}`);
+
+        // Also return empty array on network or JSON errors
+        return [];
+    }
+}
+
+// Helper function to fetch additional bill data
 async function fetchBillDetails(endpoint, bill) {
     const billType = bill.type.toLowerCase();
     const { congress, number } = bill;
-    const APIurl = `https://api.congress.gov/v3/bill/${congress}/${billType}/${number}/${endpoint}?api_key=${apiKey}`;
+    const APIurlOther = `https://api.congress.gov/v3/bill/${congress}/${billType}/${number}/${endpoint}?api_key=${hidden_key}`;
     try {
-        const response = await fetch(APIurl);
+        const response = await fetch(APIurlOther);
         if (!response.ok) {
             console.warn(`Failed to fetch ${endpoint}: ${response.status}`);
             return [];
         }
-        return await response.json();
+        const billDetailsDataOther = await response.json();
+        return billDetailsDataOther;
     } catch (error) {
         console.error(`Error fetching ${endpoint}: ${error.message}`);
+
+        // Also return empty array on network or JSON errors
         return [];
     }
 }
 
 // Fetch a single batch of Congress bills
 async function fetchBatch(db) {
-    const { lastUpdateDate, lastOffset } = await getLastUpdateInfo(db); // Get progress
-    const limit = 50; // Fetch smaller batches to avoid timeouts
+    // Use the helper function to get to next offset we need
+    const { lastUpdateDate, lastOffset } = await getLastUpdateInfo(db);
+
+    // Fetch smaller batches to avoid timeouts (vercel has 2 min time limit)
+    const limit = 50;
+
     const APIurl = `https://api.congress.gov/v3/summaries?fromDateTime=${lastUpdateDate}&sort=${sortOrder}&api_key=${apiKey}&limit=${limit}&offset=${lastOffset}`;
 
     console.log(`Fetching batch: offset=${lastOffset}, fromDateTime=${lastUpdateDate}`);
     const response = await fetch(APIurl);
-    if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
-
-    const data = await response.json();
-    if (!data.summaries || data.summaries.length === 0) {
-        console.log("No new bills found in this batch.");
-        return false; // Signal that no more batches are left
+    if (!response.ok) {
+        throw new Error(`HTTP error: ${response.status}`);
     }
 
-    // Process each bill
+    const data = await response.json();
+
+    // Stop if no more bills are available
+    if (!data.summaries || data.summaries.length === 0) {
+        //console.log('No more bills available in this batch.');
+        return false;
+    }
+
+    // Iterate over the data of each bill and check for keywords
     for (const bill of data.summaries) {
         const title = (bill.bill?.title || "").toLowerCase();
         const summary = (bill.text || "").toLowerCase();
-        const matchedKeywords = keywords.filter((kw) => kw.test(title) || kw.test(summary));
+        // const congressYr = bill.bill?.congress || 'N/A';
 
-        if (matchedKeywords.length > 0) {
-            const sponsors = [];
-            const cosponsors = await fetchBillDetails("cosponsors", bill.bill);
-            const committees = await fetchBillDetails("committees", bill.bill);
-            const relatedBills = await fetchBillDetails("relatedbills", bill.bill);
+        // Create an array to store matched keywords
+        const matchedKeywords = keywords
+        .filter(kw => kw.test(title) || kw.test(summary))
+        .map(kw => kw.source);
 
+        // If keywords are found, join them into a string, otherwise set it to null
+        const editedKeywords = matchedKeywords.length > 0 ? matchedKeywords.join(', ') : null;
+
+        // if (editedKeywords && parseInt(congressYr) > 116) {
+        if (editedKeywords) {
+            // Fetch additional data for each bill with matching keywords
+            const sponsors = await fetchBillSponsor(bill.bill);
+            const cosponsors = await fetchBillDetails('cosponsors', bill.bill);
+            const committees = await fetchBillDetails('committees', bill.bill);
+            const relatedBills = await fetchBillDetails('relatedbills', bill.bill);
+            
+            // Combine all data into a single document
             const fullBillData = {
                 bill,
                 sponsors: sponsors || [],
                 cosponsors: cosponsors?.cosponsors || [],
                 committees: committees?.committees || [],
                 relatedBills: relatedBills?.relatedBills || [],
-                keywordsMatched: matchedKeywords.map((kw) => kw.source),
+                keywordsMatched: editedKeywords,
             };
 
             // Insert or update in MongoDB
@@ -122,6 +186,7 @@ async function fetchBatch(db) {
                 { $set: fullBillData },
                 { upsert: true }
             );
+            // TODO make sure that this is what we want vs original insertOne and make sure we don't want the retries
         }
     }
 
@@ -144,5 +209,8 @@ export default async function handler(request, response) {
     } catch (error) {
         console.error("Error:", error);
         response.status(500).json({ error: "Failed to fetch and update bills.", details: error.message });
+    } finally {
+        // Close the MongoDB client after everything completes (need!)
+        await client.close();
     }
 }

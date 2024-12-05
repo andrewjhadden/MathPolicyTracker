@@ -5,17 +5,10 @@
 
 /* Component: SignUp.css */
 
-.sign-up {
+.modal-content {
     margin-top: 30px;
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
-    padding: 20px;
-    background-color: var(--soft-tan);
-    color: var(--text-dark);
-}
-
-.modal-content {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
