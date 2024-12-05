@@ -17,7 +17,7 @@ import Footer from './components/Footer';
 import FullBillTable from './components/FullBillTable';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
-// import SignUp from './components/SignUp';
+import SignUp from './components/SignUp';
 import TenBillsTable from './components/TenBillsTable';
 import './PageStructure.css';
 import congressImage from './congress_image.png';
@@ -51,8 +51,6 @@ function StructureWebsiteWithData() {
     // 2- Empty dependency array >> code inside only runs once when your component first mounts.
     // 3- Not-empty dependency array >> code inside runs every time any variables you put inside the 
     //      dependency array changes.
-    
-    const location = useLocation(); // Get the current route
 
     return (
         <Router>
@@ -64,7 +62,6 @@ function StructureWebsiteWithData() {
                             path="/"
                             element={
                                 <>
-                                {/* <div className="scroll-container">  */}
                                 <div className="top-section">
                                     <div className="image-container">
                                         <img src={congressImage} alt="Capitol Image" />
@@ -85,7 +82,6 @@ function StructureWebsiteWithData() {
                                     <SearchBar data={data} />
                                 </div>
                                 <TenBillsTable data={data} />
-                                {/* </div> */}
                                 </>
                             }
                         />
@@ -96,10 +92,18 @@ function StructureWebsiteWithData() {
                         <Route path="/sign-up" element={<SignUp />} />
                     </Routes>
                 </main>
-                {location.pathname !== '/sign-up' && <Footer />}
+                <LocationBasedFooter />
             </div>
         </Router>
     );
+}
+
+// Separate Footer component that checks location
+const LocationBasedFooter = () => {
+    const location = useLocation(); // Get current location
+
+    // Only render Footer if the location is not '/sign-up'
+    return location.pathname !== '/sign-up' ? <Footer /> : null;
 }
 
 export default StructureWebsiteWithData;
