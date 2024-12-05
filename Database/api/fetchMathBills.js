@@ -6,8 +6,7 @@
 // Component: FetchMathBills.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
-// Description: Collecting all the math bills. Need to update to work with Vercel and need to update for 
-//      the continuous pull.
+// Description: Collecting all the math bills. Implements incremental updates by tracking progress.
 
 import { MongoClient, ServerApiVersion } from "mongodb";
 import fetch from "node-fetch";
@@ -44,19 +43,26 @@ async function connectToMongoDB() {
         return client.db("ThesisDB");
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);
-        throw error; // Ensure the error is thrown
+        throw error;
     }
 }
 
 // I need this because it won't remember the last updateDate in the code; I have to get it from the database
-async function getLastUpdateDate(db) {
-    const lastBill = await db
-        .collection("thesisdbcollections")
-        .find({})
-        .sort({ "bill.updateDate": -1 }) // Sort by the newest updateDate
-        .limit(1)
-        .toArray();
-    return lastBill[0]?.bill?.updateDate || "2021-01-01T00:00:00Z"; // Default to a fallback date
+async function getLastUpdateInfo(db) {
+    const progress = await db.collection("fetch_progress").findOne({ type: "mathBills" });
+    return {
+        lastUpdateDate: progress?.lastUpdateDate || "2021-01-01T00:00:00Z",
+        lastOffset: progress?.lastOffset || 0,
+    };
+}
+
+// Save offset and updateDate progress after each batch
+async function saveProgress(db, lastUpdateDate, lastOffset) {
+    await db.collection("fetch_progress").updateOne(
+        { type: "mathBills" },
+        { $set: { lastUpdateDate, lastOffset } },
+        { upsert: true }
+    );
 }
 
 // Helper function to fetch additional bill data from specific endpoints
@@ -78,13 +84,10 @@ async function fetchBillDetails(endpoint, bill) {
 }
 
 // Fetch and store Congress bills
-// Changes:
-// 1 - Start with the `fromDateTime` parameter set to the last stored updateDate
-// 2 - Continue fetching until no new bills are returned
 async function fetchMathBills(db) {
-    const lastUpdateDate = await getLastUpdateDate(db); // Get the last stored update date
-    const limit = 250; // Max API limit
-    let offset = 0; // For pagination
+    const { lastUpdateDate, lastOffset } = await getLastUpdateInfo(db); // Get last progress
+    const limit = 50; // Fetch smaller batches to avoid timeouts
+    let offset = lastOffset; // Start from the last offset
 
     while (true) {
         const APIurl = `https://api.congress.gov/v3/summaries?fromDateTime=${lastUpdateDate}&sort=${sortOrder}&api_key=${apiKey}&limit=${limit}&offset=${offset}`;
@@ -131,7 +134,9 @@ async function fetchMathBills(db) {
                 }
             }
 
-            offset += limit; // Move to the next page
+            // Save progress after each batch
+            offset += limit;
+            await saveProgress(db, lastUpdateDate, offset);
         } catch (error) {
             console.error("Error fetching bills:", error);
             break;
