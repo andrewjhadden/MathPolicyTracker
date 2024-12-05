@@ -153,4 +153,3 @@ syncSubscribers().catch(console.error);
 
 // // Optional: Run sync immediately on startup
 // syncSubscribers().catch(console.error);
-
