@@ -1,0 +1,33 @@
+/**
+* Copyright 2024 Allison Berkowitz and Andrew Hadden
+* Licensed under the MIT License. See the LICENSE.txt file in the project root for full license information.
+*/
+
+/* Component: SignUp.css */
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.close-button {
+    background: none;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.copyright {
+    margin-top: 40px;
+    font-size: 16px;
+}

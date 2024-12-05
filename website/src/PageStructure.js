@@ -9,7 +9,7 @@
 // Description: Displays the main page, inserting the header, 3 alerts, main table, and footer.
 
 import React, { useEffect, useState } from 'react';
-import { HashRouter as Router, Route, Routes } from 'react-router-dom';
+import { HashRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
 import Header from './components/Header';
 import BillAlerts from './components/BillAlerts';
 import SearchBar from './components/SearchBar';
@@ -51,6 +51,8 @@ function StructureWebsiteWithData() {
     // 3- Not-empty dependency array >> code inside runs every time any variables you put inside the 
     //      dependency array changes.
     
+    const location = useLocation(); // Get the current route
+
     return (
         <Router>
             <div className="App">
@@ -90,9 +92,10 @@ function StructureWebsiteWithData() {
                         <Route path="/full-bill-table" element={<FullBillTable data={data} />} />
                         <Route path="/search-bar" element={<SearchBar data={data} />} /> 
                         <Route path="/about-us" element={<AboutUs />} />
+                        <Route path="/sign-up" element={<SignUp />} />
                     </Routes>
                 </main>
-                <Footer />
+                {location.pathname !== '/sign-up' && <Footer />}
             </div>
         </Router>
     );
