@@ -38,9 +38,9 @@ const PrintFullBillTable = ({ data }) => {
 
     return (
         <div>
-            <h2 className="all-bills-title">All Bill Updates</h2>
-            <h3 className="all-bills-subtitle1">List of all updates related to mathematics since congressional year 117, in the senate and house.</h3>
-            <h3 className="all-bills-subtitle2">Descending Order by Update</h3>
+            <h2 className="all-bills-title">All Bill Actions</h2>
+            <h3 className="all-bills-subtitle1">List of all actions related to mathematics since congressional year 117, in the senate and house.</h3>
+            <h3 className="all-bills-subtitle2">Descending Order by Actions</h3>
 
             <div className="search-bar-container">
                 <input
@@ -59,8 +59,8 @@ const PrintFullBillTable = ({ data }) => {
                             <th>Bill Number</th>
                             <th>Title (click for more info)</th>
                             <th>Congress Year</th>
-                            <th>Update</th>
-                            <th>Update Date</th>
+                            <th>Action</th>
+                            <th>Action Date</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -27,8 +27,8 @@ const Display10BillsTable = ({ data }) => {
                     <tr>
                         <th>Bill</th>
                         <th>Title (click for more info)</th>
-                        <th>Update</th>
-                        <th>Update Date</th>
+                        <th>Action</th>
+                        <th>Action Date</th>
                     </tr>
                 </thead>
                 <tbody>

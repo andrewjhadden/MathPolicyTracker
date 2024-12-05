@@ -13,9 +13,9 @@
 //      from the data pull
 // - data: Array of bill objects used for displaying all the bill data.
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import './BillDetails.css'; 
-import { useParams, Link } from 'react-router-dom'; // adding Link
+import { useParams } from 'react-router-dom';
 
 const cleanText = (text) => {
     const htmlRemoved = text.replace(/<[^>]*>/g, '');
@@ -25,6 +25,11 @@ const cleanText = (text) => {
 const DisplayBillDetails = ({ data }) => {
     const { id } = useParams();
     const bill = data.find(b => b._id === id);
+
+    // Ensure the page scrolls to the top when BillDetails loads
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
 
     if (!bill) {
         return <div>Bill not found</div>;
