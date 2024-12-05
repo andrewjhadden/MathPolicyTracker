@@ -5,10 +5,13 @@
 
 /* Component: SignUp.css */
 
-.modal-content {
-    margin-top: 30px;
+.sign-up {
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.modal-content {
     background-color: white;
     padding: 20px;
     border-radius: 8px;
@@ -31,6 +34,6 @@
 }
 
 .copyright {
-    margin-top: 40px;
+    margin-top: 50px;
     font-size: 16px;
 }
