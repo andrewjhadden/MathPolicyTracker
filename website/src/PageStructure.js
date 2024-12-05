@@ -17,7 +17,7 @@ import Footer from './components/Footer';
 import FullBillTable from './components/FullBillTable';
 import Header from './components/Header';
 import SearchBar from './components/SearchBar';
-// import SignUp from './components/SignUp';
+import SignUp from './components/SignUp';
 import TenBillsTable from './components/TenBillsTable';
 import './PageStructure.css';
 import congressImage from './congress_image.png';
