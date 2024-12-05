@@ -39,7 +39,7 @@ const PrintFullBillTable = ({ data }) => {
     return (
         <div>
             <h2 className="all-bills-title">All Bill Actions</h2>
-            <h3 className="all-bills-subtitle1">List of all actions related to mathematics since congressional year 117, in the senate and house.</h3>
+            <h3 className="all-bills-subtitle1">List of all actions related to mathematics since the beginning of 2021, in the senate and house.</h3>
             <h3 className="all-bills-subtitle2">Descending Order by Actions</h3>
 
             <div className="search-bar-container">
