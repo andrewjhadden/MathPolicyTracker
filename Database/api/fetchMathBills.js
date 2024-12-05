@@ -6,7 +6,7 @@
 // Component: FetchMathBills.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
-// Description: Collecting all the math bills. Implements incremental updates by tracking progress.
+// Description: Incremental fetching of math bills with batch processing to avoid timeouts.
 
 import { MongoClient, ServerApiVersion } from "mongodb";
 import fetch from "node-fetch";
@@ -17,10 +17,7 @@ dotenv.config();
 const mongoUri = process.env.MONGODB_URI;
 const apiKey = process.env.API_KEY;
 
-// Sorting order for fetching updated bills
 const sortOrder = "updateDate+asc";
-
-// Compile regex patterns for each keyword to ensure whole-word matching
 const keywords = [
     /\bmath\b/i,
     /\bmathematics\b/i,
@@ -29,7 +26,6 @@ const keywords = [
     /\bmathematicians\b/i,
 ];
 
-// Function to establish MongoDB connection
 async function connectToMongoDB() {
     try {
         const client = new MongoClient(mongoUri, {
@@ -47,7 +43,7 @@ async function connectToMongoDB() {
     }
 }
 
-// I need this because it won't remember the last updateDate in the code; I have to get it from the database
+// Get the last update info from MongoDB
 async function getLastUpdateInfo(db) {
     const progress = await db.collection("fetch_progress").findOne({ type: "mathBills" });
     return {
@@ -56,7 +52,7 @@ async function getLastUpdateInfo(db) {
     };
 }
 
-// Save offset and updateDate progress after each batch
+// Save progress to MongoDB after processing a batch
 async function saveProgress(db, lastUpdateDate, lastOffset) {
     await db.collection("fetch_progress").updateOne(
         { type: "mathBills" },
@@ -65,7 +61,7 @@ async function saveProgress(db, lastUpdateDate, lastOffset) {
     );
 }
 
-// Helper function to fetch additional bill data from specific endpoints
+// Helper to fetch additional bill data
 async function fetchBillDetails(endpoint, bill) {
     const billType = bill.type.toLowerCase();
     const { congress, number } = bill;
@@ -83,73 +79,68 @@ async function fetchBillDetails(endpoint, bill) {
     }
 }
 
-// Fetch and store Congress bills
-async function fetchMathBills(db) {
-    const { lastUpdateDate, lastOffset } = await getLastUpdateInfo(db); // Get last progress
+// Fetch a single batch of Congress bills
+async function fetchBatch(db) {
+    const { lastUpdateDate, lastOffset } = await getLastUpdateInfo(db); // Get progress
     const limit = 50; // Fetch smaller batches to avoid timeouts
-    let offset = lastOffset; // Start from the last offset
+    const APIurl = `https://api.congress.gov/v3/summaries?fromDateTime=${lastUpdateDate}&sort=${sortOrder}&api_key=${apiKey}&limit=${limit}&offset=${lastOffset}`;
 
-    while (true) {
-        const APIurl = `https://api.congress.gov/v3/summaries?fromDateTime=${lastUpdateDate}&sort=${sortOrder}&api_key=${apiKey}&limit=${limit}&offset=${offset}`;
-        try {
-            const response = await fetch(APIurl);
-            if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
+    console.log(`Fetching batch: offset=${lastOffset}, fromDateTime=${lastUpdateDate}`);
+    const response = await fetch(APIurl);
+    if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
 
-            const data = await response.json();
-            if (!data.summaries || data.summaries.length === 0) {
-                console.log("No new bills found.");
-                break;
-            }
+    const data = await response.json();
+    if (!data.summaries || data.summaries.length === 0) {
+        console.log("No new bills found in this batch.");
+        return false; // Signal that no more batches are left
+    }
 
-            // Process each bill in the summaries
-            for (const bill of data.summaries) {
-                const title = (bill.bill?.title || "").toLowerCase();
-                const summary = (bill.text || "").toLowerCase();
-                const matchedKeywords = keywords.filter(
-                    (kw) => kw.test(title) || kw.test(summary)
-                );
+    // Process each bill
+    for (const bill of data.summaries) {
+        const title = (bill.bill?.title || "").toLowerCase();
+        const summary = (bill.text || "").toLowerCase();
+        const matchedKeywords = keywords.filter((kw) => kw.test(title) || kw.test(summary));
 
-                if (matchedKeywords.length > 0) {
-                    const sponsors = [];
-                    const cosponsors = await fetchBillDetails("cosponsors", bill.bill);
-                    const committees = await fetchBillDetails("committees", bill.bill);
-                    const relatedBills = await fetchBillDetails("relatedbills", bill.bill);
+        if (matchedKeywords.length > 0) {
+            const sponsors = [];
+            const cosponsors = await fetchBillDetails("cosponsors", bill.bill);
+            const committees = await fetchBillDetails("committees", bill.bill);
+            const relatedBills = await fetchBillDetails("relatedbills", bill.bill);
 
-                    // Combine all data into a single document
-                    const fullBillData = {
-                        bill,
-                        sponsors: sponsors || [],
-                        cosponsors: cosponsors?.cosponsors || [],
-                        committees: committees?.committees || [],
-                        relatedBills: relatedBills?.relatedBills || [],
-                        keywordsMatched: matchedKeywords.map((kw) => kw.source),
-                    };
+            const fullBillData = {
+                bill,
+                sponsors: sponsors || [],
+                cosponsors: cosponsors?.cosponsors || [],
+                committees: committees?.committees || [],
+                relatedBills: relatedBills?.relatedBills || [],
+                keywordsMatched: matchedKeywords.map((kw) => kw.source),
+            };
 
-                    // Insert or update the bill in MongoDB
-                    await db.collection("thesisdbcollections").updateOne(
-                        { "bill.number": bill.bill.number },
-                        { $set: fullBillData },
-                        { upsert: true } // Create new entry if it doesn't exist
-                    );
-                }
-            }
-
-            // Save progress after each batch
-            offset += limit;
-            await saveProgress(db, lastUpdateDate, offset);
-        } catch (error) {
-            console.error("Error fetching bills:", error);
-            break;
+            // Insert or update in MongoDB
+            await db.collection("thesisdbcollections").updateOne(
+                { "bill.number": bill.bill.number },
+                { $set: fullBillData },
+                { upsert: true }
+            );
         }
     }
+
+    // Save progress after processing this batch
+    const newOffset = lastOffset + limit;
+    await saveProgress(db, lastUpdateDate, newOffset);
+    return true; // Signal that more batches might exist
 }
 
 // Serverless function handler
 export default async function handler(request, response) {
     try {
         const db = await connectToMongoDB();
-        await fetchMathBills(db);
-        response.status(200).json({ message: "Bills fetched and updated successfully." });
+        const hasMoreBatches = await fetchBatch(db); // Process a single batch
+        if (hasMoreBatches) {
+            response.status(200).json({ message: "Batch processed. More batches remain." });
+        } else {
+            response.status(200).json({ message: "All bills processed." });
+        }
     } catch (error) {
         console.error("Error:", error);
         response.status(500).json({ error: "Failed to fetch and update bills.", details: error.message });
