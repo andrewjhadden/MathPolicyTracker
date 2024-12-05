@@ -10,14 +10,15 @@
 
 import React, { useEffect, useState } from 'react';
 import { HashRouter as Router, Route, Routes, useLocation } from 'react-router-dom';
-import Header from './components/Header';
-import BillAlerts from './components/BillAlerts';
-import SearchBar from './components/SearchBar';
-import TenBillsTable from './components/TenBillsTable';
-import Footer from './components/Footer';
-import BillDetails from './components/BillDetails'; 
-import FullBillTable from './components/FullBillTable';
 import AboutUs from './components/AboutUs';
+import BillAlerts from './components/BillAlerts';
+import BillDetails from './components/BillDetails'; 
+import Footer from './components/Footer';
+import FullBillTable from './components/FullBillTable';
+import Header from './components/Header';
+import SearchBar from './components/SearchBar';
+import SignUp from './components/SignUp';
+import TenBillsTable from './components/TenBillsTable';
 import './PageStructure.css';
 import congressImage from './congress_image.png';
 import hamiltonImage from './hamilton_image.png';

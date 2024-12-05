@@ -5,6 +5,12 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "crons": [
+    {
+      "path": "/api/fetchMathBills",
+      "schedule": "*/1 * * * *"
+    }
+  ],
   "keywords": [],
   "author": "",
   "license": "ISC",
