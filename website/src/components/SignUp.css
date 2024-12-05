@@ -5,6 +5,14 @@
 
 /* Component: SignUp.css */
 
+.sign-up {
+    margin: 30px, auto, auto, auto;
+    text-align: center;
+    padding: 20px;
+    background-color: var(--soft-tan);
+    color: var(--text-dark);
+}
+
 .modal-content {
     background-color: white;
     padding: 20px;

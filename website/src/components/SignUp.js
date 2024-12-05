@@ -12,7 +12,7 @@ import './SignUp.css';
 
 const SignUp = () => {
     return (
-        <div className="footer">
+        <div className="sign-up">
             <div className="modal-content">
                 <div id="mc_embed_shell">
                     <link
