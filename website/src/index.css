@@ -16,3 +16,39 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@media print {
+  /* Hide unnecessary elements */
+  header, footer, nav, .no-print { /* define soem no-print catagories if want*/
+    display: none !important;
+  }
+
+  /* Adjust page layout for print */
+  body {
+    font-size: 12pt;
+    line-height: 1.6;
+    color: #000;
+    background: #fff;
+  }
+
+  /* Ensure links are readable */
+  a::after {
+    content: " (" attr(href) ")";
+  }
+
+  /* Optimize tables for printing */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  table th, table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  /* Avoid page breaks within elements */
+  h1, h2, h3, h4, p {
+    page-break-inside: avoid;
+  }
+}

@@ -99,7 +99,6 @@ body {
     padding: 10px;
     color: var(--text-dark);
     background-color: var(--soft-tan);
-    background-color: var(--white);
     width: 100%; 
     max-width: calc(100% - 80px);
     margin: 0px auto;
