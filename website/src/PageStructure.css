@@ -44,6 +44,7 @@ body {
     position: relative;
     height: 50vh;
     overflow: hidden;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .image-container {
@@ -94,13 +95,14 @@ body {
 .bill-alerts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 70px; /* edited */
-    padding: 20px;
+    gap: 70px;
+    padding: 10px;
     color: var(--text-dark);
     background-color: var(--soft-tan);
+    background-color: var(--white);
     width: 100%; 
-    max-width: calc(100% - 80px); /* edited */
-    margin: 20px auto; /* Centers the alerts container, edited */
+    max-width: calc(100% - 80px);
+    margin: 0px auto;
 }
 
 .table-header {

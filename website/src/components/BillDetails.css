@@ -12,10 +12,10 @@
     --hover-and-headers: #006400;
     --medium-green: #228B22; /* buttons */
     --light-green: #0ce11a; /* table rows and hover states */
-    --border-green: #85dba3; /* muted green for table borders */
+    --border-green: #6eda6e; /* muted green for table borders */
     --soft-tan: #f0dfd1;
     --white: #ffffff;
-    --yellow: #f7f752;
+    --yellow: #f8f87b;
 }
 
 .bill-details {
