@@ -12,10 +12,10 @@
     --hover-and-headers: #006400;
     --medium-green: #228B22;
     --light-green: #0ce11a; /* table rows and hover states */
-    --border-green: #a1eaa1;
+    --border-green: #a4f3a4;
     --soft-tan: #f0dfd1;
     --white: #ffffff;
-    --yellow: #f8f2a7;
+    --yellow: #fbf493;
 }
 
 .bill-details {
@@ -109,7 +109,7 @@
 
 @media screen and (max-width: 480px) {
     .bill-details {
-        font-size: 18px;
-        max-width: 100%;
+        font-size: 17px;
+        max-width: 90%;
     }
 }

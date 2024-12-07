@@ -111,5 +111,6 @@ a:hover {
 @media screen and (max-width: 480px) {
     .about-us {
         max-width: 100%;
+        padding: 20px;
     }
 }

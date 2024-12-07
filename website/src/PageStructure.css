@@ -116,17 +116,14 @@ footer {
 
 @media screen and (max-width: 480px) {
     .title {
-        font-size: 1.4rem;
+        font-size: 28px;
         max-width: 90%;
-    }
-
-    .alert-header {
-        font-size: 1.3rem;
     }
 
     .bill-alerts {
         gap: 20px;
         padding: 5px;
+        grid-template-columns: 1fr;
     }
 
     .table-header {
