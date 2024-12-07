@@ -85,7 +85,7 @@
 
 @media screen and (max-width: 480px) {
     .header {
-        font-size: 16px;
-        max-width: 100%;
+        font-size: 15px;
+        overflow-x: auto;
     }
 }

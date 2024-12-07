@@ -83,12 +83,12 @@
     }
 
     .table-container {
-        margin: 0 10px;
+        margin: 0 5px;
         overflow-x: auto;
     }
 
     .bill-table {
-        width: 600px; /* Ensure table exceeds screen width for horizontal scrolling */
+        width: 600px; /* Table goes over screen width for scrolling */
         font-size: 12px;
     }
 

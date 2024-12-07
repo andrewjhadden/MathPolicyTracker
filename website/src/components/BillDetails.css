@@ -32,7 +32,6 @@
     font-size: 25px;
     margin-bottom: 22px;
     color: var(--text-dark);
-    /* color: var(--deep-orange); */
 }
 
 .congress {
@@ -111,5 +110,6 @@
     .bill-details {
         font-size: 17px;
         max-width: 90%;
+        color: var(--text-dark);
     }
 }
