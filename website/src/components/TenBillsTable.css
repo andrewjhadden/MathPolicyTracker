@@ -46,3 +46,15 @@
     text-decoration: underline !important;
     color: var(--blue) !important;
 }
+
+@media screen and (max-width: 480px) {
+    .table-container {
+        margin: 5px auto;
+        font-size: 12px;
+        max-width: 100%;
+    }
+
+    .bill-table th {
+        font-size: 14px;
+    }
+}

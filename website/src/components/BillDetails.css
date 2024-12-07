@@ -10,12 +10,12 @@
     --text-dark: #453636;
     --dark-green: #28432f; /* header and footer */
     --hover-and-headers: #006400;
-    --medium-green: #228B22; /* buttons */
+    --medium-green: #228B22;
     --light-green: #0ce11a; /* table rows and hover states */
-    --border-green: #8ae48a; /* muted green for table borders */
+    --border-green: #a1eaa1;
     --soft-tan: #f0dfd1;
     --white: #ffffff;
-    --yellow: #e9e16e;
+    --yellow: #f8f2a7;
 }
 
 .bill-details {
@@ -105,4 +105,11 @@
 
 .more-info-button:hover {
     background-color: #005bb5;
+}
+
+@media screen and (max-width: 480px) {
+    .bill-details {
+        font-size: 18px;
+        max-width: 100%;
+    }
 }

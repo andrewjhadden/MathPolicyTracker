@@ -107,3 +107,9 @@ a {
 a:hover {
     color: yellow;
 }
+
+@media screen and (max-width: 480px) {
+    .about-us {
+        max-width: 100%;
+    }
+}

@@ -19,7 +19,7 @@ code {
 
 @media print {
   /* Hide unnecessary elements */
-  header, footer, nav, .no-print { /* define soem no-print catagories if want*/
+  header, footer, nav, .no-print { /*define soem no-print catagories if want*/
     display: none !important;
   }
 
