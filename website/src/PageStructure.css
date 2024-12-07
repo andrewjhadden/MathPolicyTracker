@@ -116,7 +116,7 @@ footer {
 
 @media screen and (max-width: 480px) {
     .title {
-        font-size: 28px;
+        font-size: 1.7rem;
         max-width: 90%;
     }
 
@@ -127,6 +127,6 @@ footer {
     }
 
     .table-header {
-        font-size: 1.3rem;
+        font-size: 1.7rem;
     }
 }
