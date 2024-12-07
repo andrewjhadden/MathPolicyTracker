@@ -152,7 +152,7 @@ async function fetchBatch(db) {
     for (const bill of data.summaries) {
         const title = (bill.bill?.title || "").toLowerCase();
         const summary = (bill.text || "").toLowerCase();
-        // const congressYr = bill.bill?.congress || 'N/A';
+        const congressYr = bill.bill?.congress || 'N/A';
 
         // Create an array to store matched keywords
         const matchedKeywords = keywords
