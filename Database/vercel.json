@@ -1,9 +1,0 @@
-{
-    "crons": [
-      {
-        "path": "/api/fetchMathBills",
-        "schedule": "*/1 * * * *"
-      }
-    ]
-}
-  
