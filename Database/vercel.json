@@ -1,6 +1,6 @@
 {
     "crons": [{
       "path": "/api/fetchMathBills",
-      "schedule": "* */1 * * *"
+      "schedule": "* 10 * * *"
     }]
   }
