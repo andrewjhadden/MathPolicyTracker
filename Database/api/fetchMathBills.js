@@ -66,7 +66,7 @@ async function connectToMongoDB() {
 async function getLastUpdateInfo(db) {
     const progress = await db.collection("fetch_progress").findOne({ type: "mathBills" });
     return {
-        lastUpdateDate: progress?.lastUpdateDate || "2021-01-01T00:00:00Z",
+        lastUpdateDate: progress?.lastUpdateDate || "2024-07-02T00:00:00Z",
         lastOffset: progress?.lastOffset || 0,
     };
 }
