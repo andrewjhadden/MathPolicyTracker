@@ -107,7 +107,7 @@ async function fetchBillSponsor(bill) {
 async function fetchBillDetails(endpoint, bill) {
     const billType = bill.type.toLowerCase();
     const { congress, number } = bill;
-    const APIurlOther = `https://api.congress.gov/v3/bill/${congress}/${billType}/${number}/${endpoint}?api_key=${hidden_key}`;
+    const APIurlOther = `https://api.congress.gov/v3/bill/${congress}/${billType}/${number}/${endpoint}?api_key=${apiKey}`;
     try {
         const response = await fetch(APIurlOther);
         if (!response.ok) {
