@@ -55,7 +55,7 @@ async function connectToMongoDB() {
         });
         await client.connect();
         // isConnected = true;  // Mark as connected
-        return client.db("ThesisDB");
+        return { db: client.db("ThesisDB"), client };
     } catch (error) {
         console.error("Error connecting to MongoDB:", error);
         throw error;
@@ -84,7 +84,7 @@ async function saveProgress(db, lastUpdateDate, lastOffset) {
 async function fetchBillSponsor(bill) {
     const billType = bill.type.toLowerCase();
     const { congress, number } = bill;
-    const APIurlSponsor = `https://api.congress.gov/v3/bill/${congress}/${billType}/${number}?api_key=${hidden_key}`;
+    const APIurlSponsor = `https://api.congress.gov/v3/bill/${congress}/${billType}/${number}?api_key=${apiKey}`;
     try {
         const response = await fetch(APIurlSponsor);
         if (!response.ok) {
@@ -191,15 +191,20 @@ async function fetchBatch(db) {
     }
 
     // Save progress after processing this batch
-    const newOffset = lastOffset + limit;
+    const newOffset = lastOffset + (data.summaries ? data.summaries.length : 0);
     await saveProgress(db, lastUpdateDate, newOffset);
+
     return true; // Signal that more batches might exist
 }
 
 // Serverless function handler
 export default async function handler(request, response) {
+    let client;
     try {
-        const db = await connectToMongoDB();
+        const connection = await connectToMongoDB();
+        const db = connection.db;
+        client = connection.client;
+
         const hasMoreBatches = await fetchBatch(db); // Process a single batch
         if (hasMoreBatches) {
             response.status(200).json({ message: "Batch processed. More batches remain." });
@@ -210,7 +215,6 @@ export default async function handler(request, response) {
         console.error("Error:", error);
         response.status(500).json({ error: "Failed to fetch and update bills.", details: error.message });
     } finally {
-        // Close the MongoDB client after everything completes (need!)
-        await client.close();
+        if (client) await client.close();
     }
 }
