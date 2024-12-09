@@ -130,7 +130,7 @@ async function fetchBatch(db) {
     const { lastUpdateDate, lastOffset } = await getLastUpdateInfo(db);
 
     // Fetch smaller batches to avoid timeouts (vercel has 2 min time limit)
-    const limit = 50;
+    const limit = 150;
 
     const APIurl = `https://api.congress.gov/v3/summaries?fromDateTime=${lastUpdateDate}&sort=${sortOrder}&api_key=${apiKey}&limit=${limit}&offset=${lastOffset}`;
 
