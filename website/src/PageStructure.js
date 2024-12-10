@@ -24,7 +24,7 @@ import congressImage from './congress_image.png';
 import hamiltonImage from './hamilton_image.png';
 
 // React component names must start with uppercase -- otherwise using camel case
-function structureWebsiteWithData() {
+function StructureWebsiteWithData() {
     // State to store fetched data
     const [data, setData] = useState([]);
 
@@ -106,4 +106,4 @@ const LocationBasedFooter = () => {
     return location.pathname !== '/sign-up' ? <Footer /> : null;
 }
 
-export default structureWebsiteWithData;
+export default StructureWebsiteWithData;

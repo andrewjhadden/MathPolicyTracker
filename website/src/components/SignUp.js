@@ -10,7 +10,7 @@
 
 import './SignUp.css';
 
-const signUp = () => {
+const SignUp = () => {
     return (
         <div className="sign-up">
             <div className="modal-content">
@@ -81,4 +81,4 @@ const signUp = () => {
     );
 };
 
-export default signUp;
+export default SignUp;

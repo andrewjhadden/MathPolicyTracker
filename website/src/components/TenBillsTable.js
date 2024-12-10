@@ -15,7 +15,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TenBillsTable.css'; 
 
-const display10BillsTable = ({ data }) => {
+const Display10BillsTable = ({ data }) => {
     const navigate = useNavigate();
 
     // Sort function compares actionDate as Date values in js to arrange in newest to oldest order
@@ -59,4 +59,4 @@ const display10BillsTable = ({ data }) => {
     );
 };
 
-export default display10BillsTable;
+export default Display10BillsTable;

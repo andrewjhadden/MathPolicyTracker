@@ -15,9 +15,9 @@ import React, { useState, useEffect } from 'react';
 import './FullBillTable.css';
 import { useNavigate } from 'react-router-dom';
 
-const printFullBillTable = ({ data }) => {
+const PrintFullBillTable = ({ data }) => {
     const navigate = useNavigate();
-    
+
     const [query, setQuery] = useState('');
     const [filteredData, setFilteredData] = useState([]);
 
@@ -112,4 +112,4 @@ const printFullBillTable = ({ data }) => {
     );
 };
 
-export default printFullBillTable;
+export default PrintFullBillTable;

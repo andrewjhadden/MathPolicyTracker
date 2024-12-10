@@ -12,7 +12,7 @@
 import React, { useState } from 'react';
 import './Footer.css';
 
-const footer = () => {
+const Footer = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const toggleModal = () => {
@@ -99,4 +99,4 @@ const footer = () => {
     );
 };
 
-export default footer;
+export default Footer;

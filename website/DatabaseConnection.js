@@ -14,7 +14,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-const fetchAndDisplayData = () => {
+const FetchAndDisplayData = () => {
 	// Set up state to store the fetched data
 	const [data, setData] = useState([]);
 	const [loading, setLoading] = useState(true);
@@ -55,4 +55,4 @@ const fetchAndDisplayData = () => {
 	);
 };
 
-export default fetchAndDisplayData;
+export default FetchAndDisplayData;

@@ -15,7 +15,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SearchBar.css';
 
-const filterDataUsingSearchBar = ({ data = [] }) => {
+const FilterDataUsingSearchBar = ({ data = [] }) => {
     const [query, setQuery] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
 
@@ -112,4 +112,4 @@ const filterDataUsingSearchBar = ({ data = [] }) => {
     );
 };
 
-export default filterDataUsingSearchBar;
+export default FilterDataUsingSearchBar;

@@ -6,7 +6,8 @@
 // Component: SendMailchimpEmails.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
-// Description: Sending mailchimp emails, connected to the Mailchimp database
+// Description: Sending mailchimp emails, connected to the Mailchimp database which also is connected
+//    to the MongoDB database.
 
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';

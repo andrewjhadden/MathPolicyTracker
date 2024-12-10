@@ -35,7 +35,7 @@ const keywords = [
 async function getLastUpdateInfo(db) {
     const progress = await db.collection("fetch_progress").findOne({ type: "mathBills" });
     return {
-        lastUpdateDate: progress?.lastUpdateDate || "2024-12-09T00:00:00Z",
+        lastUpdateDate: progress?.lastUpdateDate || "2024-12-04T00:00:00Z",
         lastOffset: progress?.lastOffset || 0,
     };
 }

@@ -24,7 +24,7 @@ const cleanText = (text) => {
     return htmlRemoved.replace(/\\b/g, '').trim();
 };
 
-const displayBillDetails = ({ data }) => {
+const DisplayBillDetails = ({ data }) => {
     const { id } = useParams();
     const bill = data.find(b => b._id === id);
 
@@ -124,4 +124,4 @@ const displayBillDetails = ({ data }) => {
     );
 };
 
-export default displayBillDetails;
+export default DisplayBillDetails;

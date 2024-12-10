@@ -11,7 +11,7 @@
 import React from 'react';
 import './AboutUs.css';
 
-const aboutUs = () => (
+const AboutUs = () => (
     <div className="about-us">
         <header className="about-header">
             <h1>About Us</h1>
@@ -56,4 +56,4 @@ const aboutUs = () => (
     </div>
 );
 
-export default aboutUs;
+export default AboutUs;

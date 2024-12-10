@@ -12,7 +12,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-const header = () => (
+const Header = () => (
     <header className="header">
         <Link className="logo" to="/">Home</Link>
         <nav>
@@ -31,4 +31,4 @@ const header = () => (
     </header>
 );
 
-export default header;
+export default Header;
