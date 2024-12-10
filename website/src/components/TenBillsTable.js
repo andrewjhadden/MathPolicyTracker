@@ -11,14 +11,21 @@
 // - data: Array of bill objects used for displaying all the bill data.
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './TenBillsTable.css'; 
 
 const Display10BillsTable = ({ data }) => {
+    const navigate = useNavigate();
+
     // Sort function compares actionDate as Date values in js to arrange in newest to oldest order
     const sortedData = [...data].sort((a, b) =>  // ...data creates a shallow copy of the array to avoid editing the original
         new Date(b.bill.actionDate) - new Date(a.bill.actionDate)
     );
+
+    const handleRowClick = (id) => {
+        navigate(`/bill/${id}`);
+    };
 
     return (
         <div className="table-container">
@@ -34,19 +41,17 @@ const Display10BillsTable = ({ data }) => {
                 </thead>
                 <tbody>
                     {sortedData.slice(0, 10).map((item) => (
-                        <Link
-                            key={item._id}
-                            to={`/bill/${item._id}`}
-                            style={{ textDecoration: 'none', color: 'inherit' }}
+                        <tr 
+                            key={item._id} 
+                            className="clickable-row" 
+                            onClick={() => handleRowClick(item._id)}
                         >
-                            <tr className="clickable-row">
-                                <td>{item.bill.bill.type}.{item.bill.bill.number}</td>
-                                <td>{item.bill.bill.title}</td>
-                                <td>{item.bill.bill.congress}</td>
-                                <td>{item.bill.actionDesc}</td>
-                                <td>{item.bill.actionDate}</td>
-                            </tr>
-                        </Link>
+                            <td>{item.bill.bill.type}.{item.bill.bill.number}</td>
+                            <td>{item.bill.bill.title}</td>
+                            <td>{item.bill.bill.congress}</td>
+                            <td>{item.bill.actionDesc}</td>
+                            <td>{item.bill.actionDate}</td>
+                        </tr>
                     ))}
                 </tbody>
             </table>

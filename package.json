@@ -1,7 +1,0 @@
-{
-  "dependencies": {
-    "react-router-dom": "^6.28.0",
-    "react-router-hash-link": "^2.4.3"
-  },
-  "license": "MIT"
-}

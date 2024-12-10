@@ -44,7 +44,6 @@
 
 .bill-table a:hover {
     text-decoration: underline !important;
-    color: var(--blue) !important;
 }
 
 .clickable-row {
@@ -53,7 +52,7 @@
 }
 
 .clickable-row:hover {
-    background-color: #84a9ff;
+    background-color: #baffd4;
 }
 
 @media screen and (max-width: 480px) {
