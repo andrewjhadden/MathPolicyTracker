@@ -1,9 +1,9 @@
 {
   "name": "mongodb_thesis",
   "version": "1.0.0",
-  "main": "api/fetchMathBills.js",
+  "main": "api/FetchMathBills.js",
   "scripts": {
-    "start": "node api/fetchMathBills.js",
+    "start": "node api/FetchMathBills.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

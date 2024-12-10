@@ -7,10 +7,7 @@
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
 // Description: Connecting the math bills data in the MongoDB database to the website/how we want to 
-//      show our data.
-
-//this is the part that determines database/api/data
-//make sure that the latest version of data.js is getting deployed via vercel
+//      show our data. This is the part that determines database/api/data.
 
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -26,6 +23,7 @@ async function connectToDB() {
     }
 }
 
+// Don't need to define it comphrensively, because the data will automatically fill in sub-objects and arrays where it goes. 
 const dataSchema = new mongoose.Schema({
     bill: Object,
     sponsors: Array,
@@ -40,12 +38,11 @@ const dataModel = mongoose.model('thesisdbcollections', dataSchema);
 // Handler function edited for the serverless function
 export default async function handler(request, response) {
     // Set CORS headers
-    // response.setHeader('Access-Control-Allow-Credentials', true)
     // Need to allow all origins
     response.setHeader('Access-Control-Allow-Origin', '*');
     response.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
     response.setHeader('Access-Control-Allow-Headers', 'Content-Length');
-    response.setHeader('Cache-Control', 'no-store'); //new
+    response.setHeader('Cache-Control', 'no-store');
 
     if (request.method === 'OPTIONS') {
         response.status(200).end(); // 200 is okay
@@ -55,7 +52,7 @@ export default async function handler(request, response) {
     try {
         await connectToDB();
         const data = await dataModel.find();
-        console.log("Raw data from MongoDB:", JSON.stringify(data, null, 2)); //new
+        console.log("Raw data from MongoDB:", JSON.stringify(data, null, 2));
         response.status(200).json(data); // 200 is okay
     } catch (error) {
         console.error('Error in handler:', error);

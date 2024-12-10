@@ -19,10 +19,12 @@ import { useParams } from 'react-router-dom';
 
 const cleanText = (text) => {
     const htmlRemoved = text.replace(/<[^>]*>/g, '');
-    return htmlRemoved.replace(/\\b/g, '').trim(); // trim() removes leading/trailing spaces
+
+    // trim() removes leading/trailing spaces
+    return htmlRemoved.replace(/\\b/g, '').trim();
 };
 
-const DisplayBillDetails = ({ data }) => {
+const displayBillDetails = ({ data }) => {
     const { id } = useParams();
     const bill = data.find(b => b._id === id);
 
@@ -102,7 +104,7 @@ const DisplayBillDetails = ({ data }) => {
                 <h3>Summary:</h3>
                 <p>{cleanText(bill.bill?.text) || "Summary Not Available"}</p>
             </div>
-            <a  // Before I had forgot to include all the types of bills and resolutions
+            <a 
                 href={`https://www.congress.gov/bill/${bill.bill?.bill?.congress}/${
                     bill.bill?.bill?.type === "HR" ? "house-bill" :
                     bill.bill?.bill?.type === "HRES" ? "house-resolution" : 
@@ -122,4 +124,4 @@ const DisplayBillDetails = ({ data }) => {
     );
 };
 
-export default DisplayBillDetails;
+export default displayBillDetails;

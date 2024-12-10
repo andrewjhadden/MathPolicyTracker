@@ -15,7 +15,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './SearchBar.css';
 
-const FilterDataUsingSearchBar = ({ data = [] }) => {
+const filterDataUsingSearchBar = ({ data = [] }) => {
     const [query, setQuery] = useState('');
     const [filteredResults, setFilteredResults] = useState([]);
 
@@ -41,7 +41,8 @@ const FilterDataUsingSearchBar = ({ data = [] }) => {
         } else {
             setFilteredResults([]);
         }
-    }, [query, data]); // so, if either query or data changes then the function will be triggered again
+    }, [query, data]); 
+    // So, if either query or data changes then the function will be triggered again
 
     // Event listener to hide dropdown when clicking outside
     useEffect(() => {
@@ -58,7 +59,7 @@ const FilterDataUsingSearchBar = ({ data = [] }) => {
         };
     }, []); // Empty ependency array means it'll run automatically, and not re-run
 
-    const HandleResultClick = (id) => {
+    const handleResultClick = (id) => {
         navigate(`/bill/${id}`);
     };
 
@@ -89,7 +90,7 @@ const FilterDataUsingSearchBar = ({ data = [] }) => {
                 // Reference to the input element
                 ref={inputRef}
 
-                // New bc inspect was giving an error
+                // New because inspect was giving an error
                 name="bill-search" 
                 id="bill-search"
             />
@@ -100,7 +101,7 @@ const FilterDataUsingSearchBar = ({ data = [] }) => {
                         <div
                             key={item._id}
                             className="filter-dropdown-item"
-                            onClick={() => HandleResultClick(item._id)}
+                            onClick={() => handleResultClick(item._id)}
                         >
                             {item.bill.bill.type}.{item.bill.bill.number}: {item.bill.bill.title}
                         </div>
@@ -111,4 +112,4 @@ const FilterDataUsingSearchBar = ({ data = [] }) => {
     );
 };
 
-export default FilterDataUsingSearchBar;
+export default filterDataUsingSearchBar;

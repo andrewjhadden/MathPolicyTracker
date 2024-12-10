@@ -31,25 +31,6 @@ const keywords = [
     /\bmathematicians\b/i,
 ];
 
-// But, also we are making sure there aren't extra connects
-// Switching isConnect with the actual client becuase it seems to be safer
-// async function connectToMongoDB() {
-//     try {
-//         const client = new MongoClient(mongoUri, {
-//             serverApi: {
-//                 version: ServerApiVersion.v1,
-//                 strict: true,
-//                 deprecationErrors: true,
-//             },
-//         });
-//         await client.connect();
-//         return { db: client.db("ThesisDB"), client };
-//     } catch (error) {
-//         console.error("Error connecting to MongoDB:", error);
-//         throw error;
-//     }
-// }
-
 // Get the last update info from MongoDB
 async function getLastUpdateInfo(db) {
     const progress = await db.collection("fetch_progress").findOne({ type: "mathBills" });
@@ -155,22 +136,22 @@ async function fetchBatch(db) {
                 keywordsMatched: editedKeywords,
             };
 
-            // Insert or update in MongoDB
-            await db.collection("thesisdbcollections").insertOne(fullBillData);
+            // Insert or update in MongoDB
+            const insertResult = await db.collection("thesisdbcollections").insertOne(fullBillData);
 
-            // Send email alert for the new math-related bill
-            try {
-                const emailAlertData = {
-                    title: bill.bill.title || "Untitled Bill",
-                    url: `https://mathbilltracker.vercel.app/#/bill/${insertResult.insertedId}`,
-                };
-                await sendEmailAlert(emailAlertData); // Trigger the email alert
-                console.log(`Email alert sent for bill: ${bill.bill.title}`);
-            } catch (emailError) {
-                console.error(`Failed to send email alert for bill ${bill.bill.title}:`, emailError.message);
-            }
+        // Send email alert for the new math-related bill
+        try {
+            const emailAlertData = {
+                title: bill.bill.title || "Untitled Bill",
+                url: `https://mathbilltracker.vercel.app/#/bill/${insertResult.insertedId}`, // Use MongoDB's insertedId
+            };
+            await sendEmailAlert(emailAlertData); // Trigger the email alert
+            console.log(`Email alert sent for bill: ${bill.bill.title}`);
+        } catch (emailError) {
+            console.error(`Failed to send email alert for bill ${bill.bill.title}:`, emailError.message);
         }
     }
+}
 
     const newOffset = lastOffset + (data.summaries ? data.summaries.length : 0);
     await saveProgress(db, lastUpdateDate, newOffset);

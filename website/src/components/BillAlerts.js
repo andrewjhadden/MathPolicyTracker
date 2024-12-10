@@ -12,7 +12,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './BillAlerts.css';
 
-const BillAlerts = () => {
+const billAlerts = () => {
     const [alerts, setAlerts] = useState([]);
 
     const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}`;
@@ -56,4 +56,4 @@ const BillAlerts = () => {
     );
 }
 
-export default BillAlerts;
+export default billAlerts;

@@ -1,3 +1,13 @@
+/**
+* Copyright 2024 Allison Berkowitz and Andrew Hadden
+* Licensed under the MIT License. See the LICENSE.txt file in the project root for full license information.
+*/
+
+// Component: SendMailchimpEmails.js
+// Hamilton College Fall '24 Thesis
+// Ally Berkowitz and Andrew Hadden
+// Description: Sending mailchimp emails, connected to the Mailchimp database
+
 import fetch from 'node-fetch';
 import dotenv from 'dotenv';
 

@@ -15,11 +15,14 @@ import React, { useState, useEffect } from 'react';
 import './FullBillTable.css';
 import { useNavigate } from 'react-router-dom';
 
-const PrintFullBillTable = ({ data }) => {
+const printFullBillTable = ({ data }) => {
     const navigate = useNavigate();
+    
     const [query, setQuery] = useState('');
     const [filteredData, setFilteredData] = useState([]);
-    const [visibleCount, setVisibleCount] = useState(20); // Initial rows shown
+
+    // Initial rows shown
+    const [visibleCount, setVisibleCount] = useState(20);
 
     useEffect(() => {
         // Filter data based on query
@@ -36,7 +39,9 @@ const PrintFullBillTable = ({ data }) => {
         );
 
         setFilteredData(sortedResults);
-        setVisibleCount(20); // Reset visible count on new search
+
+        // Reset visible count on new search
+        setVisibleCount(20);
     }, [query, data]);
 
     // Show more rows on click
@@ -107,4 +112,4 @@ const PrintFullBillTable = ({ data }) => {
     );
 };
 
-export default PrintFullBillTable;
+export default printFullBillTable;

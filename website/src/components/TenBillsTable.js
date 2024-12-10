@@ -15,7 +15,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './TenBillsTable.css'; 
 
-const Display10BillsTable = ({ data }) => {
+const display10BillsTable = ({ data }) => {
     const navigate = useNavigate();
 
     // Sort function compares actionDate as Date values in js to arrange in newest to oldest order
@@ -23,7 +23,7 @@ const Display10BillsTable = ({ data }) => {
         new Date(b.bill.actionDate) - new Date(a.bill.actionDate)
     );
 
-    const HandleRowClick = (id) => {
+    const handleRowClick = (id) => {
         navigate(`/bill/${id}`);
     };
 
@@ -44,7 +44,7 @@ const Display10BillsTable = ({ data }) => {
                         <tr 
                             key={item._id} 
                             className="clickable-row" 
-                            onClick={() => HandleRowClick(item._id)}
+                            onClick={() => handleRowClick(item._id)}
                         >
                             <td>{item.bill.bill.type}.{item.bill.bill.number}</td>
                             <td>{item.bill.bill.title}</td>
@@ -59,4 +59,4 @@ const Display10BillsTable = ({ data }) => {
     );
 };
 
-export default Display10BillsTable;
+export default display10BillsTable;
