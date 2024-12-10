@@ -18,7 +18,7 @@ import { Link } from 'react-router-dom';
 const PrintFullBillTable = ({ data }) => {
     const [query, setQuery] = useState('');
     const [filteredData, setFilteredData] = useState([]);
-    const [visibleCount, setVisibleCount] = useState(30); // Initial rows shown
+    const [visibleCount, setVisibleCount] = useState(20); // Initial rows shown
 
     useEffect(() => {
         // Filter data based on query
@@ -40,7 +40,7 @@ const PrintFullBillTable = ({ data }) => {
 
     // Show more rows on click
     const handleShowMore = () => {
-        setVisibleCount((prev) => prev + 30);
+        setVisibleCount((prev) => prev + 20);
     };
 
     return (
@@ -64,7 +64,7 @@ const PrintFullBillTable = ({ data }) => {
                     <thead>
                         <tr>
                             <th>Bill Number</th>
-                            <th>Title (click for more info)</th>
+                            <th>Title</th>
                             <th>Congress Year</th>
                             <th>Action</th>
                             <th>Action Date</th>
@@ -75,16 +75,30 @@ const PrintFullBillTable = ({ data }) => {
                             filteredData.slice(0, visibleCount).map((item) => (
                                 <tr key={item._id}>
                                     <td>
-                                        {item.bill.bill.type}.{item.bill.bill.number}
+                                        <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            {item.bill.bill.type}.{item.bill.bill.number}
+                                        </Link>
                                     </td>
                                     <td>
                                         <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                             {item.bill.bill.title}
                                         </Link>
                                     </td>
-                                    <td>{item.bill.bill.congress}</td>
-                                    <td>{item.bill.actionDesc}</td>
-                                    <td>{item.bill.actionDate}</td>
+                                    <td>
+                                        <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            {item.bill.bill.congress}
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            {item.bill.actionDesc}
+                                        </Link>
+                                    </td>
+                                    <td>
+                                        <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                            {item.bill.actionDate}
+                                        </Link>
+                                    </td>
                                 </tr>
                             ))
                         ) : (

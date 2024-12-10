@@ -26,7 +26,8 @@ const Display10BillsTable = ({ data }) => {
                 <thead>
                     <tr>
                         <th>Bill</th>
-                        <th>Title (click for more info)</th>
+                        <th>Title</th>
+                        <th>Congress Year</th>
                         <th>Action</th>
                         <th>Action Date</th>
                     </tr>
@@ -35,15 +36,25 @@ const Display10BillsTable = ({ data }) => {
                     {sortedData.slice(0, 10).map((item) => (
                         <tr key={item._id}>
                             <td>
-                            {item.bill.bill.type}.{item.bill.bill.number}
+                                <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    {item.bill.bill.type}.{item.bill.bill.number}
+                                </Link>
                             </td>
                             <td>
                                 <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                                     {item.bill.bill.title}
                                 </Link>
                             </td>
-                            <td>{item.bill.actionDesc}</td>
-                            <td>{item.bill.actionDate}</td>
+                            <td>
+                                <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    {item.bill.actionDesc}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                    {item.bill.actionDate}
+                                </Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
