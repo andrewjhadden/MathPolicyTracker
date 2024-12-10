@@ -11,15 +11,15 @@ Integration of Our Technologies, Key Libraries, & Platforms:
 - Email alerts are run with Mailchimp’s API, subscriber information is added to MongoDB database
 
 Step-by-step…
-* Clone this GitHub repository
-* Gather Congress.gov API key, MongoDB URI, Mailchimp API Key, Mailchimp Audience ID, and Mailchimp Data Center values
-* Create a new Vercel project
+1. Clone this GitHub repository
+2. Gather Congress.gov API key, MongoDB URI, Mailchimp API Key, Mailchimp Audience ID, and Mailchimp Data Center values
+3. Create a new Vercel project
 * Import from the cloned Github repository
 * Change root directory to database
 * Add the environment variables: MONGODB_URI, MAILCHIMP_DATA_CENTER, API_KEY, MAILCHIMP_API_KEY, MAILCHIMP_AUDIENCE_ID
 * Click deploy
 * Repeat all of step 2, except change root directory to website instead of database
-Push Git repo and website will deploy under the provided url for the Vercel website project
+4. Push Git repo and website will deploy under the provided url for the Vercel website project
 
 Code folders, in 2 parts (highlighting main features):
 1. Database:
