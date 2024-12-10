@@ -45,11 +45,11 @@ const PrintFullBillTable = ({ data }) => {
     }, [query, data]);
 
     // Show more rows on click
-    const handleShowMore = () => {
+    const HandleShowMore = () => {
         setVisibleCount((prev) => prev + 20);
     };
 
-    const handleRowClick = (id) => {
+    const HandleRowClick = (id) => {
         navigate(`/bill/${id}`);
     };
 
@@ -86,7 +86,7 @@ const PrintFullBillTable = ({ data }) => {
                                 <tr 
                                     key={item._id} 
                                     className="clickable-row" 
-                                    onClick={() => handleRowClick(item._id)}
+                                    onClick={() => HandleRowClick(item._id)}
                                 >
                                     <td>{item.bill.bill.type}.{item.bill.bill.number}</td>
                                     <td>{item.bill.bill.title}</td>
@@ -104,7 +104,7 @@ const PrintFullBillTable = ({ data }) => {
                 </table>
             </div>
             {visibleCount < filteredData.length && (
-                <button className="load-more-button" onClick={handleShowMore}>
+                <button className="load-more-button" onClick={HandleShowMore}>
                     Load More
                 </button>
             )}

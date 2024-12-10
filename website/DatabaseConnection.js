@@ -3,7 +3,7 @@
 * Licensed under the MIT License. See the LICENSE.txt file in the project root for full license information.
 */
 
-// website: databaseConnection.js
+// website: DatabaseConnection.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
 // Description: Client-side functionality connecting database in Vercel from MongoDB to the website.
@@ -41,7 +41,8 @@ const FetchAndDisplayData = () => {
 			setError(error.message);
 			setLoading(false);
 		});
-	}, []); // Empty ependency array means it'll run automatically, and not re-run
+	}, []); 
+	// Empty ependency array means it'll run automatically, and not re-run
 
 	// Return JSX to render data (error handling!)
 	if (loading) return <div>Loading...</div>;

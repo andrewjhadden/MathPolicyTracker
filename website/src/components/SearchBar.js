@@ -59,11 +59,11 @@ const FilterDataUsingSearchBar = ({ data = [] }) => {
         };
     }, []); // Empty ependency array means it'll run automatically, and not re-run
 
-    const handleResultClick = (id) => {
+    const HandleResultClick = (id) => {
         navigate(`/bill/${id}`);
     };
 
-    const handleFocus = () => {
+    const HandleFocus = () => {
         // Show dropdown when input is focused
         setIsDropdownVisible(true);
 
@@ -83,7 +83,7 @@ const FilterDataUsingSearchBar = ({ data = [] }) => {
                 onChange={(e) => setQuery(e.target.value)}
 
                 // Show dropdown on focus and set cursor position
-                onFocus={handleFocus}
+                onFocus={HandleFocus}
 
                 className="filter-input"
 
@@ -101,7 +101,7 @@ const FilterDataUsingSearchBar = ({ data = [] }) => {
                         <div
                             key={item._id}
                             className="filter-dropdown-item"
-                            onClick={() => handleResultClick(item._id)}
+                            onClick={() => HandleResultClick(item._id)}
                         >
                             {item.bill.bill.type}.{item.bill.bill.number}: {item.bill.bill.title}
                         </div>

@@ -42,7 +42,7 @@
 }
 
 .alert-card:hover {
-    background-color: rgba(37, 165, 61, 0.4);
+    background-color: #e3ffe3;
     transform: scale(1.1);
     /* transform: translateY(-5px); */
     text-decoration: none;
