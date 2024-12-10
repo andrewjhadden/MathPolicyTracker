@@ -92,6 +92,15 @@
     background-color: #6393c7ac;
 }
 
+.clickable-row {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.clickable-row:hover {
+    background-color: #e3ffe3;
+}
+
 @media (max-width: 480px) {
     .all-bills-title,
     .all-bills-subtitle1,

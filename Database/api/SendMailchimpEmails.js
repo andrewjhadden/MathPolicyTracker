@@ -41,7 +41,7 @@ export async function sendEmailAlert(bill) {
     const emailContent = `
       <h1>New Math Policy Alert!</h1>
       <p>A new bill titled <strong>${bill.title}</strong> has been introduced.</p>
-      <p>Click <a href="${bill.url}">here</a> to view the bill details.</p>
+      <p>Click <a href="https://mathbilltracker.vercel.app/#/bill/${_id}">here</a> to view the bill details.</p>
     `;
 
     const contentResponse = await fetch(setContentUrl, {

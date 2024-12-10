@@ -162,7 +162,7 @@ async function fetchBatch(db) {
             try {
                 const emailAlertData = {
                     title: bill.bill.title || "Untitled Bill",
-                    url: `https://www.congress.gov/bill/${bill.bill.congress}/${bill.bill.type.toLowerCase()}/${bill.bill.number}`,
+                    url: `https://mathbilltracker.vercel.app/#/bill/${_id}`,
                 };
                 await sendEmailAlert(emailAlertData); // Trigger the email alert
                 console.log(`Email alert sent for bill: ${bill.bill.title}`);

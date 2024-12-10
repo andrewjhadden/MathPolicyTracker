@@ -13,9 +13,10 @@
 
 import React, { useState, useEffect } from 'react';
 import './FullBillTable.css';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const PrintFullBillTable = ({ data }) => {
+    const navigate = useNavigate();
     const [query, setQuery] = useState('');
     const [filteredData, setFilteredData] = useState([]);
     const [visibleCount, setVisibleCount] = useState(20); // Initial rows shown
@@ -35,12 +36,16 @@ const PrintFullBillTable = ({ data }) => {
         );
 
         setFilteredData(sortedResults);
-        setVisibleCount(30); // Reset visible count on new search
+        setVisibleCount(20); // Reset visible count on new search
     }, [query, data]);
 
     // Show more rows on click
     const handleShowMore = () => {
         setVisibleCount((prev) => prev + 20);
+    };
+
+    const handleRowClick = (id) => {
+        navigate(`/bill/${id}`);
     };
 
     return (
@@ -73,32 +78,16 @@ const PrintFullBillTable = ({ data }) => {
                     <tbody>
                         {filteredData.length > 0 ? (
                             filteredData.slice(0, visibleCount).map((item) => (
-                                <tr key={item._id}>
-                                    <td>
-                                        <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            {item.bill.bill.type}.{item.bill.bill.number}
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            {item.bill.bill.title}
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            {item.bill.bill.congress}
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            {item.bill.actionDesc}
-                                        </Link>
-                                    </td>
-                                    <td>
-                                        <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                            {item.bill.actionDate}
-                                        </Link>
-                                    </td>
+                                <tr 
+                                    key={item._id} 
+                                    className="clickable-row" 
+                                    onClick={() => handleRowClick(item._id)}
+                                >
+                                    <td>{item.bill.bill.type}.{item.bill.bill.number}</td>
+                                    <td>{item.bill.bill.title}</td>
+                                    <td>{item.bill.bill.congress}</td>
+                                    <td>{item.bill.actionDesc}</td>
+                                    <td>{item.bill.actionDate}</td>
                                 </tr>
                             ))
                         ) : (
