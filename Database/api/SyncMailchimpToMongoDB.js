@@ -126,4 +126,22 @@ async function resetSyncProgress() {
     } finally {
         await client.close();
     }
-};
+}
+
+// Handler function for Vercel API
+export default async function handler(req, res) {
+    try {
+        if (req.query.reset === "true") {
+            // Handle reset request
+            await resetSyncProgress();
+            res.status(200).json({ message: "Sync progress reset successfully." });
+        } else {
+            // Handle sync request
+            await syncSubscribers();
+            res.status(200).json({ message: "Subscribers synced successfully." });
+        }
+    } catch (error) {
+        console.error("Error in handler:", error);
+        res.status(500).json({ error: "Internal Server Error", details: error.message });
+    }
+}

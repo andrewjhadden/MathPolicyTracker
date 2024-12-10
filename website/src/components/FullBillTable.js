@@ -29,13 +29,19 @@ const PrintFullBillTable = ({ data }) => {
             return matchesQuery;
         });
 
-        setFilteredData(results);
-    }, [query, data]); // so, if either query or data changes then the function will be triggered again
+        // Sort by actionDate descending
+        const sortedResults = results.sort(
+            (a, b) => new Date(b.bill.actionDate) - new Date(a.bill.actionDate)
+        );
 
-    // Sort the filtered data in descending order, by actionDate
-    const sortedData = [...filteredData].sort((a, b) => 
-        new Date(b.bill.actionDate) - new Date(a.bill.actionDate)
-    );
+        setFilteredData(sortedResults);
+        setVisibleCount(30); // Reset visible count on new search
+    }, [query, data]);
+
+    // Show more rows on click
+    const handleShowMore = () => {
+        setVisibleCount((prev) => prev + 30);
+    };
 
     return (
         <div>
@@ -65,8 +71,8 @@ const PrintFullBillTable = ({ data }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {sortedData.length > 0 ? (
-                            sortedData.map((item) => (
+                        {filteredData.length > 0 ? (
+                            filteredData.slice(0, visibleCount).map((item) => (
                                 <tr key={item._id}>
                                     <td>
                                         {item.bill.bill.type}.{item.bill.bill.number}
@@ -89,6 +95,11 @@ const PrintFullBillTable = ({ data }) => {
                     </tbody>
                 </table>
             </div>
+            {visibleCount < filteredData.length && (
+                <button className="load-more-button" onClick={handleShowMore}>
+                    Load More
+                </button>
+            )}
         </div>
     );
 };
