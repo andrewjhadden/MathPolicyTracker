@@ -23,7 +23,7 @@ const Display10BillsTable = ({ data }) => {
         new Date(b.bill.actionDate) - new Date(a.bill.actionDate)
     );
 
-    const handleRowClick = (id) => {
+    const HandleRowClick = (id) => {
         navigate(`/bill/${id}`);
     };
 
@@ -44,7 +44,7 @@ const Display10BillsTable = ({ data }) => {
                         <tr 
                             key={item._id} 
                             className="clickable-row" 
-                            onClick={() => handleRowClick(item._id)}
+                            onClick={() => HandleRowClick(item._id)}
                         >
                             <td>{item.bill.bill.type}.{item.bill.bill.number}</td>
                             <td>{item.bill.bill.title}</td>

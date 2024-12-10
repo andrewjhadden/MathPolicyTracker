@@ -3,7 +3,7 @@
 * Licensed under the MIT License. See the LICENSE.txt file in the project root for full license information.
 */
 
-// website: DatabaseConnection.js
+// website: databaseConnection.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
 // Description: Client-side functionality connecting database in Vercel from MongoDB to the website.

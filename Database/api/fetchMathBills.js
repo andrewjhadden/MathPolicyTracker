@@ -54,7 +54,7 @@ const keywords = [
 async function getLastUpdateInfo(db) {
     const progress = await db.collection("fetch_progress").findOne({ type: "mathBills" });
     return {
-        lastUpdateDate: progress?.lastUpdateDate || "2024-12-04T00:00:00Z",
+        lastUpdateDate: progress?.lastUpdateDate || "2024-12-09T00:00:00Z",
         lastOffset: progress?.lastOffset || 0,
     };
 }
@@ -162,7 +162,7 @@ async function fetchBatch(db) {
             try {
                 const emailAlertData = {
                     title: bill.bill.title || "Untitled Bill",
-                    url: `https://mathbilltracker.vercel.app/#/bill/${_id}`,
+                    url: `https://mathbilltracker.vercel.app/#/bill/${insertResult.insertedId}`,
                 };
                 await sendEmailAlert(emailAlertData); // Trigger the email alert
                 console.log(`Email alert sent for bill: ${bill.bill.title}`);
@@ -174,6 +174,7 @@ async function fetchBatch(db) {
 
     const newOffset = lastOffset + (data.summaries ? data.summaries.length : 0);
     await saveProgress(db, lastUpdateDate, newOffset);
+
     return true;
 }
 
