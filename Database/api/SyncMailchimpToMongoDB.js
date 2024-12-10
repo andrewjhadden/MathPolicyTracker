@@ -1,155 +1,129 @@
 /**
-* Copyright 2024 Allison Berkowitz and Andrew Hadden
-* Licensed under the MIT License. See the LICENSE.txt file in the project root for full license information.
-*/
+ * Copyright 2024 Allison Berkowitz and Andrew Hadden
+ * Licensed under the MIT License. See the LICENSE.txt file in the project root for full license information.
+ */
 
 // Component: SyncMailchimpToMongoDB.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
-// Description: Adding emails to MongoDB, from Mailchimp
+// Description: Adding emails to MongoDB, from Mailchimp with progress tracking and reset capability.
 
-import fetch from 'node-fetch';
-import { MongoClient } from 'mongodb';
-import dotenv from 'dotenv';
+import fetch from "node-fetch";
+import { MongoClient } from "mongodb";
+import dotenv from "dotenv";
 
 dotenv.config();
-// All from Vercel
-const mailchimpApiKey = process.env.MAILCHIMP_API_KEY; 
+
+// Environment variables from Vercel
+const mailchimpApiKey = process.env.MAILCHIMP_API_KEY;
 const mailchimpAudienceId = process.env.MAILCHIMP_AUDIENCE_ID;
-const mailchimpDataCenter = 'us17'; 
-const mongoUri = process.env.MONGODB_URI; 
+const mailchimpDataCenter = process.env.MAILCHIMP_DATA_CENTER;
+const mongoUri = process.env.MONGODB_URI;
 
+// Connect to MongoDB
 async function connectToMongoDB() {
-    const client = new MongoClient(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
-    await client.connect();
-    console.log('Connected to MongoDB');
-    return client.db('ThesisDB').collection('mailchimpusers');
+    const client = new MongoClient(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+    await client.connect();
+    console.log("Connected to MongoDB");
+    return {
+        usersCollection: client.db("ThesisDB").collection("mailchimpusers"),
+        progressCollection: client.db("ThesisDB").collection("sync_progress"),
+        client,
+    };
 }
 
-// Fetch subscribers from Mailchimp
-async function fetchSubscribers() {
-    const url = `https://${mailchimpDataCenter}.api.mailchimp.com/3.0/lists/${mailchimpAudienceId}/members`;
-
-    const response = await fetch(url, {
-        method: 'GET',
-        headers: {
-            'Authorization': `apikey ${mailchimpApiKey}`,
-            'Content-Type': 'application/json'
-        }
-    });
-
-    if (!response.ok) {
-        throw new Error(`Failed to fetch subscribers: ${response.statusText}`);
-    }
-
-    const data = await response.json();
-    return data.members.map(member => ({
-        email: member.email_address,
-        name: member.merge_fields.FNAME,
-        status: member.status,
-        subscribe_date: member.timestamp_opt
-    }));
+// Get the last sync time from MongoDB
+async function getLastSyncTime(progressCollection) {
+    const progress = await progressCollection.findOne({ type: "mailchimpSync" });
+    return progress?.lastSyncTime || null; // Return the last sync time or null
 }
 
-// Sync subscribers to MongoDB
+// Save the last sync time to MongoDB
+async function saveSyncProgress(progressCollection, lastSyncTime) {
+    await progressCollection.updateOne(
+        { type: "mailchimpSync" },
+        { $set: { lastSyncTime } },
+        { upsert: true }
+    );
+}
+
+// Fetch subscribers from Mailchimp, optionally using the last sync time
+async function fetchSubscribers(lastSyncTime = null) {
+    const url = `https://${mailchimpDataCenter}.api.mailchimp.com/3.0/lists/${mailchimpAudienceId}/members` +
+                (lastSyncTime ? `?since_last_changed=${encodeURIComponent(lastSyncTime)}` : "");
+
+    const response = await fetch(url, {
+        method: "GET",
+        headers: {
+            Authorization: `apikey ${mailchimpApiKey}`,
+            "Content-Type": "application/json",
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error(`Failed to fetch subscribers: ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    return data.members.map((member) => ({
+        email: member.email_address,
+        name: member.merge_fields.FNAME,
+        status: member.status,
+        subscribe_date: member.timestamp_opt,
+        last_changed: member.last_changed,
+    }));
+}
+
+// Sync subscribers to MongoDB with incremental progress tracking
 async function syncSubscribers() {
-    try {
-        const collection = await connectToMongoDB();
-        const subscribers = await fetchSubscribers();
+    let client;
+    try {
+        const { usersCollection, progressCollection, client: dbClient } = await connectToMongoDB();
+        client = dbClient;
 
-        // Insert or update each subscriber in MongoDB
-        const bulkOperations = subscribers.map(subscriber => ({
-            updateOne: {
-                filter: { email: subscriber.email },
-                update: { $set: subscriber },
-                upsert: true
-            }
-        }));
+        // Get the last sync time
+        const lastSyncTime = await getLastSyncTime(progressCollection);
 
-        const result = await collection.bulkWrite(bulkOperations);
-        console.log(`Synced ${result.upsertedCount + result.modifiedCount} subscribers to MongoDB`);
-    } catch (error) {
-        console.error('Error syncing subscribers:', error);
-    }
+        // Fetch subscribers updated since the last sync time
+        const subscribers = await fetchSubscribers(lastSyncTime);
+
+        if (subscribers.length === 0) {
+            console.log("No new or updated subscribers to sync.");
+            return;
+        }
+
+        // Insert or update each subscriber in MongoDB
+        const bulkOperations = subscribers.map((subscriber) => ({
+            updateOne: {
+                filter: { email: subscriber.email },
+                update: { $set: subscriber },
+                upsert: true,
+            },
+        }));
+
+        const result = await usersCollection.bulkWrite(bulkOperations);
+        console.log(`Synced ${result.upsertedCount + result.modifiedCount} subscribers to MongoDB`);
+
+        // Save the last sync time
+        const latestSyncTime = new Date().toISOString();
+        await saveSyncProgress(progressCollection, latestSyncTime);
+    } catch (error) {
+        console.error("Error syncing subscribers:", error);
+    } finally {
+        if (client) {
+            await client.close();
+            console.log("MongoDB connection closed.");
+        }
+    }
 }
 
-// Run the sync function
-syncSubscribers().catch(console.error);
-
-
-// THIS IS TO RUN SCHEDULED
-// import fetch from 'node-fetch';
-// import { MongoClient } from 'mongodb';
-// import dotenv from 'dotenv';
-// import cron from 'node-cron';
-
-// dotenv.config();
-
-// const mailchimpApiKey = process.env.MAILCHIMP_API_KEY;
-// const mailchimpAudienceId = process.env.MAILCHIMP_AUDIENCE_ID;
-// const mailchimpDataCenter = 'us17'; 
-// const mongoUri = process.env.MONGODB_URI; 
-
-// // Connect to MongoDB
-// async function connectToMongoDB() {
-//     const client = new MongoClient(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
-//     await client.connect();
-//     console.log('Connected to MongoDB');
-//     return client.db('ThesisDB').collection('mailchimpusers');
-// }
-
-// // Fetch subscribers from Mailchimp
-// async function fetchSubscribers() {
-//     const url = `https://${mailchimpDataCenter}.api.mailchimp.com/3.0/lists/${mailchimpAudienceId}/members`;
-
-//     const response = await fetch(url, {
-//         method: 'GET',
-//         headers: {
-//             'Authorization': `Basic ${Buffer.from(`anystring:${mailchimpApiKey}`).toString('base64')}`,
-//             'Content-Type': 'application/json'
-//         }
-//     });
-
-//     if (!response.ok) {
-//         throw new Error(`Failed to fetch subscribers: ${response.statusText}`);
-//     }
-
-//     const data = await response.json();
-//     return data.members.map(member => ({
-//         email: member.email_address,
-//         name: member.merge_fields.FNAME,
-//         status: member.status,
-//         subscribe_date: member.timestamp_opt
-//     }));
-// }
-
-// // Sync subscribers to MongoDB
-// async function syncSubscribers() {
-//     try {
-//         const collection = await connectToMongoDB();
-//         const subscribers = await fetchSubscribers();
-
-//         // Insert or update each subscriber in MongoDB
-//         const bulkOperations = subscribers.map(subscriber => ({
-//             updateOne: {
-//                 filter: { email: subscriber.email },
-//                 update: { $set: subscriber },
-//                 upsert: true
-//             }
-//         }));
-
-//         const result = await collection.bulkWrite(bulkOperations);
-//         console.log(`Synced ${result.upsertedCount + result.modifiedCount} subscribers to MongoDB`);
-//     } catch (error) {
-//         console.error('Error syncing subscribers:', error);
-//     }
-// }
-
-// // Schedule the sync to run every day at midnight
-// cron.schedule('0 0 * * *', () => {
-//     console.log('Running scheduled sync...');
-//     syncSubscribers().catch(console.error);
-// });
-
-// // Optional: Run sync immediately on startup
-// syncSubscribers().catch(console.error);
+// Reset sync progress
+async function resetSyncProgress() {
+    const { progressCollection, client } = await connectToMongoDB();
+    try {
+        await progressCollection.deleteOne({ type: "mailchimpSync" });
+        console.log("Sync progress reset.");
+    } finally {
+        await client.close();
+    }
+};

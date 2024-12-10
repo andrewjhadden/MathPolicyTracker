@@ -18,11 +18,12 @@ import { Link } from 'react-router-dom';
 const PrintFullBillTable = ({ data }) => {
     const [query, setQuery] = useState('');
     const [filteredData, setFilteredData] = useState([]);
+    const [visibleCount, setVisibleCount] = useState(30); // Initial rows shown
 
     useEffect(() => {
         // Filter data based on query
         const results = data.filter((item) => {
-            const title = item.bill.bill.title?.toLowerCase();
+            const title = item.bill.bill.title.toLowerCase();
             const billNumber = `${item.bill.bill.type}.${item.bill.bill.number}`.toLowerCase();
             const matchesQuery = title.includes(query.toLowerCase()) || billNumber.includes(query.toLowerCase());
             return matchesQuery;
@@ -39,7 +40,7 @@ const PrintFullBillTable = ({ data }) => {
     return (
         <div>
             <h2 className="all-bills-title">All Bill Actions</h2>
-            <h3 className="all-bills-subtitle1">List of all actions related to mathematics since the beginning of 2021, in the senate and house.</h3>
+            <h3 className="all-bills-subtitle1">List of all actions related to mathematics since the 114th congression year, in the senate and house.</h3>
             <h3 className="all-bills-subtitle2">Descending Order by Actions</h3>
 
             <div className="search-bar-container">

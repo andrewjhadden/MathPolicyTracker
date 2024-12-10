@@ -17,56 +17,43 @@ dotenv.config();
 const mongoUri = process.env.MONGODB_URI;
 const apiKey = process.env.API_KEY;
 
-// We'll change the dates to be the latest saved updateDate until now
-// const fromDate = "2021-01-01T00:00:00Z";
-// const toDate = "2024-09-22T00:00:00Z";
-
 // We could use actionDate to accurately get the new bills uploaded into the db,
 // but it seems that there could be some bills missing if their actionDate is beforehand and we miss it
 const sortOrder = "updateDate+asc";
 
 // Compile regex patterns for each keyword to ensure whole-word matching
 const keywords = [
-    /\bmath\b/i,
+    /\b math \b/i,
     /\bmathematics\b/i,
     /\bstem workforce\b/i,
     /\bstem education\b/i,
     /\bmathematicians\b/i,
 ];
 
-// Created isConnected with the serverless function to be able to check if connected
-// everwhere
-// let isConnected = false;
-
-// Removed the isConnect() function because that isn't a function in MongoClient (don't know which of us did that)
 // But, also we are making sure there aren't extra connects
 // Switching isConnect with the actual client becuase it seems to be safer
-async function connectToMongoDB() {
-    // if (isConnected) {
-    //     return client.db('ThesisDB');
-    // }
-    try {
-        const client = new MongoClient(mongoUri, {
-            serverApi: {
-                version: ServerApiVersion.v1,
-                strict: true,
-                deprecationErrors: true,
-            },
-        });
-        await client.connect();
-        // isConnected = true;  // Mark as connected
-        return { db: client.db("ThesisDB"), client };
-    } catch (error) {
-        console.error("Error connecting to MongoDB:", error);
-        throw error;
-    }
-}
+// async function connectToMongoDB() {
+//     try {
+//         const client = new MongoClient(mongoUri, {
+//             serverApi: {
+//                 version: ServerApiVersion.v1,
+//                 strict: true,
+//                 deprecationErrors: true,
+//             },
+//         });
+//         await client.connect();
+//         return { db: client.db("ThesisDB"), client };
+//     } catch (error) {
+//         console.error("Error connecting to MongoDB:", error);
+//         throw error;
+//     }
+// }
 
 // Get the last update info from MongoDB
 async function getLastUpdateInfo(db) {
     const progress = await db.collection("fetch_progress").findOne({ type: "mathBills" });
     return {
-        lastUpdateDate: progress?.lastUpdateDate || "2024-07-02T00:00:00Z",
+        lastUpdateDate: progress?.lastUpdateDate || "2024-12-09T00:00:00Z",
         lastOffset: progress?.lastOffset || 0,
     };
 }
@@ -162,8 +149,7 @@ async function fetchBatch(db) {
         // If keywords are found, join them into a string, otherwise set it to null
         const editedKeywords = matchedKeywords.length > 0 ? matchedKeywords.join(', ') : null;
 
-        // if (editedKeywords && parseInt(congressYr) > 116) {
-        if (editedKeywords) {
+        if (editedKeywords && parseInt(congressYr) > 114) {
             // Fetch additional data for each bill with matching keywords
             const sponsors = await fetchBillSponsor(bill.bill);
             const cosponsors = await fetchBillDetails('cosponsors', bill.bill);
@@ -177,16 +163,11 @@ async function fetchBatch(db) {
                 cosponsors: cosponsors?.cosponsors || [],
                 committees: committees?.committees || [],
                 relatedBills: relatedBills?.relatedBills || [],
-                keywordsMatched: editedKeywords,
+                keywordsMatched: editedKeywords
             };
 
             // Insert or update in MongoDB
-            await db.collection("thesisdbcollections").updateOne(
-                { "bill.number": bill.bill.number },
-                { $set: fullBillData },
-                { upsert: true }
-            );
-            // TODO make sure that this is what we want vs original insertOne and make sure we don't want the retries
+            await db.collection("thesisdbcollections").insertOne(fullBillData);
         }
     }
 
@@ -199,22 +180,28 @@ async function fetchBatch(db) {
 
 // Serverless function handler
 export default async function handler(request, response) {
-    let client;
-    try {
-        const connection = await connectToMongoDB();
-        const db = connection.db;
-        client = connection.client;
+    const client = new MongoClient(mongoUri, {
+        serverApi: {
+            version: ServerApiVersion.v1,
+            strict: true,
+            deprecationErrors: true,
+        }
+    });
 
-        const hasMoreBatches = await fetchBatch(db); // Process a single batch
+    try {
+        await client.connect();
+        const db = client.db('ThesisDB');
+
+        // Process a single batch
+        const hasMoreBatches = await fetchBatch(db);
         if (hasMoreBatches) {
             response.status(200).json({ message: "Batch processed. More batches remain." });
         } else {
             response.status(200).json({ message: "All bills processed." });
         }
     } catch (error) {
-        console.error("Error:", error);
         response.status(500).json({ error: "Failed to fetch and update bills.", details: error.message });
     } finally {
-        if (client) await client.close();
+        await client.close();
     }
 }

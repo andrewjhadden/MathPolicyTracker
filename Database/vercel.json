@@ -1,6 +1,12 @@
 {
-    "crons": [{
+  "crons": [
+    {
       "path": "/api/fetchMathBills",
       "schedule": "0 7 * * *"
-    }]
-  }
+    },
+    {
+      "path": "/api/syncMailchimpToMongoDB",
+      "schedule": "0 7 * * *"
+    }
+  ]
+}

@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node api/fetchMathBills.js",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },  
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -16,7 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
     "express": "^4.21.1",
-    "mongodb": "^6.9.0",
+    "mongodb": "^6.11.0",
     "mongoose": "^8.7.2",
     "node-fetch": "^3.3.2",
     "nth-check": "^2.1.1"
