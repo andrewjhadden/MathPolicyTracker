@@ -47,6 +47,15 @@
     color: var(--blue) !important;
 }
 
+.clickable-row {
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.clickable-row:hover {
+    background-color: #84a9ff;
+}
+
 @media screen and (max-width: 480px) {
     .table-container {
         margin: 5px auto;

@@ -34,28 +34,19 @@ const Display10BillsTable = ({ data }) => {
                 </thead>
                 <tbody>
                     {sortedData.slice(0, 10).map((item) => (
-                        <tr key={item._id}>
-                            <td>
-                                <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                    {item.bill.bill.type}.{item.bill.bill.number}
-                                </Link>
-                            </td>
-                            <td>
-                                <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                    {item.bill.bill.title}
-                                </Link>
-                            </td>
-                            <td>
-                                <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                    {item.bill.actionDesc}
-                                </Link>
-                            </td>
-                            <td>
-                                <Link to={`/bill/${item._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-                                    {item.bill.actionDate}
-                                </Link>
-                            </td>
-                        </tr>
+                        <Link
+                            key={item._id}
+                            to={`/bill/${item._id}`}
+                            style={{ textDecoration: 'none', color: 'inherit' }}
+                        >
+                            <tr className="clickable-row">
+                                <td>{item.bill.bill.type}.{item.bill.bill.number}</td>
+                                <td>{item.bill.bill.title}</td>
+                                <td>{item.bill.bill.congress}</td>
+                                <td>{item.bill.actionDesc}</td>
+                                <td>{item.bill.actionDate}</td>
+                            </tr>
+                        </Link>
                     ))}
                 </tbody>
             </table>

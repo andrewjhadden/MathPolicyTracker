@@ -79,12 +79,13 @@
     font-size: 16px;
     margin: 35px 0;
     cursor: pointer;
-    background-color: #ffffff6a;
+    background-color: #888888;
     color: white;
     border: none;
     border-radius: 5px;
     transition: background-color 0.3s ease;
     display: flex;
+    align-items: center;
 }
 
 .load-more-button:hover {

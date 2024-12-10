@@ -22,7 +22,7 @@ const mongoUri = process.env.MONGODB_URI;
 
 // Connect to MongoDB
 async function connectToMongoDB() {
-    const client = new MongoClient(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
+    const client = new MongoClient(mongoUri);
     await client.connect();
     console.log("Connected to MongoDB");
     return {
