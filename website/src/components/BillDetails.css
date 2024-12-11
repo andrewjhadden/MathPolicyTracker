@@ -15,7 +15,7 @@
     --border-green: #85dba3;
     --soft-tan: #f0dfd1;
     --white: #ffffff;
-    --blue: #a9d3ff;
+    --baby-blue: #a9d3ff;
 }
 
 .bill-details {
@@ -64,16 +64,17 @@
 .tracker {
     display: flex;
     align-items: center;
-    margin: 10px auto auto auto;
+    margin: 10px auto 10px;
 }
 
 .tracker button {
-    background-color: var(--blue);
+    background-color: var(--baby-blue);
     border: none;
     padding: 12px;
     font-size: 16px;
     border-radius: 8px;
     margin: auto;
+
 }
 
 .keywords{

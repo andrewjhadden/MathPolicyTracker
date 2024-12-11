@@ -15,7 +15,7 @@
     --border-green: #85dba3;
     --soft-tan: #f0dfd1;
     --white: #ffffff;
-    --blue: #4884c1;
+    --baby-blue: #4884c1;
 }
 
 .all-bills-title {
@@ -32,6 +32,8 @@
     text-align: center;
     font-weight: 300;
     font-size: 1.2rem;
+    max-width: 75%;
+    margin: 20px auto;
 }
 
 .all-bills-subtitle2 {

@@ -32,9 +32,6 @@
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     color: var(--text-dark);
-}
-
-.bill-table-full th, .bill-table-full td {
     border: 1px solid #ddd;
     padding: 10px;
 }

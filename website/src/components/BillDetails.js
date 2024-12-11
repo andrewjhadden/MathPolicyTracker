@@ -81,7 +81,23 @@ const DisplayBillDetails = ({ data }) => {
                     <strong>Related Bill(s):</strong>
                     {bill.relatedBills.map((relatedBill, index) => (
                         <div key={index}>
-                            &nbsp; {relatedBill.congress}th year: {relatedBill.type}.{relatedBill.number} "{relatedBill.title}" <br/> 
+                            &nbsp;
+                            <a 
+                                href={`https://www.congress.gov/bill/${relatedBill.congress}/${
+                                    relatedBill.type === "HR" ? "house-bill" :
+                                    relatedBill.type === "HRES" ? "house-resolution" : 
+                                    relatedBill.type === "SRES" ? "senate-resolution" :
+                                    relatedBill.type === "HJRES" ? "house-joint-resolution" :
+                                    relatedBill.type === "SJRES" ? "senate-joint-resolution" :
+                                    relatedBill.type === "HCONRES" ? "house-concurrent-resolution" :
+                                    relatedBill.type === "SCONRES" ? "senate-concurrent-resolution" : "senate-bill" 
+                                }/${relatedBill.number}`}
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                            >
+                                {`${relatedBill.congress}th year: ${relatedBill.type}.${relatedBill.number} "${relatedBill.title}"`}
+                            </a>
+                            <br />
                         </div>
                     ))}
                 </>
