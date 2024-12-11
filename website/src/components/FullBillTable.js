@@ -15,7 +15,7 @@ import React, { useState, useEffect } from 'react';
 import './FullBillTable.css';
 import { useNavigate } from 'react-router-dom';
 
-const getUniqueRepresentatives = (data) => {
+const getUniqueRepresentatives = ({ data }) => {
     // Using a Set to avoid duplicates
     const representatives = new Set();
 
