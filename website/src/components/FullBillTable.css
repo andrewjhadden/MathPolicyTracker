@@ -100,6 +100,25 @@
     background-color: #e3ffe3;
 }
 
+.filter-container {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 200px;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-select {
+    width: 100%;
+    padding: 8px; /* Padding inside the dropdown */
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
 @media (max-width: 480px) {
     .all-bills-title,
     .all-bills-subtitle1,
