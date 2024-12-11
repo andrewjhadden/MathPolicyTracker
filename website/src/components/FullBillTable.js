@@ -21,10 +21,12 @@ const getUniqueRepresentatives = (data) => {
 
     data.forEach((bill) => {
         // Add sponsor (only can be one)
-        representatives.add(bill.bill.sponsors[0].fullName);
+        if (bill.bill.sponsors?.length > 0) {
+            representatives.add(bill.bill.sponsors[0].fullName);
+        }
 
         // Add each cosponsor
-        bill.bill.cosponsors.forEach((cosponsor) => {
+        bill.bill.cosponsors?.forEach((cosponsor) => {
             representatives.add(cosponsor.fullName);
         });
     });
