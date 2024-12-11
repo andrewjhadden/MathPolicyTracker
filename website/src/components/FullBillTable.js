@@ -15,18 +15,16 @@ import React, { useState, useEffect } from 'react';
 import './FullBillTable.css';
 import { useNavigate } from 'react-router-dom';
 
-const getUniqueRepresentatives = ({ data }) => {
+const getUniqueRepresentatives = (data) => {
     // Using a Set to avoid duplicates
     const representatives = new Set();
 
-    data.forEach((bill) => {
-        // Add sponsor (only can be one)
-        if (bill.bill.sponsors?.length > 0) {
-            representatives.add(bill.bill.sponsors[0].fullName);
+    // Add sponsor and cosponsor
+    data.forEach((item) => {
+        if (item.sponsors?.length > 0) {
+            representatives.add(item.sponsors[0].fullName);
         }
-
-        // Add each cosponsor
-        bill.bill.cosponsors?.forEach((cosponsor) => {
+        item.cosponsors?.forEach((cosponsor) => {
             representatives.add(cosponsor.fullName);
         });
     });
@@ -50,9 +48,9 @@ const PrintFullBillTable = ({ data }) => {
     const [visibleCount, setVisibleCount] = useState(20);
 
     // Handle multiple selections
-    const HandleMultiSelectChange = (event) => {
-        const options = Array.from(event.target.selectedOptions, option => option.value);
-        setSelectedReps(options);
+    const handleMultiSelectChange = (event) => {
+        const selectedOptions = Array.from(event.target.selectedOptions, option => option.value);
+        setSelectedReps(selectedOptions);
     };
 
     // Populate representatives when data changes
@@ -69,10 +67,9 @@ const PrintFullBillTable = ({ data }) => {
             const matchesQuery = title.includes(query.toLowerCase()) || billNumber.includes(query.toLowerCase());
             
             // Check if the selected representative is either sponsor or cosponsor
-            const matchesReps = selectedReps.length === 0 ||
-                selectedReps.some(rep =>
-                    item.bill.sponsors.some(s => s.fullName === rep) ||
-                    item.bill.cosponsors.some(c => c.fullName === rep)
+            const matchesReps = selectedReps.length === 0 || selectedReps.some(rep =>
+                    item.sponsors.some(s => s.fullName === rep) ||
+                    item.cosponsors.some(c => c.fullName === rep)
                 );
 
             return matchesQuery && matchesReps;
@@ -90,11 +87,11 @@ const PrintFullBillTable = ({ data }) => {
     }, [query, selectedReps, data]);
 
     // Show more rows on click
-    const HandleShowMore = () => {
+    const handleShowMore = () => {
         setVisibleCount((prev) => prev + 20);
     };
 
-    const HandleRowClick = (id) => {
+    const handleRowClick = (id) => {
         navigate(`/bill/${id}`);
     };
 
@@ -110,7 +107,7 @@ const PrintFullBillTable = ({ data }) => {
                     id="rep-filter"
                     multiple
                     value={selectedReps}
-                    onChange={HandleMultiSelectChange}
+                    onChange={handleMultiSelectChange}
                     className="filter-select"
                 >
                     {representatives.map((rep) => (
@@ -148,7 +145,7 @@ const PrintFullBillTable = ({ data }) => {
                                 <tr 
                                     key={item._id} 
                                     className="clickable-row" 
-                                    onClick={() => HandleRowClick(item._id)}
+                                    onClick={() => handleRowClick(item._id)}
                                 >
                                     <td>{item.bill.bill.type}.{item.bill.bill.number}</td>
                                     <td>{item.bill.bill.title}</td>
@@ -165,8 +162,9 @@ const PrintFullBillTable = ({ data }) => {
                     </tbody>
                 </table>
             </div>
+            
             {visibleCount < filteredData.length && (
-                <button className="load-more-button" onClick={HandleShowMore}>
+                <button className="load-more-button" onClick={handleShowMore}>
                     Load More
                 </button>
             )}
