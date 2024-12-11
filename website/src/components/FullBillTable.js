@@ -42,12 +42,18 @@ const PrintFullBillTable = ({ data }) => {
     const [filteredData, setFilteredData] = useState([]);
 
     // Need for storing the currently selected representative from the filter dropdown (default is no filter)
-    const [selectedRep, setSelectedRep] = useState('');
+    const [selectedReps, setSelectedReps] = useState('');
     // Need for storing the list of all unique representatives (empty list to start)
     const [representatives, setRepresentatives] = useState([]);
 
     // Initial rows shown
     const [visibleCount, setVisibleCount] = useState(20);
+
+    // Handle multiple selections
+    const HandleMultiSelectChange = (event) => {
+        const options = Array.from(event.target.selectedOptions, option => option.value);
+        setSelectedReps(options);
+    };
 
     // Populate representatives when data changes
     useEffect(() => {
@@ -63,12 +69,13 @@ const PrintFullBillTable = ({ data }) => {
             const matchesQuery = title.includes(query.toLowerCase()) || billNumber.includes(query.toLowerCase());
             
             // Check if the selected representative is either sponsor or cosponsor
-            const matchesRep = selectedRep ? 
-                item.bill.sponsors.some(s => s.fullName === selectedRep) ||
-                item.bill.cosponsors.some(c => c.fullName === selectedRep)
-                : true;
+            const matchesReps = selectedReps.length === 0 ||
+                selectedReps.some(rep =>
+                    item.bill.sponsors.some(s => s.fullName === rep) ||
+                    item.bill.cosponsors.some(c => c.fullName === rep)
+                );
 
-            return matchesQuery && matchesRep;
+            return matchesQuery && matchesReps;
         });
 
         // Sort by actionDate descending
@@ -80,7 +87,7 @@ const PrintFullBillTable = ({ data }) => {
 
         // Reset visible count on new search
         setVisibleCount(20);
-    }, [query, selectedRep, data]);
+    }, [query, selectedReps, data]);
 
     // Show more rows on click
     const HandleShowMore = () => {
@@ -98,16 +105,14 @@ const PrintFullBillTable = ({ data }) => {
             <h3 className="all-bills-subtitle2">Descending Order by Actions</h3>
             
             <div className="filter-container">
-                <label htmlFor="rep-filter">Filter by Representative:</label>
+                <label htmlFor="rep-filter">Filter by Representatives:</label>
                 <select
                     id="rep-filter"
-                    value={selectedRep}
-                    onChange={(e) => setSelectedRep(e.target.value)}
+                    multiple
+                    value={selectedReps}
+                    onChange={HandleMultiSelectChange}
                     className="filter-select"
                 >
-                    <option value="">
-                        All Representatives
-                    </option>
                     {representatives.map((rep) => (
                         <option key={rep} value={rep}>
                             {rep}
@@ -126,7 +131,7 @@ const PrintFullBillTable = ({ data }) => {
                 />
             </div>
 
-            <div className="table-container">
+            <div className="table-container-full">
                 <table className="bill-table">
                     <thead>
                         <tr>

@@ -40,6 +40,44 @@
     font-size: 1.2rem;
 }
 
+.filter-container {
+    position: absolute;
+    margin: 0px 0px 0px 10px;
+    width: 200px;
+    background: #fffcfc;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filter-select {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search-bar-container {
+    width: 50%;
+    margin: 35px 240px 20px;
+    text-align: center;
+}
+
+.search-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.table-container-full {
+    margin: 35px auto;
+    width: 85%;
+}
+
 .bill-table {
     width: 100%;
     border-collapse: collapse;
@@ -53,25 +91,6 @@
 .bill-table th, .bill-table td {
     border: 1px solid #ddd;
     padding: 10px;
-}
-
-.table-container {
-    margin: 20px auto;
-    width: 85%;
-}
-.search-bar-container {
-    width: 70%;
-    margin: auto auto 20px auto;
-    text-align: center;
-}
-
-.search-input {
-    width: 100%;
-    padding: 10px;
-    font-size: 1rem;
-    border-radius: 8px;
-    border: 1px solid #ddd;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .load-more-button {
@@ -100,25 +119,6 @@
     background-color: #e3ffe3;
 }
 
-.filter-container {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    width: 200px;
-    background: #f9f9f9;
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.filter-select {
-    width: 100%;
-    padding: 8px; /* Padding inside the dropdown */
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
 @media (max-width: 480px) {
     .all-bills-title,
     .all-bills-subtitle1,
@@ -143,8 +143,8 @@
     }
 
     .search-bar-container {
-        width: 90%;
-        margin: 0 auto;
+        width: 80%;
+        margin: 35px auto;
     }
 
     .search-input {
