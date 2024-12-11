@@ -141,7 +141,7 @@
 }
 
 .bill-table-full a:hover {
-    text-decoration: underline !important;
+    text-decoration: underline;
 }
 
 .clickable-row {

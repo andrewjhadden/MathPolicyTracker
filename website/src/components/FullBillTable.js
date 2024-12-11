@@ -54,12 +54,9 @@ const PrintFullBillTable = ({ data }) => {
 
     // Need for storing the currently selected representative from the filter dropdown (default is no filter)
     const [selectedReps, setSelectedReps] = useState([]);
-    // Need for storing the list of all unique representatives (empty list to start)
-    // const [representatives, setRepresentatives] = useState([]); /* changed */
 
     // Same for states
     const [selectedStates, setSelectedStates] = useState([]);
-    // const [states, setStates] = useState([]); /* changed */
 
     // To be able to show reps and states or not
     const [showRepFilter, setShowRepFilter] = useState(false);
@@ -69,14 +66,12 @@ const PrintFullBillTable = ({ data }) => {
     const [visibleCount, setVisibleCount] = useState(20);
 
     // Memoize the unique representatives and states (added)
+    // Need for storing the list of all unique filters (empty list to start)
     const representatives = useMemo(() => getUniqueRepresentatives(data), [data]);
     const states = useMemo(() => getUniqueStates(data), [data]);
 
-    // Populate representatives when data changes (removed)
-    // useEffect(() => {
-    //     setRepresentatives(getUniqueRepresentatives(data));
-    //     setStates(getUniqueStates(data));
-    // }, [data]);
+    // Loading state
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         // Filter data based on query
@@ -107,6 +102,7 @@ const PrintFullBillTable = ({ data }) => {
         );
 
         setFilteredData(sortedResults);
+        setLoading(false); // Set loading to false once data is ready
 
         // Reset visible count on new search
         setVisibleCount(20);
@@ -204,40 +200,44 @@ const PrintFullBillTable = ({ data }) => {
                 />
             </div>
 
-            <div className="table-container-full">
-                <table className="bill-table-full">
-                    <thead>
-                        <tr>
-                            <th>Bill Number</th>
-                            <th>Title</th>
-                            <th>Congress Year</th>
-                            <th>Action</th>
-                            <th>Action Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {filteredData.length > 0 ? (
-                            filteredData.slice(0, visibleCount).map((item) => (
-                                <tr 
-                                    key={item._id} 
-                                    className="clickable-row" 
-                                    onClick={() => handleRowClick(item._id)}
-                                >
-                                    <td>{item.bill.bill.type}.{item.bill.bill.number}</td>
-                                    <td>{item.bill.bill.title}</td>
-                                    <td>{item.bill.bill.congress}</td>
-                                    <td>{item.bill.actionDesc}</td>
-                                    <td>{item.bill.actionDate}</td>
-                                </tr>
-                            ))
-                        ) : (
+            {loading ? (
+                <div className="loading-message">Loading...</div>
+            ) : (
+                <div className="table-container-full">
+                    <table className="bill-table-full">
+                        <thead>
                             <tr>
-                                <td colSpan="5">No results found</td>
+                                <th>Bill Number</th>
+                                <th>Title</th>
+                                <th>Congress Year</th>
+                                <th>Action</th>
+                                <th>Action Date</th>
                             </tr>
-                        )}
-                    </tbody>
-                </table>
-            </div>
+                        </thead>
+                        <tbody>
+                            {filteredData.length > 0 ? (
+                                filteredData.slice(0, visibleCount).map((item) => (
+                                    <tr 
+                                        key={item._id} 
+                                        className="clickable-row" 
+                                        onClick={() => handleRowClick(item._id)}
+                                    >
+                                        <td>{item.bill.bill.type}.{item.bill.bill.number}</td>
+                                        <td>{item.bill.bill.title}</td>
+                                        <td>{item.bill.bill.congress}</td>
+                                        <td>{item.bill.actionDesc}</td>
+                                        <td>{item.bill.actionDate}</td>
+                                    </tr>
+                                ))
+                            ) : (
+                                <tr>
+                                    <td colSpan="5">No results found</td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+            )}
 
             {visibleCount < filteredData.length && (
                 <button className="load-more-button" onClick={handleShowMore}>

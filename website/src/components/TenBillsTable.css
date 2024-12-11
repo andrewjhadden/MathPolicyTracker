@@ -34,6 +34,11 @@
     color: var(--text-dark);
 }
 
+.bill-table-full th, .bill-table-full td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
 .bill-table th {
     color: white;
     padding: 12px;
@@ -43,7 +48,7 @@
 }
 
 .bill-table a:hover {
-    text-decoration: underline !important;
+    text-decoration: underline;
 }
 
 .clickable-row {
