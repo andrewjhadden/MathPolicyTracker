@@ -57,9 +57,18 @@
     padding: 8px;
     margin-top: 5px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    overflow-x: scroll;
+    border-radius: 6px; /* edited */
+    overflow: scroll; /* edited */
     height: 97%;
+}
+
+.filter-select:hover { /* added */
+    border-color: #7bbaf4;
+}
+
+.filter-select:focus { /* added */
+    outline: none;
+    border-color: #007bff;
 }
 
 .rep-option.selected {
@@ -71,6 +80,7 @@
 .representatives-list {
     max-height: 97%;
     border: 1px solid #000;
+    border-radius: 8px; /* added */
     padding: 4px;
     overflow: scroll;
     white-space: nowrap;

@@ -11,7 +11,7 @@
 // Properties passed:
 // - data: Array of bill objects used for displaying all the bill data.
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './FullBillTable.css';
 import { useNavigate } from 'react-router-dom';
 
@@ -55,11 +55,11 @@ const PrintFullBillTable = ({ data }) => {
     // Need for storing the currently selected representative from the filter dropdown (default is no filter)
     const [selectedReps, setSelectedReps] = useState([]);
     // Need for storing the list of all unique representatives (empty list to start)
-    const [representatives, setRepresentatives] = useState([]);
+    // const [representatives, setRepresentatives] = useState([]); /* changed */
 
     // Same for states
     const [selectedStates, setSelectedStates] = useState([]);
-    const [states, setStates] = useState([]);
+    // const [states, setStates] = useState([]); /* changed */
 
     // To be able to show reps and states or not
     const [showRepFilter, setShowRepFilter] = useState(false);
@@ -68,11 +68,15 @@ const PrintFullBillTable = ({ data }) => {
     // Initial rows shown
     const [visibleCount, setVisibleCount] = useState(20);
 
-    // Populate representatives when data changes
-    useEffect(() => {
-        setRepresentatives(getUniqueRepresentatives(data));
-        setStates(getUniqueStates(data));
-    }, [data]);
+    // Memoize the unique representatives and states (added)
+    const representatives = useMemo(() => getUniqueRepresentatives(data), [data]);
+    const states = useMemo(() => getUniqueStates(data), [data]);
+
+    // Populate representatives when data changes (removed)
+    // useEffect(() => {
+    //     setRepresentatives(getUniqueRepresentatives(data));
+    //     setStates(getUniqueStates(data));
+    // }, [data]);
 
     useEffect(() => {
         // Filter data based on query
@@ -90,9 +94,9 @@ const PrintFullBillTable = ({ data }) => {
 
             // Check if the selected representative is either sponsor or cosponsor
             const matchesStates = selectedStates.length === 0 || selectedStates.some(state =>
-                item.sponsors?.some(s => s.state === state) ||
-                item.cosponsors?.some(c => c.state === state)
-            );
+                    item.sponsors?.some(s => s.state === state) ||
+                    item.cosponsors?.some(c => c.state === state)
+                );
 
             return matchesQuery && matchesReps && matchesStates;
         });
