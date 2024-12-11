@@ -114,7 +114,7 @@ const PrintFullBillTable = ({ data }) => {
             
             <div className="filter-container">
                 <label htmlFor="rep-filter">Filter</label>
-                <div className="representatives-list">
+                <div className="representatives-list">Representatives:
                     {representatives.map((rep) => (
                         <div
                             key={rep}
