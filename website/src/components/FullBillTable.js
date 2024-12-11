@@ -143,6 +143,7 @@ const PrintFullBillTable = ({ data }) => {
         <div>
             <h2 className="all-bills-title">All Bill Actions</h2>
             <h3 className="all-bills-subtitle1">List of all actions related to mathematics since the 114th congression year, in the senate and house.</h3>
+            <h3 className="all-bills-subtitle1">Note: Each row is a different action by any bill related to mathematics, meaning you can type in a bill number/name and essentially a list of that bill's progress will appear.</h3>
             <h3 className="all-bills-subtitle2">Descending Order by Actions</h3>
             
             <div className="filter-container">

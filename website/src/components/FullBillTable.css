@@ -28,13 +28,14 @@
 }
 
 .all-bills-subtitle1 {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
     text-align: center;
     font-weight: 300;
     font-size: 1.2rem;
 }
 
 .all-bills-subtitle2 {
+    margin-top: 50px;
     margin-bottom: 20px;
     text-align: center;
     font-weight: 600;
