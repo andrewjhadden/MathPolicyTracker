@@ -19,8 +19,8 @@ code {
 
 @media print {
   /* Hide unnecessary elements */
-  header, footer, nav, .no-print { /*define soem no-print catagories if want*/
-    display: none !important;
+  header, footer, nav, .no-print { /*define some no-print catagories if we want*/
+    display: none;
   }
 
   /* Adjust page layout for print */
@@ -31,7 +31,6 @@ code {
     background: #fff;
   }
 
-  /* Optimize tables for printing */
   table {
     border-collapse: collapse;
     width: 100%;
@@ -42,7 +41,6 @@ code {
     padding: 8px;
   }
 
-  /* Avoid page breaks within elements */
   h1, h2, h3, h4, p {
     page-break-inside: avoid;
   }

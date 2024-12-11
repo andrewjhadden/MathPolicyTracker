@@ -8,13 +8,14 @@
 :root {
     --black: #000000;
     --text-dark: #453636;
-    --dark-green: #28432f; /* header and footer */
+    --dark-green: #28432f;
     --hover-and-headers: #006400;
-    --medium-green: #228B22; /* buttons */
-    --light-green: #94f5a1; /* table rows and hover states */
-    --border-green: #85dba3; /* muted green for table borders */
+    --medium-green: #228B22;
+    --light-green: #94f5a1;
+    --border-green: #85dba3;
     --soft-tan: #f0dfd1;
     --white: #ffffff;
+    --blue: #4884c1;
 }
 
 .header {
@@ -43,7 +44,7 @@
 }
 
 .logo:hover a {
-    color: inherit; /* Ensure it matches the container */
+    color: inherit;
 }
 
 .logo a {
@@ -75,7 +76,7 @@
 }
 
 .menu-button:hover a {
-    color: inherit; /* Ensure it matches the container */
+    color: inherit;
 }
 
 .menu-button a {

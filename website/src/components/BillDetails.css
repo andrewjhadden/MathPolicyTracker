@@ -8,14 +8,14 @@
 :root {
     --black: #000000;
     --text-dark: #453636;
-    --dark-green: #28432f; /* header and footer */
+    --dark-green: #28432f;
     --hover-and-headers: #006400;
     --medium-green: #228B22;
-    --light-green: #0ce11a; /* table rows and hover states */
-    --border-green: #a0fc9d;
+    --light-green: #94f5a1;
+    --border-green: #85dba3;
     --soft-tan: #f0dfd1;
     --white: #ffffff;
-    --yellow: #fbe393;
+    --blue: #a9d3ff;
 }
 
 .bill-details {
@@ -68,7 +68,7 @@
 }
 
 .tracker button {
-    background-color: var(--yellow);
+    background-color: var(--blue);
     border: none;
     padding: 12px;
     font-size: 16px;

@@ -23,6 +23,7 @@ const apiKey = process.env.API_KEY;
 const sortOrder = "updateDate+asc";
 
 // Compile regex patterns for each keyword to ensure whole-word matching
+// math has spaces around it since there were a few bills that had something like /math and it just didnt make sense
 const keywords = [
     /\b math \b/i,
     /\bmathematics\b/i,

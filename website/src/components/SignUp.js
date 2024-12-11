@@ -6,7 +6,7 @@
 // Component: SignUp.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
-// Description: xxxx
+// Description: The button to sign up for alerts, connected to Mailchimp
 
 import './SignUp.css';
 
