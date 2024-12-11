@@ -84,14 +84,14 @@ const PrintFullBillTable = ({ data }) => {
             
             // Check if the selected representative is either sponsor or cosponsor
             const matchesReps = selectedReps.length === 0 || selectedReps.some(rep =>
-                    item.sponsors.some(s => s.fullName === rep) ||
-                    item.cosponsors.some(c => c.fullName === rep)
+                    item.sponsors?.some(s => s.fullName === rep) ||
+                    item.cosponsors?.some(c => c.fullName === rep)
                 );
 
             // Check if the selected representative is either sponsor or cosponsor
             const matchesStates = selectedStates.length === 0 || selectedStates.some(state =>
-                item.sponsors.some(s => s.state === state) ||
-                item.cosponsors.some(c => c.state === state)
+                item.sponsors?.some(s => s.state === state) ||
+                item.cosponsors?.some(c => c.state === state)
             );
 
             return matchesQuery && matchesReps && matchesStates;
@@ -149,7 +149,7 @@ const PrintFullBillTable = ({ data }) => {
                 <label htmlFor="rep-filter">Filter</label>
                 <div>
                     <div onClick={() => setShowRepFilter(!showRepFilter)}>
-                        Representatives \u2191
+                        Representatives (click)
                     </div>
                     {showRepFilter && (
                         <div className="representatives-list">
@@ -168,7 +168,7 @@ const PrintFullBillTable = ({ data }) => {
                 
                 <div>
                     <div onClick={() => setShowStateFilter(!showStateFilter)}>
-                        States \u2191
+                        States (click)
                     </div>
                     {showStateFilter && (
                         <div className="representatives-list">
