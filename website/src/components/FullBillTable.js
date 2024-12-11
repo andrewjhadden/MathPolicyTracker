@@ -125,7 +125,7 @@ const PrintFullBillTable = ({ data }) => {
             if (prevSelectedStates.includes(state)) {
                 return prevSelectedStates.filter((selectedState) => selectedState !== state); // Remove if already selected
             } else {
-                return [...prevSelectedState, state]; // Add if not selected
+                return [...prevSelectedStates, state]; // Add if not selected
             }
         });
     };
