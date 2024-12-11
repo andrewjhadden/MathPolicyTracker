@@ -150,17 +150,19 @@ const PrintFullBillTable = ({ data }) => {
             <h3 className="all-bills-subtitle2">Descending Order by Actions</h3>
             
             <div className="filter-container">
-                <label htmlFor="rep-filter">Filter</label>
+                <div className="filter-title">Filter</div>
                 <div>
-                    <div onClick={() => setShowRepFilter(!showRepFilter)}>
-                        Representatives (click)
+                    <div className="filter-type-click"
+                        onClick={() => setShowRepFilter(!showRepFilter)}
+                    >
+                        Representatives <span className="arrow">{showRepFilter ? '↑' : '↓'}</span>
                     </div>
                     {showRepFilter && (
-                        <div className="representatives-list">
+                        <div className="filter-list">
                             {representatives.map((rep) => (
                                 <div
                                     key={rep}
-                                    className={`rep-option ${selectedReps.includes(rep) ? 'selected' : ''}`}
+                                    className={`filter-option ${selectedReps.includes(rep) ? 'selected' : ''}`}
                                     onClick={() => handleRepClick(rep)}
                                 >
                                     {rep}
@@ -171,15 +173,17 @@ const PrintFullBillTable = ({ data }) => {
                 </div>
                 
                 <div>
-                    <div onClick={() => setShowStateFilter(!showStateFilter)}>
-                        States (click)
+                    <div className="filter-type-click"
+                        onClick={() => setShowStateFilter(!showStateFilter)}
+                    >
+                        States <span className="arrow">{showStateFilter ? '↑' : '↓'}</span>
                     </div>
                     {showStateFilter && (
-                        <div className="representatives-list">
+                        <div className="filter-list">
                             {states.map((state) => (
                                 <div
                                     key={state}
-                                    className={`rep-option ${selectedStates.includes(state) ? 'selected' : ''}`}
+                                    className={`filter-option ${selectedStates.includes(state) ? 'selected' : ''}`}
                                     onClick={() => handleStateClick(state)}
                                 >
                                     {state}

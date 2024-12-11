@@ -52,6 +52,26 @@
     overflow: scroll;
 }
 
+.filter-title {
+    font-weight: 800;
+}
+
+.filter-type-click {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+.filter-type-click a:hover {
+    color: blue;
+    cursor: pointer;
+}
+
+.arrow {
+    font-size: 1.2rem;
+    margin-left: 4px;
+    transition: transform 0.3s ease;
+}
+
 .filter-select {
     width: 100%;
     padding: 8px;
@@ -62,22 +82,7 @@
     height: 97%;
 }
 
-.filter-select:hover { /* added */
-    border-color: #7bbaf4;
-}
-
-.filter-select:focus { /* added */
-    outline: none;
-    border-color: #007bff;
-}
-
-.rep-option.selected {
-    background-color: #007bff;
-    color: white;
-    border-color: #0056b3;
-}
-
-.representatives-list {
+.filter-list {
     max-height: 97%;
     border: 1px solid #000;
     border-radius: 8px; /* added */
@@ -86,9 +91,14 @@
     white-space: nowrap;
 }
 
+.filter-option.selected {
+    background-color: #007bff;
+    color: white;
+}
+
 .search-bar-container {
     display: flex;
-    max-width: 70%;
+    max-width: 75%;
     padding-left: 250px;
     min-width: 100px;
 }
@@ -104,7 +114,7 @@
 
 .table-container-full {
     margin: 10px 250px;
-    width: 85%;
+    width: 75%;
 }
 
 .bill-table-full {
@@ -158,15 +168,6 @@
 
 .load-more-button:hover {
     background-color: #6393c7ac;
-}
-
-.clickable-row {
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-}
-
-.clickable-row:hover {
-    background-color: #e3ffe3;
 }
 
 @media (max-width: 960px) {
