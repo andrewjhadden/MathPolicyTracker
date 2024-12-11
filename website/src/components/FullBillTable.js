@@ -33,6 +33,19 @@ const getUniqueRepresentatives = (data) => {
     return Array.from(representatives).sort();
 };
 
+const getUniqueStates = (data) => {
+    const states = new Set();
+    data.forEach((item) => {
+        if (item.sponsors?.length > 0) {
+            states.add(item.sponsors[0].state);
+        }
+        item.cosponsors?.forEach((cosponsor) => {
+            states.add(cosponsor.state);
+        });
+    });
+    return Array.from(states).sort();
+};
+
 const PrintFullBillTable = ({ data }) => {
     const navigate = useNavigate();
 
@@ -40,33 +53,25 @@ const PrintFullBillTable = ({ data }) => {
     const [filteredData, setFilteredData] = useState([]);
 
     // Need for storing the currently selected representative from the filter dropdown (default is no filter)
-    const [selectedReps, setSelectedReps] = useState('');
+    const [selectedReps, setSelectedReps] = useState([]);
     // Need for storing the list of all unique representatives (empty list to start)
     const [representatives, setRepresentatives] = useState([]);
+
+    // Same for states
+    const [selectedStates, setSelectedStates] = useState([]);
+    const [states, setStates] = useState([]);
+
+    // To be able to show reps and states or not
+    const [showRepFilter, setShowRepFilter] = useState(false);
+    const [showStateFilter, setShowStateFilter] = useState(false);
 
     // Initial rows shown
     const [visibleCount, setVisibleCount] = useState(20);
 
-    // Handle multiple selections
-    // const handleMultiSelectChange = (event) => {
-    //     const selectedOptions = Array.from(event.target.selectedOptions, option => option.value);
-    //     setSelectedReps(selectedOptions);
-    // };
-
-    // Toggle representative selection on click
-    const handleRepClick = (rep) => {
-        setSelectedReps((prevSelectedReps) => {
-            if (prevSelectedReps.includes(rep)) {
-                return prevSelectedReps.filter((selectedRep) => selectedRep !== rep); // Remove if already selected
-            } else {
-                return [...prevSelectedReps, rep]; // Add if not selected
-            }
-        });
-    };
-
     // Populate representatives when data changes
     useEffect(() => {
         setRepresentatives(getUniqueRepresentatives(data));
+        setStates(getUniqueStates(data));
     }, [data]);
 
     useEffect(() => {
@@ -83,7 +88,13 @@ const PrintFullBillTable = ({ data }) => {
                     item.cosponsors.some(c => c.fullName === rep)
                 );
 
-            return matchesQuery && matchesReps;
+            // Check if the selected representative is either sponsor or cosponsor
+            const matchesStates = selectedStates.length === 0 || selectedStates.some(state =>
+                item.sponsors.some(s => s.state === state) ||
+                item.cosponsors.some(c => c.state === state)
+            );
+
+            return matchesQuery && matchesReps && matchesStates;
         });
 
         // Sort by actionDate descending
@@ -95,7 +106,29 @@ const PrintFullBillTable = ({ data }) => {
 
         // Reset visible count on new search
         setVisibleCount(20);
-    }, [query, selectedReps, data]);
+    }, [query, selectedReps, selectedStates, data]);
+
+    // Toggle representative selection on click
+    const handleRepClick = (rep) => {
+        setSelectedReps((prevSelectedReps) => {
+            if (prevSelectedReps.includes(rep)) {
+                return prevSelectedReps.filter((selectedRep) => selectedRep !== rep); // Remove if already selected
+            } else {
+                return [...prevSelectedReps, rep]; // Add if not selected
+            }
+        });
+    };
+
+    // Toggle state selection on click
+    const handleStateClick = (state) => {
+        setSelectedStates((prevSelectedStates) => {
+            if (prevSelectedStates.includes(state)) {
+                return prevSelectedStates.filter((selectedState) => selectedState !== state); // Remove if already selected
+            } else {
+                return [...prevSelectedState, state]; // Add if not selected
+            }
+        });
+    };
 
     // Show more rows on click
     const handleShowMore = () => {
@@ -114,16 +147,42 @@ const PrintFullBillTable = ({ data }) => {
             
             <div className="filter-container">
                 <label htmlFor="rep-filter">Filter</label>
-                <div className="representatives-list">Representatives:
-                    {representatives.map((rep) => (
-                        <div
-                            key={rep}
-                            className={`rep-option ${selectedReps.includes(rep) ? 'selected' : ''}`}
-                            onClick={() => handleRepClick(rep)}
-                        >
-                            {rep}
+                <div>
+                    <div onClick={() => setShowRepFilter(!showRepFilter)}>
+                        Representatives \u2191
+                    </div>
+                    {showRepFilter && (
+                        <div className="representatives-list">
+                            {representatives.map((rep) => (
+                                <div
+                                    key={rep}
+                                    className={`rep-option ${selectedReps.includes(rep) ? 'selected' : ''}`}
+                                    onClick={() => handleRepClick(rep)}
+                                >
+                                    {rep}
+                                </div>
+                            ))}
                         </div>
-                    ))}
+                    )}
+                </div>
+                
+                <div>
+                    <div onClick={() => setShowStateFilter(!showStateFilter)}>
+                        States \u2191
+                    </div>
+                    {showStateFilter && (
+                        <div className="representatives-list">
+                            {states.map((state) => (
+                                <div
+                                    key={state}
+                                    className={`rep-option ${selectedStates.includes(state) ? 'selected' : ''}`}
+                                    onClick={() => handleStateClick(state)}
+                                >
+                                    {state}
+                                </div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
             
