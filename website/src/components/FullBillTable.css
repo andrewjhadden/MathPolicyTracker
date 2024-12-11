@@ -42,12 +42,13 @@
 
 .filter-container {
     position: absolute;
-    margin: 0px 0px 0px 10px;
+    margin: 0px 0px 0px 15px;
     width: 200px;
     background: #fffcfc;
     padding: 10px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 100%;
 }
 
 .filter-select {
@@ -56,12 +57,21 @@
     margin-top: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+    overflow-x: scroll;
+    height: 97%;
+}
+
+.rep-option.selected {
+    background-color: #007bff;
+    color: white;
+    border-color: #0056b3;
 }
 
 .search-bar-container {
-    width: 50%;
-    margin: 35px 240px 20px;
-    text-align: center;
+    display: flex;
+    max-width: 70%;
+    padding-left: 250px;
+    min-width: 100px;
 }
 
 .search-input {
@@ -74,11 +84,11 @@
 }
 
 .table-container-full {
-    margin: 35px auto;
+    margin: 10px 250px;
     width: 85%;
 }
 
-.bill-table {
+.bill-table-full {
     width: 100%;
     border-collapse: collapse;
     text-align: left;
@@ -88,7 +98,7 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.bill-table th, .bill-table td {
+.bill-table-full th, .bill-table-full td {
     border: 1px solid #ddd;
     padding: 10px;
 }
@@ -117,6 +127,12 @@
 
 .clickable-row:hover {
     background-color: #e3ffe3;
+}
+
+@media (max-width: 960px) {
+    .bill-table {
+        font-size: 14px;
+    }
 }
 
 @media (max-width: 480px) {

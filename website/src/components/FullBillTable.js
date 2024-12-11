@@ -6,8 +6,8 @@
 // Component: FullBillTable.js
 // Hamilton College Fall '24 Thesis
 // Ally Berkowitz and Andrew Hadden
-// Description: Displays a searchable list of all congressional bills from our database. We are still working 
-//      on infinite scroll.
+// Description: Displays a filterable and searchable list of all congressional bills from our database. It
+//      shows 20 bills at a time
 // Properties passed:
 // - data: Array of bill objects used for displaying all the bill data.
 
@@ -48,9 +48,20 @@ const PrintFullBillTable = ({ data }) => {
     const [visibleCount, setVisibleCount] = useState(20);
 
     // Handle multiple selections
-    const handleMultiSelectChange = (event) => {
-        const selectedOptions = Array.from(event.target.selectedOptions, option => option.value);
-        setSelectedReps(selectedOptions);
+    // const handleMultiSelectChange = (event) => {
+    //     const selectedOptions = Array.from(event.target.selectedOptions, option => option.value);
+    //     setSelectedReps(selectedOptions);
+    // };
+
+    // Toggle representative selection on click
+    const handleRepClick = (rep) => {
+        setSelectedReps((prevSelectedReps) => {
+            if (prevSelectedReps.includes(rep)) {
+                return prevSelectedReps.filter((selectedRep) => selectedRep !== rep); // Remove if already selected
+            } else {
+                return [...prevSelectedReps, rep]; // Add if not selected
+            }
+        });
     };
 
     // Populate representatives when data changes
@@ -102,20 +113,18 @@ const PrintFullBillTable = ({ data }) => {
             <h3 className="all-bills-subtitle2">Descending Order by Actions</h3>
             
             <div className="filter-container">
-                <label htmlFor="rep-filter">Filter by Representatives:</label>
-                <select
-                    id="rep-filter"
-                    multiple
-                    value={selectedReps}
-                    onChange={handleMultiSelectChange}
-                    className="filter-select"
-                >
+                <label htmlFor="rep-filter">Filter</label>
+                <div className="representatives-list">
                     {representatives.map((rep) => (
-                        <option key={rep} value={rep}>
+                        <div
+                            key={rep}
+                            className={`rep-option ${selectedReps.includes(rep) ? 'selected' : ''}`}
+                            onClick={() => handleRepClick(rep)}
+                        >
                             {rep}
-                        </option>
+                        </div>
                     ))}
-                </select>
+                </div>
             </div>
             
             <div className="search-bar-container">
@@ -129,7 +138,7 @@ const PrintFullBillTable = ({ data }) => {
             </div>
 
             <div className="table-container-full">
-                <table className="bill-table">
+                <table className="bill-table-full">
                     <thead>
                         <tr>
                             <th>Bill Number</th>
@@ -162,7 +171,7 @@ const PrintFullBillTable = ({ data }) => {
                     </tbody>
                 </table>
             </div>
-            
+
             {visibleCount < filteredData.length && (
                 <button className="load-more-button" onClick={handleShowMore}>
                     Load More
