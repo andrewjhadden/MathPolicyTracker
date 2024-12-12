@@ -55,10 +55,13 @@
     line-height: 140%;
 }
 
-.relatedbills {
-    margin: 20px 0;
-    font-size: 16px;
-    line-height: 140%;
+.relatedbills a {
+    color: var(--text-dark);
+}
+
+.relatedbills a:hover {
+    color: blue;
+    cursor: pointer;
 }
 
 .tracker {
@@ -68,13 +71,12 @@
 }
 
 .tracker button {
-    background-color: var(--baby-blue);
+    background-color: #a9d3ff;
     border: none;
     padding: 12px;
     font-size: 16px;
     border-radius: 8px;
     margin: auto;
-
 }
 
 .keywords{

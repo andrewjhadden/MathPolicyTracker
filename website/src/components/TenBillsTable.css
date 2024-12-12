@@ -33,7 +33,6 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     color: var(--text-dark);
     border: 1px solid #ddd;
-    padding: 10px;
 }
 
 .bill-table th {
@@ -42,6 +41,12 @@
     font-size: 17px;
     white-space: nowrap;
     background-color: var(--dark-green);
+    border: 1px solid #ddd;
+}
+
+.bill-table td {
+    padding: 10px;
+    border: 1px solid #ddd;
 }
 
 .bill-table a:hover {
