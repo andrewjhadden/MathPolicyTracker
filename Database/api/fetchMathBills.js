@@ -140,20 +140,20 @@ async function fetchBatch(db) {
             // Insert or update in MongoDB
             const insertResult = await db.collection("thesisdbcollections").insertOne(fullBillData);
 
-        // Send email alert for the new math-related bill
-        try {
-            const emailAlertData = {
-                title: bill.bill.title || "Untitled Bill",
-                url: `https://mathbilltracker.vercel.app/#/bill/${insertResult.insertedId}`, // Use MongoDB's insertedId
-            };
-            await sendEmailAlert(emailAlertData); // Trigger the email alert
-            console.log(`Email alert sent for bill: ${bill.bill.title}`);
-        } catch (emailError) {
-            console.error(`Failed to send email alert for bill ${bill.bill.title}:`, emailError.message);
-        }
-    }
-}
-
+            // Send email alert for the new math-related bill
+            try {
+                const emailAlertData = {
+                    title: bill.bill.title || "Untitled Bill",
+                    url: `https://mathbilltracker.vercel.app/#/bill/${insertResult.insertedId}`, // Use MongoDB's insertedId
+                };
+                await sendEmailAlert(emailAlertData); // Trigger the email alert
+                console.log(`Email alert sent for bill: ${bill.bill.title}`);
+            } catch (emailError) {
+                console.error(`Failed to send email alert for bill ${bill.bill.title}:`, emailError.message);
+            }
+        }
+    }
+    // Get and save the new offset as to not repeat checks on already seen pages
     const newOffset = lastOffset + (data.summaries ? data.summaries.length : 0);
     await saveProgress(db, lastUpdateDate, newOffset);
 
