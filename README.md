@@ -3,14 +3,14 @@ Computer Science Thesis Project (Fall 2024) Hamilton College [LINK]
 By Allison Berkowitz and Andrew Hadden
 Project Goal: To build a database and connected website to present and track all bills in congress, since the 114th congress and being continuously updated, related to mathematics. This will be useful to Prof. Courtney Gibbons in the Mathematics Department [LINK], and congressional staff all over who care for easy access to the progression of legislation related to mathematics.
 
-# Integration of Our Technologies, Key Libraries, & Platforms:
+## Integration of Our Technologies, Key Libraries, & Platforms:
 - MongoDB Database [LINK]: holds all bill details, mail subscribers, and backend processing values
 - Congress bill data is collected via the publicly-available Congress.gov API [LINK] (one just needs to sign up for their own API key)
 - Website and database are both hosted on Vercel [LINK] through the Github repository
 - Website is built using React [LINK], HTML, and CSS
 - Email alerts are run with Mailchimp’s API [LINK], subscriber information is added to MongoDB database
 
-# Step-by-step…
+## Step-by-step…
 **Before Deploying**
 1. Clone this GitHub repository
 2. Gather Congress.gov API key, MongoDB URI, Mailchimp API Key, Mailchimp Audience ID, and Mailchimp Data Center values
@@ -23,7 +23,7 @@ Project Goal: To build a database and connected website to present and track all
 5. Repeat all of step 2, except change root directory to website instead of database
 *Push Git repo and website will deploy under the provided url for the Vercel website project*
 
-# Code folders, in 2 parts (highlighting main features):
+## Code folders, in 2 parts (highlighting main features):
 1. Database:
  * `Database/api/FetchMathBills.js`: continuously running data collection script using the Congress.gov API and inputting selected bills into our MongoDB database, running every day through Vercel’s cron jobs. It also sends emails with each new bill found through `Database/api/SendMailchimpEmails.js`
  * `Database/api/data.js`: connects the MongoDB database, using the Mongoose library, to our website, which brings the data into a Vercel database with a url link (which is a built in feature available to Vercel websites), looking like https://deployeddatabse.vercel.app/api/data
@@ -35,7 +35,7 @@ Project Goal: To build a database and connected website to present and track all
  * `website/src/PageStructure.js`: the main page of the website
  * `website/src/components/..` all the aspects of the website in .js and .css (i.e. AboutUs, BillDetails, FullBillTable, TenBillsTable, etc.)
 
-# Helpful things to know!
+## Helpful things to know!
 **Pushing Code** 
 Vercel just pushes this code straight to the website when you add it to GitHub. Additionally, the automatic integration means if you change the MongoDB database, the website automatically updates with the new data.
 
