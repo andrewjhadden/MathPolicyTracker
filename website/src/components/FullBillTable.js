@@ -249,7 +249,7 @@ const PrintFullBillTable = ({ data }) => {
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan="5">No results found</td>
+                                    <td colSpan="5">Loading...</td>
                                 </tr>
                             )}
                         </tbody>

@@ -43,11 +43,11 @@ const BillAlerts = () => {
     }, [API_URL]);
 
     return (
-        <div className="bill-alerts">
+        <div>
             {loading ? (
-                    <p className="loading-message">Loading data, please wait...</p>
+                    <p className="loading-message">Loading...</p>
                 ) : (
-                    <div>
+                    <div className="bill-alerts">
                         {alerts.map((alert, index) => (
                             <Link 
                                 key={index} 

@@ -48,10 +48,10 @@
     background-color: var(--soft-tan);
     border: 2px solid var(--hover-and-headers);
     padding: 10px;
-    font-size: 1em;
+    font-size: 17px;
     color: var(--text-dark);
     border-radius: 4px;
-    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 4px #00000038;
     transition: all 0.3s ease-in-out;
     max-width: 70%;
     margin: 5px auto;
