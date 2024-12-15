@@ -67,8 +67,6 @@ async function fetchBillSponsor(bill) {
         return billDetailsData.bill.sponsors;
     } catch (error) {
         console.error(`Error fetching ${error.message}`);
-
-        // Also return empty array on network or JSON errors
         return [];
     }
 }
