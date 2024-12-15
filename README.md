@@ -1,6 +1,9 @@
 # Math-related Congressional Bill Tracker
+
 Computer Science Thesis Project (Fall 2024) [Hamilton College](https://www.hamilton.edu/)
+
 By Allison Berkowitz and Andrew Hadden
+
 Project Goal: To build a database and connected website to present and track all bills in congress, since the 114th congress and being continuously updated, related to mathematics. This will be useful to [Prof. Courtney Gibbons](https://crgibbons.github.io/) in the Mathematics Department, and congressional staff all over who care for easy access to the progression of legislation related to mathematics.
 
 ## Integration of Our Technologies, Key Libraries, & Platforms:
