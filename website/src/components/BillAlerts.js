@@ -17,8 +17,7 @@ const BillAlerts = () => {
 
     const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}`;
 
-    // Check if data is still loading
-    const isLoading = !data || data.length === 0;
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchBills = async () => {
@@ -35,6 +34,7 @@ const BillAlerts = () => {
                     .slice(0, 3);
 
                 setAlerts(topThreeBills);
+                setLoading(false);
             } catch (error) {
                 console.error('Error fetching bills:', error);
             }
@@ -44,7 +44,7 @@ const BillAlerts = () => {
 
     return (
         <div className="bill-alerts">
-            {isLoading ? (
+            {loading ? (
                     <p className="loading-message">Loading data, please wait...</p>
                 ) : (
                     <div>
