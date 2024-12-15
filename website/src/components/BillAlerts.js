@@ -17,6 +17,9 @@ const BillAlerts = () => {
 
     const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}`;
 
+    // Check if data is still loading
+    const isLoading = !data || data.length === 0;
+
     useEffect(() => {
         const fetchBills = async () => {
             try {
@@ -41,17 +44,23 @@ const BillAlerts = () => {
 
     return (
         <div className="bill-alerts">
-            {alerts.map((alert, index) => (
-                <Link 
-                    key={index} 
-                    to={`/bill/${alert._id}`}
-                    reloadDocument
-                    className="alert-card"
-                >
-                    <h3>{`${alert.bill.bill.type} ${alert.bill.bill.number}`}</h3>
-                    <p>{alert.bill.actionDate}</p>
-                </Link>
-            ))}
+            {isLoading ? (
+                    <p className="loading-message">Loading data, please wait...</p>
+                ) : (
+                    <div>
+                        {alerts.map((alert, index) => (
+                            <Link 
+                                key={index} 
+                                to={`/bill/${alert._id}`}
+                                reloadDocument
+                                className="alert-card"
+                            >
+                                <h3>{`${alert.bill.bill.type} ${alert.bill.bill.number}`}</h3>
+                                <p>{alert.bill.actionDate}</p>
+                            </Link>
+                        ))}
+                    </div>
+            )}
         </div>
     );
 }
