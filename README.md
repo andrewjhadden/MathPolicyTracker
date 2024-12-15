@@ -17,10 +17,10 @@ Project Goal: To build a database and connected website to present and track all
 3. Create a new Vercel project with this Github repo
 
 **Deploy the page**
-1. In your new Vercel project, import from the cloned Github repository, and use Database as the root
+1. In the Vercel project, import from the cloned Github repository, and use Database as the root
 2. Add **MONGODB_URI, MAILCHIMP_DATA_CENTER, API_KEY, MAILCHIMP_API_KEY, MAILCHIMP_AUDIENCE_ID** as environment variables.
 4. Deploy
-5. Repeat all of step 2, except change root directory to website instead of database
+5. Repeat step 1, changing root directory to website instead of database
 
 *Push Git repo and website will deploy under the provided url for the Vercel website project*
 
