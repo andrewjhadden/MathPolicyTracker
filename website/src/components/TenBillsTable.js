@@ -17,6 +17,9 @@ import './TenBillsTable.css';
 const Display10BillsTable = ({ data }) => {
     const navigate = useNavigate();
 
+    // Check if data is still loading
+    const isLoading = !data || data.length === 0;
+
     // Sort function compares actionDate as Date values in js to arrange in newest to oldest order
     const sortedData = [...data].sort((a, b) =>  // ...data creates a shallow copy of the array to avoid editing the original
         new Date(b.bill.actionDate) - new Date(a.bill.actionDate)
@@ -28,32 +31,36 @@ const Display10BillsTable = ({ data }) => {
 
     return (
         <div className="table-container">
-            <table className="bill-table">
-                <thead>
-                    <tr>
-                        <th>Bill</th>
-                        <th>Title</th>
-                        <th>Congress Year</th>
-                        <th>Action</th>
-                        <th>Action Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {sortedData.slice(0, 10).map((item) => (
-                        <tr 
-                            key={item._id} 
-                            className="clickable-row" 
-                            onClick={() => handleRowClick(item._id)}
-                        >
-                            <td>{item.bill.bill.type}.{item.bill.bill.number}</td>
-                            <td>{item.bill.bill.title}</td>
-                            <td>{item.bill.bill.congress}</td>
-                            <td>{item.bill.actionDesc}</td>
-                            <td>{item.bill.actionDate}</td>
+            {isLoading ? (
+                    <p className="loading-message">Loading data, please wait...</p>
+                ) : (
+                <table className="bill-table">
+                    <thead>
+                        <tr>
+                            <th>Bill</th>
+                            <th>Title</th>
+                            <th>Congress Year</th>
+                            <th>Action</th>
+                            <th>Action Date</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        {sortedData.slice(0, 10).map((item) => (
+                            <tr 
+                                key={item._id} 
+                                className="clickable-row" 
+                                onClick={() => handleRowClick(item._id)}
+                            >
+                                <td>{item.bill.bill.type}.{item.bill.bill.number}</td>
+                                <td>{item.bill.bill.title}</td>
+                                <td>{item.bill.bill.congress}</td>
+                                <td>{item.bill.actionDesc}</td>
+                                <td>{item.bill.actionDate}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
         </div>
     );
 };

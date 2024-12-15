@@ -39,22 +39,22 @@
 .dropdown-toggle {
     cursor: pointer;
     color: var(--baby-blue);
-    font-weight: bold;
+    font-weight: 1000;
     margin-left: 5px;
-    max-width: 85%;
-    font-size: 0.9em;
+    font-size: 1em;
 }
 
 .dropdown-info {
     background-color: var(--soft-tan);
-    border: 1px solid var(--border-green);
+    border: 2px solid var(--hover-and-headers);
     padding: 10px;
-    margin-top: 5px;
-    font-size: 0.9em;
+    font-size: 1em;
     color: var(--text-dark);
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 6px 4px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
+    max-width: 80%;
+    margin: 5px auto;
 }
 
 .all-bills-subtitle3 {

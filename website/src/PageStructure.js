@@ -64,11 +64,11 @@ function StructureWebsiteWithData() {
                                 <>
                                 <div className="top-section">
                                     <div className="image-container">
-                                        <img src={congressImage} alt="Capitol Image" />
+                                        <img src={congressImage} alt="United States Capitol building" loading="lazy" />
                                         <div className="overlay"></div>
                                     </div>
                                     <div className="image-container">
-                                        <img src={hamiltonImage} alt="Hamilton Image" />
+                                        <img src={hamiltonImage} alt="Hamilton College Chapel" loading="lazy" />
                                         <div className="overlay"></div>
                                     </div>
                                     <div className="title">Math Policy Tracker</div>
