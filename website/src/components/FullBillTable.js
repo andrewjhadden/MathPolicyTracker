@@ -146,7 +146,7 @@ const PrintFullBillTable = ({ data }) => {
         <div>
             <h2 className="all-bills-title">All Bill Actions</h2>
             <h3 className="all-bills-subtitle1">
-                List of all actions related to mathematics since the 114th congression year, in the senate and house.
+                List of all actions related to mathematics since the 114th congressional year, in the senate and house.
                 <span
                     className="dropdown-toggle"
                     onClick={() => setKeywordsDropdown(!showKeywordsDropdown)}
