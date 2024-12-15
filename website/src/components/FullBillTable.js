@@ -70,6 +70,9 @@ const PrintFullBillTable = ({ data }) => {
     const representatives = useMemo(() => getUniqueRepresentatives(data), [data]);
     const states = useMemo(() => getUniqueStates(data), [data]);
 
+    // Keywords dropdown
+    const [showKeywordsDropdown, setKeywordsDropdown] = useState(false);
+
     // Loading state
     const [loading, setLoading] = useState(true);
 
@@ -142,7 +145,21 @@ const PrintFullBillTable = ({ data }) => {
     return (
         <div>
             <h2 className="all-bills-title">All Bill Actions</h2>
-            <h3 className="all-bills-subtitle1">List of all actions related to mathematics since the 114th congression year, in the senate and house.</h3>
+            <h3 className="all-bills-subtitle1">
+                List of all actions related to mathematics since the 114th congression year, in the senate and house.
+                <span
+                    className="dropdown-toggle"
+                    onClick={() => setKeywordsDropdown(!showKeywordsDropdown)}
+                >
+                    {showKeywordsDropdown ? '↑' : '↓'}
+                </span>
+            </h3>
+            {showKeywordsDropdown && (
+                <div className="dropdown-info">
+                    We determined bills related to mathematics by filtering for keywords in a bill title or summary: " math ", "mathematics", "stem workforce", "stem education", and "mathematicians".
+                </div>
+            )}
+    
             <h3 className="all-bills-subtitle3">Note: Each row represents a distinct action taken on any bill related to mathematics. Search a bill number or name to see a list of actions tracking that bill's progress.</h3>
             <h3 className="all-bills-subtitle2">Descending Order by Actions</h3>
             
