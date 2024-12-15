@@ -2,7 +2,7 @@
   "crons": [
     {
       "path": "/api/FetchMathBills",
-      "schedule": "59 16 * * *"
+      "schedule": "15 19 * * *"
     }
   ]
 }
