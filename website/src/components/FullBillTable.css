@@ -22,7 +22,6 @@
     margin-top: 70px;
     margin-bottom: 20px;
     text-align: center;
-    font-weight: 600;
     font-size: 1.8rem;
     color: var(--hover-and-headers);
 }
@@ -45,7 +44,6 @@
 }
 
 .dropdown-info {
-    background-color: var(--soft-tan);
     border: 2px solid var(--hover-and-headers);
     padding: 10px;
     font-size: 17px;
@@ -255,6 +253,11 @@
 
     .search-input {
         width: 100%;
+        font-size: 12px;
+    }
+
+    .dropdown-info { 
+        width: 80%;
         font-size: 12px;
     }
 }

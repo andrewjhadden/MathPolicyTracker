@@ -22,7 +22,6 @@
     padding: 30px;
     max-width: 800px;
     margin: 20px auto;
-    font-family: Arial, sans-serif;
     background-color: var(--white);
     border-radius: 8px;
     box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
@@ -31,12 +30,10 @@
 .bill-title {
     font-size: 25px;
     margin-bottom: 22px;
-    color: var(--text-dark);
 }
 
 .congress {
     font-size: 16px;
-    color: var(--text-dark);
 }
 
 .chambers {

@@ -9,7 +9,10 @@
 // Description: Incremental fetching of math bills with batch processing to avoid timeouts.
 
 import { MongoClient, ServerApiVersion } from "mongodb";
-import { sendEmailAlert } from './SendMailchimpEmails.js'; // Import the email alert function
+
+// Import the email alert function
+import { sendEmailAlert } from './SendMailchimpEmails.js';
+
 import fetch from "node-fetch";
 import dotenv from "dotenv";
 
@@ -18,12 +21,14 @@ dotenv.config();
 const mongoUri = process.env.MONGODB_URI;
 const apiKey = process.env.API_KEY;
 
-// We could use actionDate to accurately get the new bills uploaded into the db,
-// but it seems that there could be some bills missing if their actionDate is beforehand and we miss it
+// This is -- I think -- the only good way to organize the API. I was considering using actionDate but 
+// given only updateDate lines the bills us by when they are updated in the system, if we use anything 
+// else, new bill updates wouldn't necessarily be down.
 const sortOrder = "updateDate+asc";
 
 // Compile regex patterns for each keyword to ensure whole-word matching
-// math has spaces around it since there were a few bills that had something like /math and it just didnt make sense
+// Also, math has spaces around it since there were a few bills that had something like /math and it just 
+// didn't make sense
 const keywords = [
     /\b math \b/i,
     /\bmathematics\b/i,
@@ -32,7 +37,7 @@ const keywords = [
     /\bmathematicians\b/i,
 ];
 
-// Get the last update info from MongoDB
+// Get the info about where to start now, from the most recent update, from MongoDB
 async function getLastUpdateInfo(db) {
     const progress = await db.collection("fetch_progress").findOne({ type: "mathBills" });
     return {
@@ -50,7 +55,8 @@ async function saveProgress(db, lastUpdateDate, lastOffset) {
     );
 }
 
-// Helper function to fetch sponsor bill data -- not an endpoint, only in /bill
+// Helper function to fetch sponsor bill data -- can not be accessed with any of the /${} endpoints like
+// in helper function "fetchBillDetails"
 async function fetchBillSponsor(bill) {
     const billType = bill.type.toLowerCase();
     const { congress, number } = bill;
@@ -67,11 +73,13 @@ async function fetchBillSponsor(bill) {
         return billDetailsData.bill.sponsors;
     } catch (error) {
         console.error(`Error fetching ${error.message}`);
+
+        // Also return empty array on network or JSON errors
         return [];
     }
 }
 
-// Helper function to fetch additional bill data
+// Helper function to fetch additional bill data, using endpoints (usable for all but sponsor data)
 async function fetchBillDetails(endpoint, bill) {
     const billType = bill.type.toLowerCase();
     const { congress, number } = bill;
@@ -92,7 +100,10 @@ async function fetchBillDetails(endpoint, bill) {
     }
 }
 
-// Fetch a single batch of Congress bills
+// Fetch a single batch of Congress bills, starting after the update info saved in MongoDB
+// Uses the summaries API specifically to get basic data about the bill, see if it matches, our keywords
+// add the sponsor, cosponsor, committees, and relatedBills datas via the helper functions from that bill
+// and insert it into the MongoDB collection
 async function fetchBatch(db) {
     const { lastUpdateDate, lastOffset } = await getLastUpdateInfo(db);
     const limit = 150;
@@ -140,12 +151,14 @@ async function fetchBatch(db) {
 
             // Send email alert for the new math-related bill
             try {
+                // Use MongoDB's insertedId which comes with every insertResult (defined with each insertion) 
                 const emailAlertData = {
                     title: bill.bill.title || "Untitled Bill",
-                    url: `https://mathbilltracker.vercel.app/#/bill/${insertResult.insertedId}`, // Use MongoDB's insertedId
+                    url: `https://mathbilltracker.vercel.app/#/bill/${insertResult.insertedId}`,
                 };
-                await sendEmailAlert(emailAlertData); // Trigger the email alert
-                console.log(`Email alert sent for bill: ${bill.bill.title}`);
+
+                // Trigger the email alert
+                await sendEmailAlert(emailAlertData);
             } catch (emailError) {
                 console.error(`Failed to send email alert for bill ${bill.bill.title}:`, emailError.message);
             }
@@ -158,7 +171,9 @@ async function fetchBatch(db) {
     return true;
 }
 
-// Serverless function handler
+// Serverless function handler -- specific to Vercel
+// Start the MongoDb connection via the mongoUri, call the fetchBatch function until no more batches
+// left to process, and then close the client (necessary so that it doesn't stay open, which causes errors)
 export default async function handler(request, response) {
     const client = new MongoClient(mongoUri, {
         serverApi: {

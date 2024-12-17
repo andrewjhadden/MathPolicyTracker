@@ -20,12 +20,9 @@
 .bill-alerts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 20px;
-    padding: 20px;
-    color: var(--text-dark);
-    background-color: var(--soft-tan);
+    /* color: var(--text-dark);
+    background-color: var(--soft-tan); */
     width: 100%; 
-    max-width: calc(100% - 120px);
     margin: 0 auto;
 }
 

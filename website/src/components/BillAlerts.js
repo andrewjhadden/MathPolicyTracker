@@ -15,6 +15,7 @@ import './BillAlerts.css';
 const BillAlerts = () => {
     const [alerts, setAlerts] = useState([]);
 
+    // Get the API from Vercel
     const API_URL = `${process.env.REACT_APP_DATABASE_API_URL}`;
 
     const [loading, setLoading] = useState(true);
@@ -28,12 +29,14 @@ const BillAlerts = () => {
                 }
                 const data = await response.json();
 
-                // Sort by actionDate in descending order and take the top 3
+                // Get top 3 of bill actions of a descending order sorted list
                 const topThreeBills = data
                     .sort((a, b) => new Date(b.bill.actionDate) - new Date(a.bill.actionDate))
                     .slice(0, 3);
 
                 setAlerts(topThreeBills);
+
+                // Turn off loading text when done with the above data loading
                 setLoading(false);
             } catch (error) {
                 console.error('Error fetching bills:', error);

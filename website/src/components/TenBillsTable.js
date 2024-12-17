@@ -21,7 +21,8 @@ const Display10BillsTable = ({ data }) => {
     const isLoading = !data || data.length === 0;
 
     // Sort function compares actionDate as Date values in js to arrange in newest to oldest order
-    const sortedData = [...data].sort((a, b) =>  // ...data creates a shallow copy of the array to avoid editing the original
+    // Note that ...data creates a shallow copy of the array to avoid editing the original
+    const sortedData = [...data].sort((a, b) =>  
         new Date(b.bill.actionDate) - new Date(a.bill.actionDate)
     );
 
@@ -32,7 +33,7 @@ const Display10BillsTable = ({ data }) => {
     return (
         <div className="table-container">
             {isLoading ? (
-                    <p className="loading-message">Loading data, please wait...</p>
+                    <p className="loading-message">Loading data...</p>
                 ) : (
                 <table className="bill-table">
                     <thead>
@@ -45,6 +46,7 @@ const Display10BillsTable = ({ data }) => {
                         </tr>
                     </thead>
                     <tbody>
+                        {/* We want to show only the top 10 most recent bills in our table */}
                         {sortedData.slice(0, 10).map((item) => (
                             <tr 
                                 key={item._id} 

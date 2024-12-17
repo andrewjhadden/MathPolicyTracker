@@ -15,11 +15,11 @@ import React, { useState, useEffect, useMemo } from 'react';
 import './FullBillTable.css';
 import { useNavigate } from 'react-router-dom';
 
+// Using a Set to avoid duplicates, add all sponsors and cosponsors to it, and finally convert it back
+// to an array and sort alphabetically to get a usable, sorted, non-duplicated, list of representatives.
 const getUniqueRepresentatives = (data) => {
-    // Using a Set to avoid duplicates
     const representatives = new Set();
 
-    // Add sponsor and cosponsor
     data.forEach((item) => {
         if (item.sponsors?.length > 0) {
             representatives.add(item.sponsors[0].fullName);
@@ -29,10 +29,11 @@ const getUniqueRepresentatives = (data) => {
         });
     });
 
-    // Convert the Set back to an array and sort alphabetically
     return Array.from(representatives).sort();
 };
 
+// Same concept as above, getting a usable, sorted, non-duplicated, list of states that each rep 
+// comes from.
 const getUniqueStates = (data) => {
     const states = new Set();
     data.forEach((item) => {
@@ -52,45 +53,40 @@ const PrintFullBillTable = ({ data }) => {
     const [query, setQuery] = useState('');
     const [filteredData, setFilteredData] = useState([]);
 
-    // Need for storing the currently selected representative from the filter dropdown (default is no filter)
+    // Need for storing the currently selected reps or states from the filter dropdown 
     const [selectedReps, setSelectedReps] = useState([]);
-
-    // Same for states
     const [selectedStates, setSelectedStates] = useState([]);
 
     // To be able to show reps and states or not
     const [showRepFilter, setShowRepFilter] = useState(false);
     const [showStateFilter, setShowStateFilter] = useState(false);
 
-    // Initial rows shown
+    // Setting the number of rows shown (inital is 20)
     const [visibleCount, setVisibleCount] = useState(20);
 
-    // Memoize the unique representatives and states (added)
-    // Need for storing the list of all unique filters (empty list to start)
+    // Memoize the unique reps and states -- need for storing the list of all unique filters 
+    // (empty list to start)
     const representatives = useMemo(() => getUniqueRepresentatives(data), [data]);
     const states = useMemo(() => getUniqueStates(data), [data]);
 
-    // Keywords dropdown
     const [showKeywordsDropdown, setKeywordsDropdown] = useState(false);
 
-    // Loading state
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        // Filter data based on query
+        // Filter data based on query matching title or bill number, then check if selected rep is 
+        // either a sponsor or cosponsor, and finally check if the selected state is in either the
+        // sponsors or cosponsors
         const results = data.filter((item) => {
-            // Check if query matches title or bill number
             const title = item.bill.bill.title.toLowerCase();
             const billNumber = `${item.bill.bill.type}.${item.bill.bill.number}`.toLowerCase();
             const matchesQuery = title.includes(query.toLowerCase()) || billNumber.includes(query.toLowerCase());
             
-            // Check if the selected representative is either sponsor or cosponsor
             const matchesReps = selectedReps.length === 0 || selectedReps.some(rep =>
                     item.sponsors?.some(s => s.fullName === rep) ||
                     item.cosponsors?.some(c => c.fullName === rep)
                 );
 
-            // Check if the selected representative is either sponsor or cosponsor
             const matchesStates = selectedStates.length === 0 || selectedStates.some(state =>
                     item.sponsors?.some(s => s.state === state) ||
                     item.cosponsors?.some(c => c.state === state)
@@ -105,30 +101,32 @@ const PrintFullBillTable = ({ data }) => {
         );
 
         setFilteredData(sortedResults);
-        setLoading(false); // Set loading to false once data is ready
+
+        // Defining loading as false so that "loading..." doesn't continue to show
+        setLoading(false);
 
         // Reset visible count on new search
         setVisibleCount(20);
     }, [query, selectedReps, selectedStates, data]);
 
-    // Toggle representative selection on click
+    // Toggle representative selection on click (remove is already selected, add if not)
     const handleRepClick = (rep) => {
         setSelectedReps((prevSelectedReps) => {
             if (prevSelectedReps.includes(rep)) {
-                return prevSelectedReps.filter((selectedRep) => selectedRep !== rep); // Remove if already selected
+                return prevSelectedReps.filter((selectedRep) => selectedRep !== rep);
             } else {
-                return [...prevSelectedReps, rep]; // Add if not selected
+                return [...prevSelectedReps, rep];
             }
         });
     };
 
-    // Toggle state selection on click
+    // Toggle state selection on click (remove is already selected, add if not)
     const handleStateClick = (state) => {
         setSelectedStates((prevSelectedStates) => {
             if (prevSelectedStates.includes(state)) {
-                return prevSelectedStates.filter((selectedState) => selectedState !== state); // Remove if already selected
+                return prevSelectedStates.filter((selectedState) => selectedState !== state);
             } else {
-                return [...prevSelectedStates, state]; // Add if not selected
+                return [...prevSelectedStates, state];
             }
         });
     };
@@ -233,6 +231,7 @@ const PrintFullBillTable = ({ data }) => {
                             </tr>
                         </thead>
                         <tbody>
+                            {/* Showing all data from our database, just sorted and only 20 at a time */}
                             {filteredData.length > 0 ? (
                                 filteredData.slice(0, visibleCount).map((item) => (
                                     <tr 

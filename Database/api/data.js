@@ -14,16 +14,17 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-// Get from Vercel
+// Need to get environment variable from Vercel
 const mongoUri = process.env.MONGODB_URI; 
 
+// If the mongoose connection isn't open, open it (with the mongoUri)
 async function connectToDB() {
     if (mongoose.connection.readyState === 0) {
         await mongoose.connect(mongoUri);
     }
 }
 
-// Don't need to define it comphrensively, because the data will automatically fill in sub-objects and arrays where it goes. 
+// This schema doesn't need to define our dataset comphrensively, because the data will automatically fill in sub-objects and arrays where it goes. 
 const dataSchema = new mongoose.Schema({
     bill: Object,
     sponsors: Array,
@@ -35,10 +36,11 @@ const dataSchema = new mongoose.Schema({
 
 const dataModel = mongoose.model('thesisdbcollections', dataSchema);
 
-// Handler function edited for the serverless function
+// Handler function edited for the serverless function -- set up for Vercel
+// Make sure connected to MongoDB, then save the data from the dataModel defined above, which allows
+// Vercel to make .../data website link which is its copied version of our database
 export default async function handler(request, response) {
     // Set CORS headers
-    // Need to allow all origins
     response.setHeader('Access-Control-Allow-Origin', '*');
     response.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
     response.setHeader('Access-Control-Allow-Headers', 'Content-Length');
